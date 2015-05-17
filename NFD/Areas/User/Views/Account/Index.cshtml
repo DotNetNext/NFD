@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "账号管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using NFD.BLL
+@using Trirand.Web.Mvc
+@using COM.Extension
+@model JQGrid
+@section head{
+    @Html.Partial("~/Views/Shared/_JqGridFiles.cshtml")<link href="../../../../Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.css"
+        rel="stylesheet" type="text/css" /><script src="../../../../Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.js"
+            type="text/javascript"></script><script src="../../../../Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialoghelper.js"
+                type="text/javascript"></script>
+    <script type="text/javascript">
+        function EditPower(value, name) {
+            return "<a class='btn btn-mini' onclick=\"clickFunc('" + value + "')\">编辑权限</a>";
+        }
+        var clickFunc = function (value) {
+            $.response.redirect("/UserPower/Power/Index", { id: value });
+        }
+    </script>
+}
+@if (!PubMethod.IsWindow)
+{
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                <img class="bimg" src="/Content/Scripts/Plugs/Multiple/zTree-zTree_v3-master/zTree_v3/css/zTreeStyle/img/diy/1_open.png" />系统管理<a></a>>@ViewBag.Title
+            </li>
+        </ul>
+    </div>
+}
+@Html.Trirand().JQGrid((JQGrid)Model, "JQGrid1")

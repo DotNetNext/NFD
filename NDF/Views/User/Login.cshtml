@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutByLogin.cshtml";
+}
+@section head{
+    <link href="/Content/Scripts/Plugs/Multiple/parsley/parsley.css" rel="stylesheet"
+        type="text/css" />
+    <script src="/Content/Scripts/Plugs/Multiple/parsley/parsley.js" type="text/javascript"></script>
+}
+<div>
+    <form action="/user/LoginSubmit" method="post">
+    <table>
+        <tr>
+            <td>
+                账号
+            </td>
+            <td>
+                <input name="userName"  tip="必填" reg="^.+$" maxlength="10" type="text" value="@Request["userName"]" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                密码
+            </td>
+            <td>
+                <input name="password" tip="必填" reg="^.+$" maxlength="10" type="password" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" value="提交" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

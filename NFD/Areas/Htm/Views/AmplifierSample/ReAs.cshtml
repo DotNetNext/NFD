@@ -1,0 +1,121 @@
+﻿@model AmplifierSample
+@using COM.Extension
+@using NFD.Entities.Data
+@using COM.Utility 
+
+<style>
+    .savetable td
+    {
+        padding: 2px;
+    }
+</style>
+<form id="frmAsSavetable">
+<table id="TblGrid_htgrid_12_t" class="savetable" cellspacing="0" cellpadding="0"
+    border="0">
+    <tbody>
+        <tr id="FormError" style="display: none">
+            <td class="ui-state-error" colspan="2">
+            @Html.HiddenFor(c=>c.as_id)
+            </td>
+        </tr>
+        <tr style="display: none" class="tinfo">
+            <td class="topinfo" colspan="2">
+            </td>
+        </tr>
+        <tr rowpos="1" class="FormData" id="tr_Indicate_day">
+            <td class="CaptionTD">
+                大样交期
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" class="Wadate FormElement ui-widget-content ui-corner-all"
+                    onclick="WdatePicker()" id="Indicate_day" name="Indicate_day" value="@Model.Indicate_day.ToDateStr("yyyy-MM-dd")" role="textbox">
+            </td>
+        </tr>
+        <tr rowpos="2" class="FormData" id="tr_hope_data">
+            <td class="CaptionTD">
+                希望成品日
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" class="Wadate FormElement ui-widget-content ui-corner-all"
+                    onclick="WdatePicker()" id="hope_data" name="hope_data" value="@Model.hope_data.ToDateStr("yyyy-MM-dd")" role="textbox">
+            </td>
+        </tr>
+        <tr rowpos="3" class="FormData" id="tr_factory_date">
+            <td class="CaptionTD">
+                工厂成品日
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" class="Wadate FormElement ui-widget-content ui-corner-all"
+                    onclick="WdatePicker()" id="factory_date" name="factory_date" value="@Model.factory_date.ToDateStr("yyyy-MM-dd")" role="textbox">
+            </td>
+        </tr>
+        <tr rowpos="4" class="FormData" id="tr_actual_date">
+            <td class="CaptionTD">
+                实际成品日
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" class="Wadate FormElement ui-widget-content ui-corner-all"
+                    onclick="WdatePicker()" id="actual_date" name="actual_date" value="@Model.actual_date.ToDateStr("yyyy-MM-dd")" role="textbox">
+            </td>
+        </tr>
+        <tr rowpos="5" class="FormData" id="tr_m_num">
+            <td class="CaptionTD">
+                放样M数
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" id="m_num" name="m_num" onblur="$(this).easyValidate(true)" tip="@RegList.MONEY_TIP" reg="@RegList.MONEY_NULL" role="textbox" value="@Model.m_num" class="FormElement ui-widget-content ui-corner-all">
+            </td>
+        </tr>
+        <tr rowpos="6" class="FormData" id="tr_finished_num">
+            <td class="CaptionTD">
+                放样成品数
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" id="finished_num" onblur="$(this).easyValidate(true)" tip="@RegList.MONEY_TIP" reg="@RegList.MONEY_NULL" name="finished_num" value="@Model.finished_num" role="textbox" class="FormElement ui-widget-content ui-corner-all">
+            </td>
+        </tr>
+        <tr rowpos="7" class="FormData" id="tr_factory_date2">
+            <td class="CaptionTD">
+                送工厂日
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" value="@Model.factory_date2.ToDateStr("yyyy-MM-dd")" class="Wadate FormElement ui-widget-content ui-corner-all"
+                    onclick="WdatePicker()" id="factory_date2" name="factory_date2" role="textbox">
+            </td>
+        </tr>
+        <tr rowpos="8" class="FormData" id="tr_factory_num">
+            <td class="CaptionTD">
+                送工厂量
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" id="factory_num" onblur="$(this).easyValidate(true)" tip="@RegList.MONEY_TIP" reg="@RegList.MONEY_NULL" value="@Model.factory_num" name="factory_num" role="textbox" class="FormElement ui-widget-content ui-corner-all">
+            </td>
+        </tr>
+        <tr rowpos="9" class="FormData" id="tr_warehouse_num">
+            <td class="CaptionTD">
+                在仓米数
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" id="warehouse_num" onblur="$(this).easyValidate(true)" tip="@RegList.MONEY_TIP" reg="@RegList.MONEY_NULL" value="@Model.warehouse_num" name="warehouse_num" role="textbox" class="FormElement ui-widget-content ui-corner-all">
+            </td>
+        </tr>
+        <tr rowpos="10" class="FormData" id="tr_remark">
+            <td class="CaptionTD">
+                备注
+            </td>
+            <td class="DataTD">
+                &nbsp;<textarea id="remark" name="remark"    cols="20" rows="2" role="textbox" multiline="true"
+                    class="FormElement ui-widget-content ui-corner-all">@Model.remark</textarea>
+            </td>
+        </tr>
+        <tr class="FormData" style="display: none">
+            <td class="CaptionTD">
+            </td>
+            <td colspan="1" class="DataTD">
+                <input class="FormElement" id="id_g" type="text" name="htgrid_12_t_id" value="15">
+            </td>
+        </tr>
+    </tbody>
+</table>
+</form>
+ 

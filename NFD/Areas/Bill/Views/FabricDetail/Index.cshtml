@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "总览";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Trirand.Web.Mvc
+@using COM.Extension;
+@using COM.Utility;
+@using NFD.Entities.Data;
+@model JQGrid
+@section head{
+    @Html.Partial("~/Views/Shared/_JqGridFiles.cshtml")
+    @{
+        var traderJson = "var json=" + NFD.BLL.TraderManager.GetList().ToJson();
+    }
+    @traderJson.ToJavaScript()
+    <script src="/Content/Scripts/Plugs/Multiple/watermark/watermark.js" type="text/javascript"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/My97DatePickerBeta/My97DatePicker/skin/WdatePicker.css"
+        rel="stylesheet" type="text/css" />
+    <link href="/Content/Scripts/Plugs/Multiple/parsley/parsley.css" rel="stylesheet"
+        type="text/css" />
+    <script src="/Content/Scripts/Plugs/Multiple/parsley/parsley.js" type="text/javascript"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.css" rel="stylesheet"
+        type="text/css" />
+    <script type="text/javascript" src="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.js"></script>
+    <script src="/Content/Scripts/Plugs/Multiple/My97DatePickerBeta/My97DatePicker/WdatePicker.js"
+        type="text/javascript"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/My97DatePickerBeta/My97DatePicker/skin/WdatePicker.css"
+        rel="stylesheet" type="text/css" />
+    <script src="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialoghelper.js"
+        type="text/javascript"></script>
+    <script>
+        function ToTrader(value, colname) {
+            var data = $.linq.first(json, function (o) { return o.trader_id == value; });
+            if (data == null) { return "已删除" }
+            var alertmessage = "";
+            if (data.mobile != null)
+                alertmessage += "手机: " + data.mobile + "<br>";
+            if (data.qq != null)
+                alertmessage += "qq: " + data.qq + "<br>";
+            if (data.email != null)
+                alertmessage += "email: " + data.email + "<br>";
+            if (alertmessage == "") alertmessage = "没有" + data.name + "的信息，请到客户管理完善!!";
+            return "<a onclick=\"ed_alert('" + data.name + "详情','" + alertmessage + "')\"  style='float:left;cursor: pointer;'>" + data.name + "</a><span style='float:left;cursor: pointer;' class=\"ui-icon ui-icon-search\" onclick=\"ed_alert('" + data.name + "详情','" + alertmessage + "')\" ></span>"
+        }
+        function edit() {
+            var id = $("#fdgrid").jqGrid('getGridParam', 'selrow');
+            if (id == null) {
+                ed_alert("温馨提醒", "请选择记录！")
+            } else {
+                var rowData = $("#fdgrid").jqGrid('getRowData', id);
+
+                $.response.redirect("/Bill/Order/Save?", { id: rowData.order_id });
+            }
+
+        }
+    </script>
+}
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <img class="bimg" src="/Content/Scripts/Plugs/Multiple/zTree-zTree_v3-master/zTree_v3/css/zTreeStyle/img/diy/1_open.png" /><a  
+             class="hand"  href="@Url.Action("Index")">面料管理</a>><a>@ViewBag.Title</a></li>
+    </ul>
+</div>
+@Html.Trirand().JQGrid(Model, "fdgrid")

@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Index_Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model NFD.Entities.Data.Home
+@using COM.Extension
+@section head{
+    <link href="/Content/Scripts/Plugs/Multiple/parsley/parsley.css" rel="stylesheet"
+        type="text/css" />
+    <script src="/Content/Scripts/Plugs/Multiple/parsley/parsley.js" type="text/javascript"></script>
+    <script src="/Content/Scripts/Plugs/Single/ejq.js" type="text/javascript"></script>
+}
+<div>
+    <ul class="breadcrumb">
+        <li><a href="/">首页</a> <span class="divider">/</span> </li>
+        <li><a>@((Model.Id == 0).IIF("添加", "修改"))</a> </li>
+    </ul>
+</div>
+ 
+
+<div class="row-fluid sortable">
+    <div class="box span12">
+        <div class="box-header well" data-original-title>
+            @Model.Name
+        </div>
+        <div class="box-content">
+            <form class="form-horizontal" action="/Home/Index_Save" method="post">
+            @Html.Hidden("id", Model.Id)
+            @Html.HiddenToUrlReferrer();
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="focusedInput">
+                        名称</label>
+                    <div class="controls">
+                        <input class="input-xlarge focused" tip="必填" reg="^.+$" name="Name" type="text" value="@Model.Name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        内容</label>
+                    <div class="controls">
+                        <textarea name="Content">@Model.Content</textarea>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        保存</button>
+                    <button type="reset" class="btn" onclick="ejq.response.redirect('/')">
+                        返回</button>
+                </div>
+            </fieldset>
+            </form>
+        </div>
+    </div>
+    <!--/span-->
+</div>
+<!--/row-->
+ 
+
+ 

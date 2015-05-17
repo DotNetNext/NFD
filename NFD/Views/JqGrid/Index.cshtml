@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "JqGrid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Trirand.Web.Mvc
+@using COM.Extension
+@section head{
+    <link href="/Content/Templates/jquery-ui-1.11.1/jquery-ui.css" rel="stylesheet"
+        type="text/css" />
+    <link href="/Content/themes/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+    <script src="/Content/trirand/i18n/grid.locale-cn.js" type="text/javascript"></script>
+    <script src="/Content/trirand/jquery.jqGrid.min.js" type="text/javascript"></script>
+   
+}
+<h2>@ViewBag.Title</h2>
+<p>
+    <script>
+        var lastsel;
+    </script>
+    @Html.Trirand().JQGrid((JQGrid)Model, "JQGrid1").JqGridPrependJs("var lastsel;").JqGridAppendOption(@"
+                   footerrow:true,   
+                   gridComplete:function(){ 
+                     $(this).footerData(""set"",{Id:""统计"",Name:""10000""});
+
+                   },
+                  ondblClickRow: function(id){
+	                                            if(id && id!==lastsel){
+		                                            $(this).jqGrid('restoreRow',lastsel);
+		                                            $(this).jqGrid('editRow',id,true,pickdates);
+		                                            lastsel=id;
+                                                    var ids=jQuery(this).jqGrid('getDataIDs');
+                                                  
+                                                  
+	                                            }
+	}
+
+       ").JqGridAppendJs(@"function pickdates(id){jQuery(""#""+id+""_Content"").datepicker({dateFormat:""yy-mm-dd""});}")
+</p>

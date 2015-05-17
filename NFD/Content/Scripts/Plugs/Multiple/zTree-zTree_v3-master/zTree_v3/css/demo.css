@@ -1,0 +1,27 @@
+
+.zTree_v3 a {color:#3C6E31;text-decoration: underline;}
+.zTree_v3 a:hover {background-color:#3C6E31;color:white;}
+.zTree_v3 input.radio {margin: 0 2px 0 8px;}
+.zTree_v3 input.radio.first {margin-left:0;}
+.zTree_v3 input.empty {color: lightgray;}
+.zTree_v3 code {color: #2f332a;}
+.zTree_v3 .highlight_red {color:#A60000;}
+.zTree_v3 .highlight_green {color:#A7F43D;}
+.zTree_v3 li {list-style: circle;font-size: 12px;}
+.zTree_v3 li.title {list-style: none;}
+.zTree_v3 ul.list {margin-left: 17px;}
+
+.zTree_v3 div.content_wrap {width: 600px;height:380px;}
+.zTree_v3 div.content_wrap div.left{float: left;width: 250px; padding-right:0}
+.zTree_v3 div.content_wrap div.right{float: right;width: 340px;}
+.zTree_v3 div.zTreeDemoBackground {width:250px;height:362px;text-align:left;}
+
+.zTree_v3 ul.ztree {border:1px solid #e0cfc2;background:#f4f0ec url("images/ui-bg_inset-soft_100_f4f0ec_1x100.png") 50% bottom repeat-x;width:160px; padding:10px;height:600px; padding-right:0; float:left}
+.zTree_v3 ul.log {border: 1px solid #617775;background: #f0f6e4;width:300px;height:170px;overflow: hidden;}
+.zTree_v3 ul.log.small {height:45px;}
+.zTree_v3 ul.log li {color: #666666;list-style: none;padding-left: 10px;}
+.zTree_v3 ul.log li.dark {background-color: #E3E3E3;}
+
+/* ruler */
+.zTree_v3 div.ruler {height:20px; width:220px; background-color:#f0f6e4;border: 1px solid #333; margin-bottom: 5px; cursor: pointer}
+.zTree_v3 div.ruler div.cursor {height:20px; width:30px; background-color:#3C6E31; color:white; text-align: right; padding-right: 5px; cursor: pointer}

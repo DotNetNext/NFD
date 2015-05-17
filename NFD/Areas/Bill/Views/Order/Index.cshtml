@@ -1,0 +1,422 @@
+﻿@{
+    ViewBag.Title = "订单总览";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var tolInfo = OrderBillManager.GetTolByPars(new OrderBill());
+}
+@model  Trirand.Web.Mvc.JQGrid
+@using Trirand.Web.Mvc
+@using NFD.BLL;
+@using COM.Extension;
+@using NFD.Entities.Data;
+@using NFD.BLL.Bill
+@section head{
+    @Html.Partial("~/Views/Shared/_JqGridFiles.cshtml")
+    <link href="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.css" rel="stylesheet"
+        type="text/css" />
+    <script type="text/javascript" src="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.js"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/parsley/parsley.css" rel="stylesheet"
+        type="text/css" />
+    <script src="/Content/Scripts/Plugs/Multiple/parsley/parsley.js" type="text/javascript"></script>
+    <script src="/Content/Scripts/Plugs/Single/loading.js" type="text/javascript"></script>
+    <script src="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialoghelper.js"
+        type="text/javascript"></script>
+    <script src="/Content/Scripts/Plugs/Multiple/My97DatePickerBeta/My97DatePicker/WdatePicker.js"
+        type="text/javascript"></script>
+    <style type="text/css">
+        .easyDialog_wrapper
+        {
+            width: inherit;
+            min-width: 320px;
+        }
+        #divCopyNext label
+        {
+            display: inline-block;
+            width: 100px;
+        }
+        #divCopyNext .btn
+        {
+            margin-bottom: 5px;
+        }
+        .tbNext
+        {
+            margin: 20px;
+        }
+        table .left
+        {
+            padding-right: 50px;
+            float: right;
+        }
+    </style>
+    <script type="text/javascript">
+
+        //加载统计信息
+        function loadTolInf() {
+            $.ajax({
+                url: "/Bill/Order/_GetTolInfo",
+                cache: false,
+                type: "post",
+                data: {
+                    trader_id: $(".frozen-div [name=trader_id]").val(),
+                    factory_name: $(".frozen-div [name=factory_name]").val(),
+                    clothing_number: $(".frozen-div [name=clothing_number]").val(),
+                    no: $(".ui-jqgrid-htable [name=no]").val(),
+                    chance_id: $("#chanceId").val()
+                },
+                dataType: "html",
+                success: function (msg) {
+                    $("#divTolBox").html(msg);
+                }
+
+            })
+
+        }
+
+        //刷新表格
+        function reloadGrid() {
+            $("#ordergrid").trigger("reloadGrid");
+        }
+
+        function ToFactoryName(value, colname) {
+            var data = $.linq.first(json2, function (o) { return o.dd_id == value; });
+            return data.d_name;
+        }
+
+        //绑定查看客户
+        function ToTrader(value, colname) {
+            var data = $.linq.first(json, function (o) { return o.trader_id == value; });
+            if (data == null) {  return "已删除" }
+            var alertmessage = "";
+            if (data.mobile != null)
+                alertmessage += "手机: " + data.mobile + "<br>";
+            if (data.qq != null)
+                alertmessage += "qq: " + data.qq + "<br>";
+            if (data.email != null)
+                alertmessage += "email: " + data.email + "<br>";
+            if (alertmessage == "") alertmessage = "没有" + data.name + "的信息，请到客户管理完善!!";
+            return "<a onclick=\"ed_alert('" + data.name + "详情','" + alertmessage + "')\"  style='float:left;cursor: pointer;'>" + data.name + "</a><span style='float:left;cursor: pointer;' class=\"ui-icon ui-icon-search\" onclick=\"ed_alert('" + data.name + "详情','" + alertmessage + "')\" ></span>"
+        }
+
+        //绑定操作
+        function action(value, name, row, X, X2, X3) {
+            if (value == true || value == "True") {
+                return "<a class='btn btn-mini' style='margin:auto' onclick='$.response.redirect(\"/Bill/Cut/Index\",{id:" + name.rowId + "})'>查看裁剪</a>";
+            }
+            var inputNext = "<input value='创建裁剪' onclick='createCut(" + name.rowId + ")' class='btn btn-mini' type='button' />";
+            return  inputNext;
+
+        }
+
+        function singlePrice(value, name, array) {
+            var constPrice = $.convert.toFloat(array[8]);
+
+            return constPrice;
+        }
+        function tolPrice(value, name, array) {
+            var num = $.convert.toFloat(array[7]);
+            var constPrice = $.convert.toFloat(array[8]);
+            var maPrice = $.convert.toFloat(array[9]);
+            var cuPrice = $.convert.toFloat(array[10]);
+
+            return (num * constPrice);
+        }
+        function tolUSDPrice(value, name, array) {
+            var num = $.convert.toFloat(array[7]);
+            var constPrice = $.convert.toFloat(array[8]);
+            var maPrice = $.convert.toFloat(array[9]);
+            var cuPrice = $.convert.toFloat(array[10]);
+            var rate = $.convert.toFloat(array[13]);
+            if (rate > 0) {
+                return ((num * constPrice) / rate).toFixed(2);
+            }
+            return "";
+        }
+
+        function addOrderBill() {
+            $.response.redirect("/Bill/Order/Save");
+        }
+
+        function openEdit(value, name) {
+            $.response.redirect("/Bill/Order/Save?id=" + value);
+        }
+        function openEditBySelected() {
+            var id = $("#ordergrid").jqGrid('getGridParam', 'selrow');
+            if (id == null) {
+             ed_alert("温馨提醒","请选择记录！")
+            } else {
+                openEdit(id)
+            }
+        }
+        //裁剪
+        function createCut(rowId) {
+            var row = $("#ordergrid").jqGrid('getRowData', rowId);
+            var btnFn = function () {
+                $.response.redirect("/Bill/Order/CreateCut", { id: rowId });
+            };
+
+            easyDialog.open({
+                container: {
+                    header: '确认',
+                    content: '是否创建裁剪',
+                    yesFn: btnFn,
+                    width: 100,
+                    noFn: true
+                }
+            });
+            debugger
+      
+        }
+
+        //作废
+        function openDel() {
+            var id = $("#ordergrid").jqGrid('getGridParam', 'selrow');
+            var btnFn = function () {
+                $.ajax({
+                    url: "/Bill/Order/DelOrder",
+                    cache: false,
+                    data: { id: id },
+                    success: function (msg) {
+                        ed_alert("系统消息", "操作成功");
+                        reloadGrid();
+                    }
+
+                })
+            };
+
+            easyDialog.open({
+                container: {
+                    header: '确认',
+                    content: '是否删除',
+                    yesFn: btnFn,
+                    width: 100,
+                    noFn: true
+                }
+            });
+
+
+        }
+
+        function exExcel() {
+            ed_alertBox("#divExExcel", "导出EXCEL", function () {
+                var pars = $(".easyDialog_text form").serialize();
+                window.open("/Bill/Order/Export?=" + pars + "&typeId=0");
+            })
+        }
+
+        function exPdf() {
+            ed_alertBox("#divExExcel", "导出PDF", function () {
+                var pars = $(".easyDialog_text form").serialize();
+                window.open("/Bill/Order/Export?" + pars + "&typeId=1");
+            })
+        }
+
+        function sendMail() {
+            ed_alertBoxNoClost("#divMail", "发送邮件", function () {
+                var trader = $(".easyDialog_text #trader_id").val();
+                var dateMin = $(".easyDialog_text #dateMin").val();
+                var dateMax = $(".easyDialog_text #dateMax").val()
+                var isValid = $(".easyDialog_text #frmMail [reg]").easyValidate(true);
+                $("html").toggleLoading();
+                $.ajax({
+                    url: "/Bill/Order/SendMail",
+                    type: "post",
+                    data: $(".easyDialog_text #frmMail").serialize(),
+                    cache: false,
+                    dateType: "json",
+                    success: function (msg) {
+                        debugger
+                        if (msg.IsSuccess) {
+                            alert("发送成功！");
+                            easyDialog.close();
+                        } else {
+                            alert("发送失败！");
+                        }
+                        $("html").toggleLoading();
+                    },
+                    error: function (msg) {
+                        $("html").toggleLoading();
+                    }
+
+                })
+                return false;
+            })
+
+        }
+        function openPdf() {
+            var pars = $(".easyDialog_text form").serialize();
+            window.open("/Bill/Order/Export?" + pars + "&typeId=1");
+        }
+    </script>
+}
+<!--放大样-->
+@{
+    var traderJson = "var json=" + TraderManager.GetList().ToJson();
+    var factoryJson = "var json2=" + DictManager.GetFactory().ToJson();
+}
+@Html.Hidden("chanceId", Request["chanceId"])
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <img class="bimg" src="/Content/Scripts/Plugs/Multiple/zTree-zTree_v3-master/zTree_v3/css/zTreeStyle/img/diy/1_open.png" />单据管理<a
+                href="/Htm/HtSummary/Index"></a>>订单总览</li>
+    </ul>
+</div>
+@traderJson.ToJavaScript()
+@factoryJson.ToJavaScript()
+<div id="divTolBox">
+    @Html.Partial("~/Areas/Bill/Views/Order/_GetTolInfo.cshtml", tolInfo)
+</div>
+@Html.Trirand().JQGrid(Model, "ordergrid").JqGridAppendOption(@"gridComplete:function(){ loadTolInf(); }")
+<div id="divExExcel" style="display: none">
+    <form>
+    <table>
+        <tr>
+            <td>
+                创建时间:
+            </td>
+            <td>
+                &nbsp; @Html.TextBox("dateMin", "", new { @class = "Wdate", @onclick = "WdatePicker()", style = "width:110px" })
+                - @Html.TextBox("dateMax", DateTime.Now.ToString("yyyy-MM-dd"), new { style = "width:110px", @class = "Wdate", @onclick = "WdatePicker()" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                是否导出价格:
+            </td>
+            <td>
+                &nbsp;
+                <select id="priceType">
+                    <option value="0">不</option>
+                    @*   <option value="3">客户价</option>*@
+                    <option value="1">是</option>
+                    @*       <option value="2">市场价</option>*@
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                选择客户:
+            </td>
+            <td>
+                @{ 
+                   
+                    var traderList = NFD.BLL.TraderManager.GetList();
+                    traderList.Insert(0, new Trader() { });
+                }
+                &nbsp; @Html.DropDownList("trader_id", new SelectList(traderList, "trader_id", "name"))
+            </td>
+        </tr>
+        <tr>
+            <td>
+                裁缝厂:
+            </td>
+            <td>
+                @{ 
+                   
+                    var factoryList = NFD.BLL.DictManager.GetFactory();
+                    factoryList.Insert(0, new DictionariesDetail() { });
+                }
+                &nbsp; @Html.DropDownList("dd_id", new SelectList(factoryList, "dd_id", "d_name"))
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+@section root{
+    <div id="divMail" style="display: none; padding-left: 20px">
+        <form id="frmMail">
+        <table>
+            <tr>
+                <td>
+                    收件人邮箱:
+                </td>
+                <td>
+                    <input onblur="$(this).easyValidate()" type="text" tip="请填写正确的邮箱" maxlength="100"
+                        reg="^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$"
+                        name="MailName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    邮件标题:
+                </td>
+                <td>
+                    <input onblur="$(this).easyValidate()" type="text" maxlength="300" tip="请填写标题" reg=".+"
+                        style="width: 300px" name="title" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    邮件正文:
+                </td>
+                <td>
+                    <textarea onblur="$(this).easyValidate()" name="Content" cols="300" tip="请填写邮件正文"
+                        reg=".+" style="width: 300px" rows="10"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    附件:
+                </td>
+                <td>
+                    <input name="isAtta" checked="checked" type="checkbox" value="true" />是否上传附件
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle">
+                    附件设置:
+                </td>
+                <td valign="middle">
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    创建时间:
+                                </td>
+                                <td>
+                                    &nbsp; @Html.TextBox("dateMin", "", new { @class = "Wdate", @onclick = "WdatePicker()", style = "width:110px" })
+                                    - @Html.TextBox("dateMax", DateTime.Now.ToString("yyyy-MM-dd"), new { style = "width:110px", @class = "Wdate", @onclick = "WdatePicker()" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    是否导出价格:
+                                </td>
+                                <td>
+                                    &nbsp;
+                                    <select id="priceType">
+                                        <option value="0">不</option>
+                                        @*   <option value="3">客户价</option>*@
+                                        <option value="1">是</option>
+                                        @*       <option value="2">市场价</option>*@
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    客户
+                                </td>
+                                <td>
+                                    &nbsp; @Html.DropDownList("trader_id", new SelectList(traderList, "trader_id", "name"))
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    裁缝厂:
+                                </td>
+                                <td>
+                                    @{ 
+                   
+                                        factoryList.AddFirstItem(new DictionariesDetail() { });
+                                    }
+                                    &nbsp; @Html.DropDownList("dd_id", new SelectList(factoryList, "dd_id", "d_name"))
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <a class="hand" onclick="openPdf()">附件预览</a>
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+}

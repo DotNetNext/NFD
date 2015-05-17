@@ -1,0 +1,391 @@
+﻿@{
+    ViewBag.Title = Model.o_id.IsZero().IIF("添加订单", "编辑订单");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var provider = "var _jsonProvider={0};".ToFormat(NFD.BLL.DictManager.GetProvider().ToJson()).ToJavaScript();
+}
+@using Trirand.Web.Mvc
+@using COM.Extension;
+@using COM.Utility;
+@using NFD.Entities.Data;
+@model OrderBill
+@section head{
+    @Html.Partial("~/Views/Shared/_JqGridFiles.cshtml")
+    <script src="/Content/Scripts/Plugs/Multiple/watermark/watermark.js" type="text/javascript"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/My97DatePickerBeta/My97DatePicker/skin/WdatePicker.css"
+        rel="stylesheet" type="text/css" />
+    <link href="/Content/Scripts/Plugs/Multiple/parsley/parsley.css" rel="stylesheet"
+        type="text/css" />
+    <script src="/Content/Scripts/Plugs/Multiple/parsley/parsley.js" type="text/javascript"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.css" rel="stylesheet"
+        type="text/css" />
+    <script type="text/javascript" src="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.js"></script>
+    <script src="/Content/Scripts/Plugs/Multiple/My97DatePickerBeta/My97DatePicker/WdatePicker.js"
+        type="text/javascript"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/My97DatePickerBeta/My97DatePicker/skin/WdatePicker.css"
+        rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+
+        $(function () {
+            var $$ = window.$$ = {
+                init: function () {
+                    $$.addEvents();
+                },
+                addEvents: function () {
+                    $("#btnTrader").click(function () {
+                        addTrader();
+                    });
+                    $("#btnFactory").click(function () {
+                        addFactory();
+                    })
+                    //                    $("input[id*='cost_price'],input[id*='custome_price'],input[id*='market_price']").placeholder();
+                }
+
+            }
+
+            $$.init();
+
+        })
+
+
+        function ToSupplier(value) {
+
+            var json = _jsonProvider;
+            var reval = $.linq.first(json, function (v) { return v.dd_id == value }).d_name;
+            return reval;
+        }
+
+        //添加客户
+        function addTrader() {
+            easyDialog.open({
+                container: {
+                    header: '添加客户',
+                    content: ' <iframe width=\'700\'  frameborder="no" height=\'330\' src="/Crm/Trader/Index?isWindow=true"></iframe> ',
+                    yesFn: btnFn,
+                    noFn: true,
+                    autoClose: 2000,
+                    yesText: '保存',
+                    fixed: false
+
+                }
+            });
+            function btnFn() {
+                bindTrader("#trader_id");
+            }
+        }
+
+        //添加工厂
+        function addFactory() {
+            easyDialog.open({
+                container: {
+                    header: '添加裁缝厂',
+                    content: ' <iframe width=\'700\'  frameborder="no" height=\'330\' src="/Dict/Index/Index?isWindow=true&key=1"></iframe> ',
+                    yesFn: btnFn,
+                    noFn: true,
+                    autoClose: 2000,
+                    yesText: '保存',
+                    fixed: false
+
+                }
+            });
+            function btnFn() {
+                bindFactory("#factory_name");
+            }
+        }
+        var indexNum = 0;
+        var indexNum2 = 0;
+        var indexNum3 = 0;
+        var indexNum4 = 0;
+    </script>
+}
+@provider
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <img class="bimg" src="/Content/Scripts/Plugs/Multiple/zTree-zTree_v3-master/zTree_v3/css/zTreeStyle/img/diy/1_open.png" /><a  
+             class="hand"  href="@Url.Action("Index")">订单总览</a>><a>@ViewBag.Title</a></li>
+    </ul>
+</div>
+<div class="box span11" style="margin-left: 0; width: 95%; padding: 10px">
+    <div class="box-header well">
+        <h2>
+            @ViewBag.Title
+        </h2>
+    </div>
+    <div class="box-content">
+        <form class="form-horizontal" action="@Url.Action("Save")" method="post">
+        <table class="saveTable">
+            <tr>
+                <td>
+                    款号
+                </td>
+                <td>
+                    @Html.TextBox("clothing_number", Model.clothing_number, new { reg = RegList.REQUIRED, tip = RegList.REQUIRED_TIP, maxLength = "100" })
+                </td>
+                <td>
+                    面料番号
+                </td>
+                <td>
+                    @Html.TextBox("no", Model.no, new { reg = RegList.REQUIRED, tip = RegList.REQUIRED_TIP, maxLength = "100" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Hidden("ht_id", Model.ht_id)
+                    @Html.Hidden("o_id", Model.o_id)
+                    @Html.Hidden("chance_id", Model.chance_id)
+                    客户
+                </td>
+                <td>
+                    @Html.DropDownList("trader_id", new SelectList(NFD.BLL.TraderManager.GetList(), "trader_id", "name", Model.trader_id), new { tip = "必填", reg = ".+" })
+                    <input id="btnTrader" class="btn" value="新增" type="button" />
+                </td>
+                <td>
+                    款式
+                </td>
+                <td>
+                    @Html.TextBox("styles", Model.styles, new { maxLength = "100" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    数量
+                </td>
+                <td>
+                    @Html.TextBox("num", Model.num, new { maxLength = "100", reg = RegList.MONEY, tip = RegList.MONEY_TIP })
+                </td>
+                @{
+                    var myMenuIds = NFD.BLL.UserManager.GetUserInfoMenuByUserId(NFD.BLL.UserManager.GetCurrentUserInfo.user_id);
+                    
+                }
+                @if (myMenuIds.Any(c => c.menu_id == 270))
+                {
+                    <td>
+                        合同单价
+                    </td>
+                    <td>
+                        @Html.TextBox("cost_price", Model.cost_price.ToDecimal("n2"), new { reg = RegList.MONEY, tip = RegList.MONEY_TIP })
+                    </td>
+                }
+                else
+                { 
+                    <td>
+                        合同单价
+                    </td>
+                    <td>
+                        -
+                        @Html.Hidden("cost_price", Model.cost_price.ToDecimal("n2"), new { reg = RegList.MONEY, tip = RegList.MONEY_TIP })
+                    </td>
+                
+                }
+            </tr>
+            @*      <tr>
+                <td>
+                    市场价
+                </td>
+                <td>
+                    @Html.TextBox("market_price", Model.market_price.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    客户价
+                </td>
+                <td>
+                    @Html.TextBox("custome_price", Model.custome_price.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+            </tr>*@
+            <tr>
+                <td>
+                    汇率
+                </td>
+                <td>
+                    @if (Model.o_id.IsZero() && Model.chance_id.IsZero())
+                    {
+                        Model.rate = NFD.BLL.API.EXChangeRate.USD();
+                    }
+                    @Html.TextBox("rate", Model.rate.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+                <td>
+                    面料下单日
+                </td>
+                <td>
+                    @Html.TextBox("order_date", Model.order_date.ToDateStr("yyyy-MM-dd"), new { maxLength = "100", @onclick = "WdatePicker()", @class = "Wdate" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    面料交期
+                </td>
+                <td>
+                    @Html.TextBox("get_date", Model.get_date.ToDateStr("yyyy-MM-dd"), new { maxLength = "100", @onclick = "WdatePicker()", @class = "Wdate" })
+                </td>
+                <td>
+                    送检日
+                </td>
+                <td>
+                    @Html.TextBox("submission_date", Model.submission_date, new { maxLength = "100", @onclick = "WdatePicker()", @class = "Wdate" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    缝制工厂名
+                </td>
+                <td>
+                    @Html.DropDownList("factory_name", new SelectList(NFD.BLL.DictManager.GetFactory(), "dd_id", "d_name"))
+                    <input id="btnFactory" class="btn" value="新增" type="button" />
+                </td>
+                <td>
+                    加工费单价
+                </td>
+                <td>
+                    @Html.TextBox("pricessing_fee", Model.pricessing_fee.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    进口报关费
+                </td>
+                <td>
+                    @Html.TextBox("wellhead_price", Model.wellhead_price.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+                <td>
+                    出口报关费
+                </td>
+                <td>
+                    @Html.TextBox("export_price", Model.export_price.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    检品费
+                </td>
+                <td>
+                    @Html.TextBox("inspection_fee", Model.inspection_fee.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+                <td>
+                    收款日期
+                </td>
+                <td>
+                    @Html.TextBox("get_price_date", Model.get_price_date.ToDateStr("yyyy-MM-dd"), new { maxLength = "100", @onclick = "WdatePicker()", @class = "Wdate" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    发货日期
+                </td>
+                <td>
+                    @Html.TextBox("ship_date", Model.ship_date.ToDateStr("yyyy-MM-dd"), new { maxLength = "100", @onclick = "WdatePicker()", @class = "Wdate" })
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td colspan="10">
+                    <input type="submit" class="btn" value="保存" />
+                    <input onclick="$.response.redirect('/Bill/Order')" type="button" class="btn" value="返回订单总览" />
+                    <input onclick="$.response.redirect('/Bill/FabricDetail')" type="button" class="btn"
+                        value="返回订面料总览" />
+                    <input onclick="$.response.redirect('/Bill/AccessoriesDetail')" type="button" class="btn"
+                        value="返回订辅料总览" />
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+    <div style="width: 95%; padding-left: 10px">
+        @if (ViewBag.fdGrid != null)
+        {
+            JQGrid fdgrid = ViewBag.fdGrid;
+            <div>
+                @Html.Trirand().JQGrid(fdgrid, "fdgrid").JqGridAppendOption(@"gridComplete:function(){ 
+      
+     
+       if(indexNum==0){
+  $( ""#fdgrid"" ).jqGrid( 'setGroupHeaders' , {
+                useColSpanStyle :  true ,  // 没有表头的列是否与表头列位置的空单元格合并
+                groupHeaders : [ {
+                startColumnName :  'fd_id' ,  // 对应colModel中的name
+                numberOfColumns : 12,  // 跨越的列数
+                titleText :  '面料'
+         }]
+        });
+        }
+        indexNum++;
+    }")
+            </div>
+        }
+        <br />
+        @if (ViewBag.adGrid != null)
+        {
+            JQGrid adGrid = ViewBag.adGrid;
+            <div>
+                @Html.Trirand().JQGrid(adGrid, "adGrid").JqGridAppendOption(@"gridComplete:function(){ 
+      
+     
+       if(indexNum2==0){
+  $( ""#adGrid"" ).jqGrid( 'setGroupHeaders' , {
+                useColSpanStyle :  true ,  // 没有表头的列是否与表头列位置的空单元格合并
+                groupHeaders : [ {
+                startColumnName :  'ad_id' ,  // 对应colModel中的name
+                numberOfColumns : 12,  // 跨越的列数
+                titleText :  '辅料'
+         }]
+        });
+        }
+        indexNum2++;
+    }")
+            </div>
+        }
+        <br />
+        @if (ViewBag.fdoGrid != null)
+        {
+            <div>
+                @{JQGrid fdoGrid = ViewBag.fdoGrid;
+                }
+                @Html.Trirand().JQGrid(fdoGrid, "fdoGrid").JqGridAppendOption(@"gridComplete:function(){ 
+      
+     
+       if(indexNum3==0){
+  $( ""#fdoGrid"" ).jqGrid( 'setGroupHeaders' , {
+                useColSpanStyle :  true ,  // 没有表头的列是否与表头列位置的空单元格合并
+                groupHeaders : [ {
+                startColumnName :  'fob_id' ,  // 对应colModel中的name
+                numberOfColumns : 18,  // 跨越的列数
+                titleText :  '订购计划'
+         }]
+        });
+        }
+        indexNum3++;
+    }")
+            </div>
+            <br />
+        }
+        @if (ViewBag.ppGrid != null)
+        {
+            <div>
+                @{JQGrid ppGrid = ViewBag.ppGrid;
+                }
+                @Html.Trirand().JQGrid(ppGrid, "ppGrid").JqGridAppendOption(@"gridComplete:function(){ 
+      
+     
+       if(indexNum4==0){
+  $( ""#ppGrid"" ).jqGrid( 'setGroupHeaders' , {
+                useColSpanStyle :  true ,  // 没有表头的列是否与表头列位置的空单元格合并
+                groupHeaders : [ {
+                startColumnName :  'pp_id' ,  // 对应colModel中的name
+                numberOfColumns : 18,  // 跨越的列数
+                titleText :  '生产计划'
+         }]
+        });
+        }
+        indexNum4++;
+    }")
+            </div>
+        
+        }
+    </div>
+</div>

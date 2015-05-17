@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "样衣记录";
+    Layout = "~/Views/Shared/_LayoutWindow.cshtml";
+}
+@using Trirand.Web.Mvc
+@using COM.Extension
+@using NFD.Entities.Data
+@Html.Partial("~/Views/Shared/_JqGridFiles.cshtml")
+
+@Html.Trirand().JQGrid(Model,"gridHistory")

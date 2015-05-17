@@ -1,0 +1,38 @@
+﻿namespace Trirand.Web.Mvc
+{
+    using System;
+    using System.Collections;
+    using System.Runtime.CompilerServices;
+
+    public class JQGridHeaderGroup
+    {
+        public JQGridHeaderGroup()
+        {
+            this.StartColumnName = "";
+            this.NumberOfColumns = 1;
+            this.TitleText = "";
+        }
+
+        internal Hashtable ToHashtable()
+        {
+            Hashtable hashtable = new Hashtable();
+            if (!string.IsNullOrEmpty(this.StartColumnName))
+            {
+                hashtable["startColumnName"] = this.StartColumnName;
+            }
+            hashtable["numberOfColumns"] = this.NumberOfColumns;
+            if (!string.IsNullOrEmpty(this.TitleText))
+            {
+                hashtable["titleText"] = this.TitleText;
+            }
+            return hashtable;
+        }
+
+        public int NumberOfColumns { get; set; }
+
+        public string StartColumnName { get; set; }
+
+        public string TitleText { get; set; }
+    }
+}
+

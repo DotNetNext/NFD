@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+@model List<NFD.Entities.Data.Attas>
+<html>
+<head>
+<title>查看附件</title>
+</head>
+@if (Model != null && Model.Count>0)
+{
+    foreach (var r in Model)
+    {
+    <p>
+        <a target="_blank" href="@r.filePath">@r.fileName</a>
+    </p>
+    }
+}
+else { 
+<p>没有附件！</p>
+}
+</html>

@@ -1,0 +1,21 @@
+﻿@{
+    var tolInfo = Model;
+}
+@model NFD.Entities.Common.BillPrice
+@using COM.Extension
+<div class="tolhead">
+    <span class="bold">统计:</span> <span>数量汇总:</span><span class="red">@tolInfo.allnum</span>
+    &nbsp; &nbsp; <span>合同单价汇总:</span>
+    
+    
+    
+    <span class="red">@tolInfo.allcostprice.ToDecimal("n2")</span> &nbsp; &nbsp;
+
+    <span>合同小计汇总:</span>
+    
+    <span class="red"> 
+
+
+        @tolInfo.tolallcostprice.ToDecimal("n2")</span> &nbsp; 
+     &nbsp;&nbsp; <span>平均汇率:</span><span class="red">@tolInfo.avg.ToDecimal("n2")</span> &nbsp; &nbsp;
+</div>

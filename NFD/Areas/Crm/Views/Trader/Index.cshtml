@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "客户管理";
+    if (PubMethod.IsWindow)
+    {
+        Layout = "~/Views/Shared/_LayoutWindow.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+@using NFD.BLL
+@using Trirand.Web.Mvc
+@using COM.Extension
+@section head{
+    @Html.Partial("~/Views/Shared/_JqGridFiles.cshtml")
+}
+@if (!PubMethod.IsWindow)
+{
+    <div>
+        <ul class="breadcrumb">
+            <li><img class="bimg" src="/Content/Scripts/Plugs/Multiple/zTree-zTree_v3-master/zTree_v3/css/zTreeStyle/img/diy/1_open.png" /><a href="/Crm/Trader/Index">客户管理</a>>总览 </li>
+        </ul>
+    </div>
+}
+@{
+     
+    var gridhtml = Html.Trirand().JQGrid((JQGrid)Model, "JQGrid1").JqGridAppendOption(@"  
+                  ondblClickRow: function(trader_id){
+	                                            
+		                                            $(this).jqGrid('restoreRow',lastsel);
+		                                            $(this).jqGrid('editRow',trader_id,true);
+		                                            lastsel=trader_id;
+                                                    var ids=jQuery(this).jqGrid('getDataIDs');
+                                                  
+                                                
+	}").JqGridPrependJs("var lastsel;");
+
+}
+@gridhtml

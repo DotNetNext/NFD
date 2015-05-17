@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+    ViewBag.title = "用户异常信息";
+}
+@model NFD.ExceptionHandling.UserException
+@using COM.Extension;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title> @ViewBag.title</title>
+</head>
+<body>
+<h2>@ViewBag.title</h2>
+    <p>函数: @Model._errorInfo.Method</p>
+    <p>编码: @Model._errorInfo.Code</p>
+    <p>地址: @Model._errorInfo.Url</p>
+    <div>
+       <h5>详细信息:</h5>
+        @Html.Raw(Model._errorInfo.Message.HtmlEncode());
+    </div>
+    <a href="/">返回首页</a>
+</body>
+</html>

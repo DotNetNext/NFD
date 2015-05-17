@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "权限分配";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Content/Scripts/Plugs/Single/ejq.js" type="text/javascript"></script>
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <img class="bimg" src="/Content/Scripts/Plugs/Multiple/zTree-zTree_v3-master/zTree_v3/css/zTreeStyle/img/diy/1_open.png" /><a
+                href="/User/Account/Index">账号管理</a>> @ViewBag.Title </li>
+    </ul>
+</div>
+@NFD.BLL.PubMethod.GetLeftMenuJson2(@ViewBag.userId)
+<script src="/Content/Scripts/Plugs/Multiple/zTree-zTree_v3-master/zTree_v3/js/jquery.ztree.excheck-3.5.js"
+    type="text/javascript"></script>
+<script type="text/javascript">
+		<!--
+    var settingPower = {
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+
+
+    $(document).ready(function () {
+        $.fn.zTree.init($("#treePower"), settingPower, zNodesPower);
+        ;
+    });
+    //-->
+    function Save() {
+        var treeObj = $.fn.zTree.getZTreeObj("treePower");
+        var nodes = treeObj.getCheckedNodes(true);
+        var json = $.convert.jsonToStr($.linq.select(nodes, function (v) { return { id: v.id} }));
+        $.response.redirect("/UserPower/Power/SavePower", { sp: json, userId: "@ViewBag.userId" })
+    }
+
+    //全选
+    function CheckAllNodes() {
+        var treeObj = $.fn.zTree.getZTreeObj("treePower");
+        treeObj.checkAllNodes(true);
+    }
+
+    //全取消
+    function CancelAllNodes() {
+        var treeObj = $.fn.zTree.getZTreeObj("treePower");
+        treeObj.checkAllNodes(false);
+    }
+	</script>
+<div class="zTreeDemoBackground left">
+    <ul id="treePower" class="ztree">
+    </ul>
+</div>
+<input type="button" class="btn" onclick="CheckAllNodes()" value="全选" />
+<input type="button" class="btn" onclick="CancelAllNodes()" value="全不选" />
+<input type="button" class="btn" onclick="Save()" value="保存" />
+<input type="button" class="btn" onclick="$.response.redirect('/UserPower/Account/Index')"
+    value="返回" />

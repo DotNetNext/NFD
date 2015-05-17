@@ -1,0 +1,313 @@
+﻿@{
+    ViewBag.Title = "报价单总览";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+@model  Tuple<JQGrid, JQGrid> 
+@using Trirand.Web.Mvc
+@using COM.Extension
+@section head{
+    @Html.Partial("~/Views/Shared/_JqGridFiles.cshtml")
+    <link href="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.css" rel="stylesheet"
+        type="text/css" />
+    <script type="text/javascript" src="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.js"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/parsley/parsley.css" rel="stylesheet"
+        type="text/css" />
+    <script src="/Content/Scripts/Plugs/Multiple/parsley/parsley.js" type="text/javascript"></script>
+    <script src="/Content/Scripts/Plugs/Single/loading.js" type="text/javascript"></script>
+    <script src="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialoghelper.js"
+        type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $$ = window.$$ = {
+                init: function () {
+                    $$.addEvents();
+                },
+                addEvents: function () {
+
+
+                }
+
+            }
+
+            $$.init();
+
+        })
+
+        function reloadGrid() {
+            $("#chance").trigger("reloadGrid");
+        }
+
+        //添加报价单
+        function addChanceBill() {
+            $.response.redirect("/Bill/Chance/Save")
+        }
+
+        //绑定操作
+        function action(value, name, array) {
+            if (array[14] == "" || array[14] == 0) {
+                var inputEdit = "<input value='生成定单' onclick='createOrderBill(" + value + ",0)' class='btn btn-mini' type='button' />";
+                var inputNext = "<input value='删除' onclick='voidBill(" + value + ")' class='btn btn-mini' type='button' />";
+                return "&nbsp;" + inputEdit + "&nbsp;" + inputNext;
+            } else {
+                var inputEdit = "<input value='查看订单' onclick=\"createOrderBill(" + value + ",1)\" class='btn btn-mini' type='button' />";
+                var inputNext = "<input value='删除' onclick='voidBill(" + value + ")' class='btn btn-mini' type='button' />";
+                return "&nbsp;" + inputEdit + "&nbsp;" + inputNext;
+            }
+
+        }
+        //作废单据
+        function voidBill(id) {
+            var con = confirm("你确定要删除此单据吗？");
+            if (con) {
+                $.ajax({
+                    url: "/Bill/Chance/DelBill",
+                    data: { id: id },
+                    cache: false,
+                    type: "text",
+                    success: function (msg) {
+                        debugger
+                        ed_alert("操作成功！", msg);
+                        reloadGrid();
+                    }
+                })
+            }
+        }
+        //生成订单
+        function createOrderBill(id, status) {
+            if (status ==0) {
+                $.response.redirect("/Bill/Order/Save", { chanceId: id });
+            } else {
+                $.response.redirect("/Bill/Order/Index", { chanceId: id });
+            }
+        }
+
+
+        //绑定查看客户
+        function ToTrader(value, colname) {
+            if (value == null || value == "") return "";
+            var data = $.linq.first(json, function (o) { return o.trader_id == value; });
+            if (data == null) { return "已删除" }
+            var alertmessage = "";
+            if (data.mobile != null)
+                alertmessage += "手机: " + data.mobile + "<br>";
+            if (data.qq != null)
+                alertmessage += "qq: " + data.qq + "<br>";
+            if (data.email != null)
+                alertmessage += "email: " + data.email + "<br>";
+            if (alertmessage == "") alertmessage = "没有" + data.name + "的信息，请到客户管理完善!!";
+            return "<a onclick=\"ed_alert('" + data.name + "详情','" + alertmessage + "')\"  style='float:left;cursor: pointer;'>" + data.name + "</a><span style='float:left;cursor: pointer;' class=\"ui-icon ui-icon-search\" onclick=\"ed_alert('" + data.name + "详情','" + alertmessage + "')\" ></span>"
+        }
+
+        function exExcel() {
+            ed_alertBox("#divExExcel", "导出EXCEL", function () {
+                var trader = $(".easyDialog_text #trader_id").val();
+                var dateMin = $(".easyDialog_text #dateMin").val();
+                var dateMax = $(".easyDialog_text #dateMax").val();
+                var priceType = $(".easyDialog_text #priceType").val();
+                window.open("/bill/Chance/Export?trader_id=" + trader + "&dateMin=" + dateMin + "&dateMax=" + dateMax + "&priceType=" + priceType);
+            })
+        }
+
+        function exPdf() {
+            ed_alertBox("#divExExcel", "导出PDF", function () {
+                var trader = $(".easyDialog_text #trader_id").val();
+                var dateMin = $(".easyDialog_text #dateMin").val();
+                var dateMax = $(".easyDialog_text #dateMax").val()
+                var priceType = $(".easyDialog_text #priceType").val();
+                window.open("/bill/Chance/Export?trader_id=" + trader + "&dateMin=" + dateMin + "&dateMax=" + dateMax + "&typeId=1" + "&priceType=" + priceType);
+            })
+        }
+
+        function sendMail() {
+            ed_alertBoxNoClost("#divMail", "发送邮件", function () {
+                var trader = $(".easyDialog_text #trader_id").val();
+                var dateMin = $(".easyDialog_text #dateMin").val();
+                var dateMax = $(".easyDialog_text #dateMax").val()
+                var priceType = $(".easyDialog_text #priceType").val();
+                var isValid = $(".easyDialog_text #frmMail [reg]").easyValidate(true);
+                $("html").toggleLoading();
+                $.ajax({
+                    url: "/bill/Chance/SendMail",
+                    type: "post",
+                    data: $(".easyDialog_text #frmMail").serialize(),
+                    cache: false,
+                    dateType: "json",
+                    success: function (msg) {
+                        debugger
+                        if (msg.IsSuccess) {
+                            alert("发送成功！");
+                            easyDialog.close();
+                        } else {
+                            alert("发送失败！");
+                        }
+                        $("html").toggleLoading();
+                    },
+                    error: function (msg) {
+                        $("html").toggleLoading();
+                    }
+
+                })
+                return false;
+            })
+
+        }
+        function openPdf() {
+            var trader = $(".easyDialog_text #trader_id").val();
+            var dateMin = $(".easyDialog_text #dateMin").val();
+            var dateMax = $(".easyDialog_text #dateMax").val()
+            window.open("/bill/Chance/Export?type=1&" + $(".easyDialog_text #frmMail").serialize());
+        }
+    </script>
+}
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <img class="bimg" src="/Content/Scripts/Plugs/Multiple/zTree-zTree_v3-master/zTree_v3/css/zTreeStyle/img/diy/1_open.png" /><a
+                href="/Htm/HtSummary/Index">单据管理</a>>@ViewBag.Title </li>
+    </ul>
+</div>
+@Html.Trirand().JQGrid(Model.Item1, "chance").JqGridAppendOption(@"
+    gridComplete: function () {   $('.ui-icon-plus').click(); }
+    
+    ").JqGridPrependJs("var lastsel;")
+@Html.Trirand().JQGrid(Model.Item2, "chanceDetail").JqGridAppendOption(@"  
+                  ondblClickRow: function(trader_id){
+	                                           
+		                                            $(this).jqGrid('restoreRow',lastsel);
+		                                            $(this).jqGrid('editRow',trader_id,true);
+		                                            lastsel=trader_id;
+                                                    var ids=jQuery(this).jqGrid('getDataIDs');
+                                                  
+                                             
+	}")
+@{
+    var traderJson = "var json=" + NFD.BLL.TraderManager.GetList().ToJson();
+}
+@traderJson.ToJavaScript()
+<script type="text/javascript">
+    //二级grid
+    function showSubGrid(subgrid_id, row_id) {
+        showSubGrid_chanceDetail(subgrid_id, row_id);
+    }
+</script>
+<div id="divExExcel" style="display: none">
+    <table>
+        <tr>
+            <td>
+                创建时间:
+            </td>
+            <td>
+                &nbsp; @Html.TextBox("dateMin", "", new { @class = "Wdate", @onclick = "WdatePicker()", style = "width:110px" })
+                - @Html.TextBox("dateMax", DateTime.Now.ToString("yyyy-MM-dd"), new { style = "width:110px", @class = "Wdate", @onclick = "WdatePicker()" })
+            </td>
+        </tr>
+        <tr class="none">
+            <td>
+                价格类型:
+            </td>
+            <td>
+                &nbsp;
+                <select id="priceType">
+                @*    <option value="3">客户价</option>*@
+                    <option value="1">成本价</option>
+             @*       <option value="2">市场价</option>*@
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                选择客户:
+            </td>
+            <td>
+                &nbsp; @Html.DropDownList("trader_id", new SelectList(NFD.BLL.TraderManager.GetList(), "trader_id", "name"))
+            </td>
+        </tr>
+    </table>
+</div>
+@section root{
+    <div id="divMail" style="display: none; padding-left: 20px">
+        <form id="frmMail">
+        <table>
+            <tr>
+                <td>
+                    收件人邮箱:
+                </td>
+                <td>
+                    <input onblur="$(this).easyValidate()" type="text" tip="请填写正确的邮箱" maxlength="100"
+                        reg="^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$"
+                        name="MailName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    邮件标题:
+                </td>
+                <td>
+                    <input onblur="$(this).easyValidate()" type="text" maxlength="300" tip="请填写标题" reg=".+"
+                        style="width: 300px" name="title" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    邮件正文:
+                </td>
+                <td>
+                    <textarea onblur="$(this).easyValidate()" name="Content" cols="300" tip="请填写邮件正文"
+                        reg=".+" style="width: 300px" rows="10"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    附件:
+                </td>
+                <td>
+                    <input name="isAtta" checked="checked" type="checkbox" value="true" />是否上传附件
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle">
+                    附件设置:
+                </td>
+                <td valign="middle">
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    创建时间:
+                                </td>
+                                <td>
+                                    &nbsp; @Html.TextBox("dateMin", "", new { @class = "Wdate", @onclick = "WdatePicker()", style = "width:110px" })
+                                    - @Html.TextBox("dateMax", DateTime.Now.ToString("yyyy-MM-dd"), new { style = "width:110px", @class = "Wdate", @onclick = "WdatePicker()" })
+                                </td>
+                            </tr>
+                            <tr class="none">
+                                <td>
+                                    价格类型:
+                                </td>
+                                <td>
+                                    &nbsp;
+                                    <select    id="priceType">
+                      @*                  <option value="3">客户价</option>*@
+                                        <option value="1">成本价</option>
+                        @*                <option value="2">市场价</option>*@
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    选择客户:
+                                </td>
+                                <td>
+                                    &nbsp; @Html.DropDownList("trader_id", new SelectList(NFD.BLL.TraderManager.GetList(), "trader_id", "name"))
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <a class="hand" onclick="openPdf()">附件预览</a>
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+}

@@ -1,0 +1,105 @@
+﻿@model HandmadeThingsDetail
+@using COM.Extension
+@using NFD.Entities.Data
+ 
+<style>
+    .savetable td
+    {
+        padding: 5px;
+    }
+</style>
+<form name="FormPost" id="FrmGrid_htgrid_11_t" class="savetable" action="/Htm/WaitReg/ReHtm"
+method="post">
+<table id="TblGrid_htgrid_11_t" class="EditTable" cellspacing="0" cellpadding="0"
+    border="0">
+    <tbody>
+        <tr id="FormError" style="display: none">
+            <td class="ui-state-error" colspan="2">
+                @Html.HiddenFor(c => c.ht_id)
+                @Html.HiddenFor(c => c.htd_id)
+            </td>
+        </tr>
+        <tr style="display: none" class="tinfo">
+            <td class="topinfo" colspan="2">
+            </td>
+        </tr>
+        <tr rowpos="1" class="FormData" id="tr_color_foreign">
+            <td class="CaptionTD">
+                色番
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" style=" background:#ccc" value="@Model.color_foreign" readonly="readonly" id="color_foreign" name="color_foreign" role="textbox" class="FormElement ui-widget-content ui-corner-all">
+            </td>
+        </tr>
+        <tr rowpos="2" class="FormData" readonly="readonly" id="tr_color_name">
+            <td class="CaptionTD">
+                色名
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text"  style=" background:#ccc"   readonly="readonly"  value="@Model.color_name" id="color_name" name="color_name" role="textbox" class="FormElement ui-widget-content ui-corner-all">
+            </td>
+        </tr>
+        <tr rowpos="3" class="FormData" id="tr_Indicate_day">
+            <td class="CaptionTD">
+                指示日
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" value="@Model.Indicate_day.ToDateStr("yyyy-MM-dd")" class="Wadate FormElement ui-widget-content ui-corner-all"
+                        onclick="WdatePicker()" id="Indicate_day" name="Indicate_day" role="textbox">
+            </td>
+        </tr>
+        <tr rowpos="4" class="FormData" id="tr_predetermined_sent_day">
+            <td class="CaptionTD">
+                预定寄出日
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" class="Wadate FormElement ui-widget-content ui-corner-all"
+                        onclick="WdatePicker()" value="@Model.predetermined_sent_day.ToDateStr("yyyy-MM-dd")" id="predetermined_sent_day" name="predetermined_sent_day"
+                        role="textbox">
+            </td>
+        </tr>
+        <tr rowpos="5" class="FormData" id="tr_actual_sending_date">
+            <td class="CaptionTD">
+                实际寄出日
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" class="Wadate FormElement ui-widget-content ui-corner-all"
+                        onclick="WdatePicker()" value="@Model.actual_sending_date.ToDateStr("yyyy-MM-dd")" id="actual_sending_date" name="actual_sending_date" role="textbox">
+            </td>
+        </tr>
+        <tr rowpos="6" class="FormData" id="tr_confirm_day">
+            <td class="CaptionTD">
+                确认日期
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" value="@Model.confirm_day.ToDateStr("yyyy-MM-dd")" class="Wadate FormElement ui-widget-content ui-corner-all"
+                        onclick="WdatePicker()" id="confirm_day" name="confirm_day" role="textbox">
+            </td>
+        </tr>
+        <tr rowpos="7" class="FormData" id="tr_confirm_content">
+            <td class="CaptionTD">
+                确认意见
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" value="@Model.confirm_content" id="confirm_content" name="confirm_content" role="textbox"
+                        class="FormElement ui-widget-content ui-corner-all" />
+            </td>
+        </tr>
+        <tr rowpos="8" class="FormData" id="tr_remark">
+            <td class="CaptionTD">
+                备注
+            </td>
+            <td class="DataTD">
+                &nbsp;<input type="text" value="@Model.remark" id="remark" name="remark" role="textbox" class="FormElement ui-widget-content ui-corner-all" />
+            </td>
+        </tr>
+        <tr class="FormData" style="display: none">
+            <td class="CaptionTD">
+            </td>
+            <td colspan="1" class="DataTD">
+                <input class="FormElement" id="id_g" type="text" name="htgrid_11_t_id" value="16">
+            </td>
+        </tr>
+    </tbody>
+</table>
+</form>

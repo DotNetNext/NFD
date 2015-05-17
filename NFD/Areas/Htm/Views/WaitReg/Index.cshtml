@@ -1,0 +1,590 @@
+﻿@{
+    ViewBag.Title = "手织样";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Trirand.Web.Mvc
+@using COM.Extension;
+@using COM.Utility;
+@using NFD.BLL
+@model  Tuple<JQGrid, JQGrid>
+@section head{
+    @Html.Partial("~/Views/Shared/_JqGridFiles.cshtml")
+    <link href="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.css" rel="stylesheet"
+        type="text/css" />
+    <script type="text/javascript" src="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.js"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/parsley/parsley.css" rel="stylesheet"
+        type="text/css" />
+    <script src="/Content/Scripts/Plugs/Multiple/parsley/parsley.js" type="text/javascript"></script>
+    <script src="/Content/Scripts/Plugs/Single/loading.js" type="text/javascript"></script>
+    <script src="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialoghelper.js"
+        type="text/javascript"></script>
+    <script src="/Content/Scripts/Plugs/Multiple/My97DatePickerBeta/My97DatePicker/WdatePicker.js"
+        type="text/javascript"></script>
+    <style type="text/css">
+        .easyDialog_wrapper
+        {
+            width: inherit;
+            min-width: 320px;
+        }
+        #divCopyNext label
+        {
+            display: inline-block;
+            width: 100px;
+        }
+        #divCopyNext .btn
+        {
+            margin-bottom: 5px;
+        }
+        .tbNext
+        {
+            margin: 20px;
+        }
+        .left
+        {
+            float: right;
+        }
+    </style>
+}
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <img class="bimg" src="/Content/Scripts/Plugs/Multiple/zTree-zTree_v3-master/zTree_v3/css/zTreeStyle/img/diy/1_open.png" /><a
+                href="/Htm/HtSummary/Index">手织样管理</a>>@ViewBag.Title </li>
+    </ul>
+</div>
+@Html.Trirand().JQGrid(Model.Item1, "htgrid").JqGridAppendOption(@"
+    gridComplete: function () {   $('.ui-icon-plus').click(); }
+    
+    ").JqGridPrependJs("var lastsel;")
+@Html.Trirand().JQGrid(Model.Item2, "htdgrid").JqGridAppendOption(@"  
+                  ondblClickRow: function(trader_id){
+	                                           
+		                                            $(this).jqGrid('restoreRow',lastsel);
+		                                            $(this).jqGrid('editRow',trader_id,true);
+		                                            lastsel=trader_id;
+                                                    var ids=jQuery(this).jqGrid('getDataIDs');
+                                                  
+                                             
+	}")
+@{
+    var traderJson = "var json=" + TraderManager.GetList().ToJson();
+}
+@traderJson.ToJavaScript()
+<script type="text/javascript">
+    //二级grid
+    function showSubGrid(subgrid_id, row_id) {
+        showSubGrid_htdgrid(subgrid_id, row_id);
+    }
+    //刷新表格
+    function reloadGrid() {
+        $("#htgrid").trigger("reloadGrid");
+    }
+
+    //绑定查看客户
+    function ToTrader(value, colname) {
+        var data = $.linq.first(json, function (o) { return o.trader_id == value; });
+        if (data == null) { return "已删除" }
+        var alertmessage = "";
+        if (data.mobile != null)
+            alertmessage += "手机: " + data.mobile + "<br>";
+        if (data.qq != null)
+            alertmessage += "qq: " + data.qq + "<br>";
+        if (data.email != null)
+            alertmessage += "email: " + data.email + "<br>";
+        if (alertmessage == "") alertmessage = "没有" + data.name + "的信息，请到客户管理完善!!";
+        return "<a onclick=\"ed_alert('" + data.name + "详情','" + alertmessage + "')\"  style='float:left;cursor: pointer;'>" + data.name + "</a><span style='float:left;cursor: pointer;' class=\"ui-icon ui-icon-search\" onclick=\"ed_alert('" + data.name + "详情','" + alertmessage + "')\" ></span>"
+    }
+
+
+    //绑定操作
+    function action(value, name, rowObject) {
+        if ($.valiData.isEmpty(rowObject[0]) || rowObject[0] == 0) {
+
+            var inputNext = "<input value='安排下一步' onclick='OpenNext(" + value + ")' class='btn btn-mini' type='button' />";
+            var inputEdit = "<input value='编辑' onclick='openEdit(" + value + ")' class='btn btn-mini' type='button' />";
+            return "&nbsp;" + inputEdit + "&nbsp;" + inputNext;
+        } else {
+            var inputNext = "";
+            var inputEdit = "<input value='编辑' onclick='openEdit(" + value + ")' class='btn btn-mini' type='button' />";
+            return "&nbsp;" + inputEdit + "&nbsp;" + inputNext;
+
+        }
+
+    }
+    //绑定操作 重新打样
+    function childAction(value, name, rowObject) {
+        if ($.valiData.isEmpty(rowObject[0]) || rowObject[0] == false) {
+            var inputReHtd = "<input value='重新打样' onclick='openReHtm(" + value + ")' class='btn btn-mini' type='button' />";
+            var inputSearchHistory = "";
+            return "&nbsp;" + inputReHtd + "&nbsp;" + inputSearchHistory;
+        } else {
+            var inputReHtd = "<input value='重新打样' onclick='openReHtm(" + value + ")' class='btn btn-mini' type='button' />";
+            var inputSearchHistory = "<input value='打样记录' onclick='openHtdH(" + value + ")' class='btn btn-mini' type='button' />";
+            return "&nbsp;" + inputReHtd + "&nbsp;" + inputSearchHistory;
+        }
+    }
+
+    //添加客户
+    function openEdit(id) {
+        easyDialog.open({
+            container: {
+                header: '编辑手织样',
+                content: ' <iframe width=\'950\'  frameborder="no" height=\'450\' src="/Htm/Registration/SavePage?isWindow=true&id=' + id + '" ></iframe> ',
+                yesFn: reloadGrid,
+                noFn: true,
+                autoClose: 2000,
+                yesText: '刷新当前列表',
+                fixed: false
+
+            }
+        });
+
+    }
+    //安排下一步
+    function OpenNext(id) {
+        var content = $("#divCopyNext").clone();
+        content.append("<input id='hdid' value='" + id + "' type='hidden' />")
+        content.show();
+        content.find("#btnToVoid").attr("onclick", "changeStatus(" + id + ",-1)");
+        content.attr("id", "divNext")
+        easyDialog.open({
+            container: {
+                header: '【{0}】安排下一步'.format($("#" + id).find("td").eq(2).text()),
+                content: content.html(),
+
+                noFn: true,
+                autoClose: 2000,
+
+                fixed: false
+
+            }
+        });
+    }
+
+    //统一更新时间
+    function updateDate(field, obj) {
+        var id = $("#hdid").val();
+        var date = $(obj).prev().val();
+
+        $.ajax({
+            url: "/Htm/WaitReg/UpdateField",
+            cache: false,
+            data: { filed: field, id: id, date: date },
+            success: function (msg) {
+
+                reloadGrid();
+                alert("更新成功")
+            }, error: $.ajaxhelper.error
+        })
+    }
+
+
+    //放大样
+    function AmplifierSample() {
+        if (confirm('是否放大样?')) {
+            easyDialog.close();
+            var id = $("#hdid").val();
+            $.ajax({
+                url: "/Htm/WaitReg/AmplifierSample",
+                cache: false,
+                data: { id: id },
+                success: function (msg) {
+                    reloadGrid();
+                    alert("成功放样，已进入放大样列表");
+                }, error: $.ajaxhelper.error
+            })
+        }
+    }
+
+    //作废
+    function changeStatus(htid, status) {
+
+        var btnFn = function () {
+            $.ajax({
+                url: "/Sample/ChangeStatus",
+                cache: false,
+                data: { htId: htid, status: status },
+                success: function (msg) {
+                    ed_alert("系统消息", "操作成功");
+                    reloadGrid();
+                }
+
+            })
+        };
+
+        easyDialog.open({
+            container: {
+                header: '确认',
+                content: '是否作废',
+                yesFn: btnFn,
+                width: 100,
+                noFn: true
+            }
+        });
+
+
+    }
+    //报价单
+    function chance() {
+        if (confirm('是否生成报价单?')) {
+            easyDialog.close();
+            var id = $("#hdid").val();
+            window.location.href = "/Bill/Chance/Save?htId=" + id;
+        }
+    }
+
+    function order() {
+        if (confirm('是否生成报价单?')) {
+            easyDialog.close();
+            var id = $("#hdid").val();
+            window.location.href = "/Bill/Order/Save?htId=" + id;
+        }
+
+    }
+
+
+    //产样衣
+    function Sample() {
+        if (confirm('是否产样衣?')) {
+            easyDialog.close();
+            var content = $("#divCopySamlpe").clone();
+            content.attr("id", "divSamlpe");
+            content.show();
+            var id = $("#hdid").val();
+
+            easyDialog.open({
+                container: {
+                    header: "样衣登记",
+                    content: content.html(),
+                    yesFn: function () {
+                        debugger
+                        submit();
+                    },
+                    noFn: true,
+                    autoClose: 2000,
+                    fixed: false
+
+                }
+            });
+            function submit() {
+                $.ajax({
+                    url: "/Htm/AmplifierSample/Sample",
+                    cache: false,
+                    data: { id: id,
+                        sam_name: $(".easyDialog_text #sam_name").val(),
+                        indication_date: $(".easyDialog_text #indication_date").val(),
+                        paper_type: $(".easyDialog_text #paper_type").val()
+                    },
+                    success: function (msg) {
+                        reloadGrid();
+                        alert("操作成功，已进入样衣列表");
+                    }, error: $.ajaxhelper.error
+                })
+            }
+        }
+    }
+
+    function exExcel() {
+        ed_alertBox("#divExExcel", "导出EXCEL", function () {
+            var trader = $(".easyDialog_text #trader_id").val();
+            var dateMin = $(".easyDialog_text #dateMin").val();
+            var dateMax = $(".easyDialog_text #dateMax").val();
+            window.open("/WaitReg/ExportExcel?trader_id=" + trader + "&dateMin=" + dateMin + "&dateMax=" + dateMax);
+        })
+    }
+
+    function exPdf() {
+        ed_alertBox("#divExExcel", "导出PDF", function () {
+            var trader = $(".easyDialog_text #trader_id").val();
+            var dateMin = $(".easyDialog_text #dateMin").val();
+            var dateMax = $(".easyDialog_text #dateMax").val()
+            window.open("/WaitReg/ExportExcel?trader_id=" + trader + "&dateMin=" + dateMin + "&dateMax=" + dateMax + "&typeId=1");
+        })
+    }
+
+    function sendMail() {
+        ed_alertBoxNoClost("#divMail", "发送邮件", function () {
+            var trader = $(".easyDialog_text #trader_id").val();
+            var dateMin = $(".easyDialog_text #dateMin").val();
+            var dateMax = $(".easyDialog_text #dateMax").val()
+            var isValid = $(".easyDialog_text #frmMail [reg]").easyValidate(true);
+            $("html").toggleLoading();
+            $.ajax({
+                url: "/WaitReg/SendMail",
+                type: "post",
+                data: $(".easyDialog_text #frmMail").serialize(),
+                cache: false,
+                dateType: "json",
+                success: function (msg) {
+                    debugger
+                    if (msg.IsSuccess) {
+                        alert("发送成功！");
+                        easyDialog.close();
+                    } else {
+                        alert("发送失败！");
+                    }
+                    $("html").toggleLoading();
+                },
+                error: function (msg) {
+                    $("html").toggleLoading();
+                }
+
+            })
+            return false;
+        })
+
+    }
+    function openPdf() {
+        var trader = $(".easyDialog_text #trader_id").val();
+        var dateMin = $(".easyDialog_text #dateMin").val();
+        var dateMax = $(".easyDialog_text #dateMax").val()
+        window.open("/WaitReg/ExportExcel?trader_id=" + trader + "&dateMin=" + dateMin + "&dateMax=" + dateMax + "&typeId=1");
+    }
+    //重新打样
+    function openReHtm(htd_id) {
+        $("[id=frmReHtm]").load("/Htm/WaitReg/ReHtm?id=" + htd_id, function () {
+            ed_alertBox("#divReHtm", "重新打样", function () {
+                $.ajax({
+                    url: "/Htm/WaitReg/ReHtm",
+                    success: function (msg) {
+                        $("#htgrid").trigger("reloadGrid");
+                        alert("操作成功")
+                       
+                    },
+                    type: "post",
+                    data: $(".easyDialog_content [id=FrmGrid_htgrid_11_t]").serialize()
+
+                })
+
+
+
+            })
+
+
+
+        });
+
+    }
+    //打样记录
+    function openHtdH(htd_id) {
+
+        $("[id=frmHtdH]").attr("src", "/Htm/WaitReg/Htdh?id=" + htd_id);
+        ed_alertBox("#divHtdH", "重新打样", function () {
+
+
+        })
+
+    }
+</script>
+<div id="divCopyNext" class="hide">
+    <table class="tbNext">
+        <tr>
+            <td>
+            </td>
+            <td>
+                <a class="red">统一更新节约操作</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                指示日:
+            </td>
+            <td>
+                <input type="text" class="Wdate" onclick="WdatePicker();" /><input type="button"
+                    onclick="updateDate('Indicate_day',this)" class="btn" value="统一更新" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                确认时间:
+            </td>
+            <td>
+                <input type="text" class="Wdate" onclick="WdatePicker();" /><input type="button"
+                    onclick="updateDate('confirm_day',this)" class="btn" value="统一更新" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                预定寄出日:
+            </td>
+            <td>
+                <input type="text" class="Wdate" onclick="WdatePicker();" /><input type="button"
+                    onclick="updateDate('predetermined_sent_day',this)" class="btn" value="统一更新" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                实际寄出日:
+            </td>
+            <td>
+                <input type="text" class="Wdate" onclick="WdatePicker();" /><input onclick="updateDate('actual_sending_date',this)"
+                    type="button" class="btn" value="统一更新" />
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                &nbsp;
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+            </td>
+            <td>
+                <a class="red">操作完成本条记录将离开放大样,进入下一步操作</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                安排下一步
+            </td>
+            <td>
+                <input type="button" value="放大样" onclick="AmplifierSample()" class="btn" />
+                <input type="button" value="产样衣" onclick="Sample()" class="btn" />
+                <input type="button" value="生成报价" onclick="chance()" class="btn" />
+                <input type="button" value="生成订单" onclick="order()" class="btn" />
+                <input type="button" value="作废" id="btnToVoid" class="btn" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td align="center" class="red">
+            </td>
+        </tr>
+    </table>
+</div>
+<!--样品-->
+<div id="divCopySamlpe" style="display: none">
+    <table class="tbNext">
+        <tr>
+            <td>
+                样品番号
+            </td>
+            <td>
+                @Html.TextBox("sam_name")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                样品指示日
+            </td>
+            <td>
+                @Html.TextBox("indication_date", "", new { onclick = "WdatePicker()", @class = "Wdate" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                纸型
+            </td>
+            <td>
+                @Html.TextBox("paper_type")
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="divExExcel" style="display: none">
+    <table>
+        <tr>
+            <td>
+                创建时间:
+            </td>
+            <td>
+                &nbsp; @Html.TextBox("dateMin", "", new { @class = "Wdate", @onclick = "WdatePicker()", style = "width:110px" })
+                - @Html.TextBox("dateMax", DateTime.Now.ToString("yyyy-MM-dd"), new { style = "width:110px", @class = "Wdate", @onclick = "WdatePicker()" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                选择客户:
+            </td>
+            <td>
+                &nbsp; @Html.DropDownList("trader_id", new SelectList(NFD.BLL.TraderManager.GetList(), "trader_id", "name"))
+            </td>
+        </tr>
+    </table>
+</div>
+<!--重新打样-->
+<div id="divReHtm" style="display: none">
+    <div id="frmReHtm">
+    </div>
+</div>
+<!--打样记录-->
+<div id="divHtdH" style="display: none">
+    <iframe id="frmHtdH" src="/Htm/WaitReg/Htdh" frameborder="0" style="width: 850px;
+        height: 400px"></iframe>
+</div>
+@section root{
+    <div id="divMail" style="display: none; padding-left: 20px">
+        <form id="frmMail">
+        <table>
+            <tr>
+                <td>
+                    收件人邮箱:
+                </td>
+                <td>
+                    <input onblur="$(this).easyValidate()" type="text" tip="请填写正确的邮箱" maxlength="100"
+                        reg="^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$"
+                        name="MailName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    邮件标题:
+                </td>
+                <td>
+                    <input onblur="$(this).easyValidate()" type="text" maxlength="300" tip="请填写标题" reg=".+"
+                        style="width: 300px" name="title" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    邮件正文:
+                </td>
+                <td>
+                    <textarea onblur="$(this).easyValidate()" name="Content" cols="300" tip="请填写邮件正文"
+                        reg=".+" style="width: 300px" rows="10"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    附件:
+                </td>
+                <td>
+                    <input name="isAtta" checked="checked" type="checkbox" value="true" />是否上传附件
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle">
+                    附件设置:
+                </td>
+                <td valign="middle">
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    创建时间:
+                                </td>
+                                <td>
+                                    &nbsp; @Html.TextBox("dateMin", "", new { @class = "Wdate", @onclick = "WdatePicker()", style = "width:110px" })
+                                    - @Html.TextBox("dateMax", DateTime.Now.ToString("yyyy-MM-dd"), new { style = "width:110px", @class = "Wdate", @onclick = "WdatePicker()" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    选择客户:
+                                </td>
+                                <td>
+                                    &nbsp; @Html.DropDownList("trader_id", new SelectList(NFD.BLL.TraderManager.GetList(), "trader_id", "name"))
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <a class="hand" onclick="openPdf()">附件预览</a>
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+}

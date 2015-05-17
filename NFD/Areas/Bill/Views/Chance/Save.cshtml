@@ -1,0 +1,187 @@
+﻿@{
+    ViewBag.Title = Model.bill_id.IsZero().IIF("编辑报价单", "添加报价单");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    JQGrid grid = ViewBag.jsGridModel;
+}
+@using Trirand.Web.Mvc
+@using COM.Extension;
+@using COM.Utility;
+@using NFD.Entities.Data;
+@model ChanceBill
+@section head{
+    @Html.Partial("~/Views/Shared/_JqGridFiles.cshtml")
+    <script src="/Content/Scripts/Plugs/Multiple/watermark/watermark.js" type="text/javascript"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/parsley/parsley.css" rel="stylesheet"
+        type="text/css" />
+    <script src="/Content/Scripts/Plugs/Multiple/parsley/parsley.js" type="text/javascript"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.css" rel="stylesheet"
+        type="text/css" />
+    <script type="text/javascript" src="/Content/Scripts/Plugs/Multiple/easydialog-v2.0/easydialog.js"></script>
+    <link href="/Content/Scripts/Plugs/Multiple/My97DatePickerBeta/My97DatePicker/skin/WdatePicker.css"
+        rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+
+        $(function () {
+            var $$ = window.$$ = {
+                init: function () {
+                    $$.addEvents();
+                },
+                addEvents: function () {
+                    $("#btnTrader").click(function () {
+                        addTrader();
+                    });
+                    $("input[id*='cost_price'],input[id*='custome_price'],input[id*='market_price']").placeholder();
+                }
+
+            }
+
+            $$.init();
+
+        })
+        //添加客户
+        function addTrader() {
+            easyDialog.open({
+                container: {
+                    header: '添加客户',
+                    content: ' <iframe width=\'700\'  frameborder="no" height=\'330\' src="/Crm/Trader/Index?isWindow=true"></iframe> ',
+                    yesFn: btnFn,
+                    noFn: true,
+                    autoClose: 2000,
+                    yesText: '保存',
+                    fixed: false
+
+                }
+            });
+            function btnFn() {
+                bindTrader("#trader_id");
+            }
+        }
+    </script>
+}
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <img class="bimg" src="/Content/Scripts/Plugs/Multiple/zTree-zTree_v3-master/zTree_v3/css/zTreeStyle/img/diy/1_open.png" /><a
+               class="hand"  href="@Url.Action("Index")"></a>报价单总览><a>@ViewBag.Title</a></li>
+    </ul>
+</div>
+<div class="box span11" style="margin-left: 0; width: 95%; padding: 10px">
+    <div class="box-header well">
+        <h2>
+            @ViewBag.Title
+        </h2>
+    </div>
+    <div class="box-content">
+        <form class="form-horizontal" action="@Url.Action("Save")" method="post">
+        <table class="saveTable">
+            <tr>
+                <td>
+                    款号
+                </td>
+                <td>@Html.Hidden("ht_id", Model.ht_id)
+                    @Html.Hidden("bill_id", Model.bill_id)
+                    @Html.TextBox("clothing_number", Model.clothing_number, new { tip = "必填", reg = ".+", maxLength = 150 })
+                </td>
+                <td>
+                    面料规格
+                </td>
+                <td>
+                    @Html.TextBox("ht_specifications", Model.ht_specifications, new { tip = "必填", reg = ".+", maxLength = 150 })
+                </td>
+                <td>
+                    面料款号
+                </td>
+                <td>
+                    @Html.TextBox("ht_no", Model.ht_no, new { tip = "必填", reg = ".+", maxLength = 150 })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    用料
+                </td>
+                <td>
+                    @Html.TextBox("num", Model.num.ToMoney(), new { placeholder = "市场价", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+            
+                 <td>
+                    单价
+                </td>
+                <td>
+                    @Html.TextBox("cost_price", Model.cost_price.ToMoney(), new { placeholder = "成本价", reg = RegList.MONEY, tip = RegList.MONEY_TIP })
+                </td>
+
+
+                <td>
+                    汇率 USD
+                </td>
+                @if (Model.bill_id > 0)
+                {
+                    <td>
+                        @Html.TextBox("rate", Model.rate.ToDecimal("n2"), new { placeholder = "汇率", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.TextBox("rate", NFD.BLL.API.EXChangeRate.USD(), new { placeholder = "汇率", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    邮费
+                </td>
+                <td>
+                    @Html.TextBox("postage", Model.num.ToMoney(), new { placeholder = "邮费", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+           
+                <td>
+                    客户
+                </td>
+                <td>
+                    @Html.DropDownList("trader_id", new SelectList(NFD.BLL.TraderManager.GetList(), "trader_id", "name", Model.trader_id), new { tip = "必填", reg = ".+" })
+                    <input id="btnTrader" class="btn" value="新增" type="button" />
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    加工费
+                </td>
+                <td>
+                    @Html.TextBox("pricessing_fee", Model.pricessing_fee.ToDecimal("n2"), new { placeholder = "加工费", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+                <td>
+                    纸型
+                </td>
+                <td  >
+                    @Html.TextBox("paper", Model.paper)
+                </td>
+                <td>
+                    面料门幅
+                </td>
+                <td>
+                    @Html.TextBox("door", Model.door)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" class="btn" value="保存" />
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+    @if (Model.bill_id > 0)
+    {
+        <div>
+            @Html.Trirand().JQGrid(grid, "chanceDetail")
+        </div>
+
+    }
+</div>

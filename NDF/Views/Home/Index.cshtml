@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+}
+@model NFD.Entities.HomeModel
+<h2>
+    框架demo</h2>
+<p>
+    <a href="/Home/UserEx">点击跳转 user 异常处理</a>
+</p>
+<p>
+    <a href="/Home/WebEx">点击跳转 Web 异常处理</a>
+</p>
+<h2>
+    表格1</h2>
+<table>
+    <tr>
+        <th>
+            序号
+        </th>
+        <th>
+            名称
+        </th>
+        <th>
+            内容
+        </th>
+    </tr>
+    @foreach (var r in Model.Home)
+    { 
+        <tr>
+            <td>
+                @r.Id
+            </td>
+            <td>
+                @r.Name
+            </td>
+            <td>
+                @r.Content
+            </td>
+        </tr>
+    }
+</table>
+@Html.Raw(Model.PageString)
+<h2>
+    语言</h2>
+@foreach (var r in Model.language)
+{
+    <p>@r</p>
+}

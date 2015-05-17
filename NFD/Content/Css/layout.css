@@ -1,0 +1,21 @@
+﻿body
+{
+    padding-bottom: 40px;
+}
+.sidebar-nav
+{
+    padding: 9px 0;
+}
+.hand
+{
+    cursor: pointer;
+}
+#content{ padding-left:0; margin-left:25px}
+.breadcrumb a{ color:Black} 
+.breadcrumb .bimg{ margin-top:-3px}
+.watermark {color:#999;}
+.saveTable td { padding:10px}
+.tolhead{ padding-left:5px; padding-bottom:10px}
+.red{ color:Red}
+.bold{ font-weight:bold}
+.none{ display:none}

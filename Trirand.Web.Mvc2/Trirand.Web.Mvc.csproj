@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{29ADB14E-7D47-40CA-88F7-CF08B77AB9FA}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>Trirand.Web.Mvc</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System.Web.Mvc" />
+    <Reference Include="System.Web" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Trirand\Web\Mvc\AutoCompleteDisplayMode.cs" />
+    <Compile Include="Trirand\Web\Mvc\AutoCompleteMode.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQAutoCompleteRenderer.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQAutoComplete.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartAxisType.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartHorizontalAlign.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartLegendLayout.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartLineDashStyle.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartSeriesStacking.cs" />
+    <Compile Include="Trirand\Web\Mvc\TickmarkPlacement.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartType.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartVerticalAlign.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartZoomType.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartClientSideEvents.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQChartRenderer.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartAreaSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartAreaSplineSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartBarSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartColumnSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartDataLabelSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartLineSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartPieSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartPlotOptionsClientSideEvents.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartPointClientSideEvents.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartScatterSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartSeriesPlotSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartSplineSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartLabelSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartBaseAxisSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartCrossHairSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartLegendSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartMarkerSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartPlotLineSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartPlotOptionsSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartSeriesSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartTitleSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartToolTipSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartXAxisSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartYAxisSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ExportSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartGradientColor.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartLinearGradient.cs" />
+    <Compile Include="Trirand\Web\Mvc\ChartPoint.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQChart.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQChartExportData.cs" />
+    <Compile Include="Trirand\Web\Mvc\DateTimeExtensions.cs" />
+    <Compile Include="Trirand\Web\Mvc\HashbableExtensions.cs" />
+    <Compile Include="Trirand\Web\Mvc\HtmlHelperExtensions.cs" />
+    <Compile Include="Trirand\Web\Mvc\TrirandNamespace.cs" />
+    <Compile Include="Trirand\Web\Mvc\IEnumerableExtensions.cs" />
+    <Compile Include="System\Linq\Dynamic\DynamicQueryable.cs" />
+    <Compile Include="System\Linq\Dynamic\DynamicClass.cs" />
+    <Compile Include="System\Linq\Dynamic\DynamicProperty.cs" />
+    <Compile Include="System\Linq\Dynamic\DynamicExpression.cs" />
+    <Compile Include="System\Linq\Dynamic\DynamicOrdering.cs" />
+    <Compile Include="System\Linq\Dynamic\Signature.cs" />
+    <Compile Include="System\Linq\Dynamic\ClassFactory.cs" />
+    <Compile Include="System\Linq\Dynamic\ParseException.cs" />
+    <Compile Include="System\Linq\Dynamic\ExpressionParser.cs" />
+    <Compile Include="System\Linq\Dynamic\Res.cs" />
+    <Compile Include="System\Linq\Dynamic\IQueryableUtil!1.cs" />
+    <Compile Include="System\Linq\Dynamic\IQueryableUtil!2.cs" />
+    <Compile Include="Trirand\Web\Mvc\PublicListExtensions.cs" />
+    <Compile Include="Trirand\Web\Mvc\ListExtensions.cs" />
+    <Compile Include="Trirand\Web\Mvc\ObjectExtensions.cs" />
+    <Compile Include="Trirand\Web\Mvc\StringBuilderExtensions.cs" />
+    <Compile Include="Trirand\Web\Mvc\StringExtensions.cs" />
+    <Compile Include="Trirand\Web\Mvc\Guard.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonUtil.cs" />
+    <Compile Include="Trirand\Web\Mvc\Util.cs" />
+    <Compile Include="Trirand\Web\Mvc\DatePickerDisplayMode.cs" />
+    <Compile Include="Trirand\Web\Mvc\ShowOn.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQDatePickerRenderer.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQDatePicker.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridEditClientSideValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\CustomValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\DateValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\EmailValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\IntegerValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\MaxValueValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\MinValueValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\NumberValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\RequiredValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\TimeValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\UrlValidator.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridEditFieldAttribute.cs" />
+    <Compile Include="Trirand\Web\Mvc\AjaxCallBackMode.cs" />
+    <Compile Include="Trirand\Web\Mvc\EditType.cs" />
+    <Compile Include="Trirand\Web\Mvc\ExportDataRange.cs" />
+    <Compile Include="Trirand\Web\Mvc\GroupSummaryPosition.cs" />
+    <Compile Include="Trirand\Web\Mvc\GroupSummaryType.cs" />
+    <Compile Include="Trirand\Web\Mvc\HierarchyMode.cs" />
+    <Compile Include="Trirand\Web\Mvc\MultiSelectKey.cs" />
+    <Compile Include="Trirand\Web\Mvc\MultiSelectMode.cs" />
+    <Compile Include="Trirand\Web\Mvc\RenderingMode.cs" />
+    <Compile Include="Trirand\Web\Mvc\SearchDataType.cs" />
+    <Compile Include="Trirand\Web\Mvc\SearchOperation.cs" />
+    <Compile Include="Trirand\Web\Mvc\SearchToolBarAction.cs" />
+    <Compile Include="Trirand\Web\Mvc\SearchType.cs" />
+    <Compile Include="Trirand\Web\Mvc\SortAction.cs" />
+    <Compile Include="Trirand\Web\Mvc\SortDirection.cs" />
+    <Compile Include="Trirand\Web\Mvc\SortIconsPosition.cs" />
+    <Compile Include="Trirand\Web\Mvc\TextAlign.cs" />
+    <Compile Include="Trirand\Web\Mvc\ToolBarAlign.cs" />
+    <Compile Include="Trirand\Web\Mvc\ToolBarButtonPosition.cs" />
+    <Compile Include="Trirand\Web\Mvc\ToolBarPosition.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridDataResolvedEventArgs.cs" />
+    <Compile Include="Trirand\Web\Mvc\DataTypeNotSetException.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridColumnFormatter.cs" />
+    <Compile Include="Trirand\Web\Mvc\CheckBoxFormatter.cs" />
+    <Compile Include="Trirand\Web\Mvc\CurrencyFormatter.cs" />
+    <Compile Include="Trirand\Web\Mvc\CustomFormatter.cs" />
+    <Compile Include="Trirand\Web\Mvc\EmailFormatter.cs" />
+    <Compile Include="Trirand\Web\Mvc\IntegerFormatter.cs" />
+    <Compile Include="Trirand\Web\Mvc\LinkFormatter.cs" />
+    <Compile Include="Trirand\Web\Mvc\NumberFormatter.cs" />
+    <Compile Include="Trirand\Web\Mvc\GroupField.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonAddDialog.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonColModel.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonCustomButton.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonDelDialog.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonEditDialog.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonMultipleSearch.cs" />
+    <Compile Include="Trirand\Web\Mvc\MultipleSearchRule.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonPivotResponse.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonResponse.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonRow.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonSearchDialog.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonSearchToolBar.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonToolBar.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonTreeResponse.cs" />
+    <Compile Include="Trirand\Web\Mvc\JsonViewRowDialog.cs" />
+    <Compile Include="Trirand\Web\Mvc\PivotAggregate.cs" />
+    <Compile Include="Trirand\Web\Mvc\PivotAggregator.cs" />
+    <Compile Include="Trirand\Web\Mvc\PivotDimension.cs" />
+    <Compile Include="Trirand\Web\Mvc\PivotFormatter.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridRenderer.cs" />
+    <Compile Include="Trirand\Web\Mvc\AppearanceSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ClientSideEvents.cs" />
+    <Compile Include="Trirand\Web\Mvc\DeleteDialogSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\EditActionIconsSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\EditDialogSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\GridExportSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\GroupSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\HierarchySettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\PagerSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\PivotSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\SearchDialogSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\SearchToolBarSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\SortSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ToolBarSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\TreeGridSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\ViewRowDialogSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\AddDialogSettings.cs" />
+    <Compile Include="Trirand\Web\Mvc\GridUtil.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGrid.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridColumn.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridEditData.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridDataResolvedEventHandler.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridHeaderGroup.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridState.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridToolBarButton.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQGridTreeExpandData.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQComboBoxRenderer.cs" />
+    <Compile Include="Trirand\Web\Mvc\ComboBoxClientSideEvents.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQComboBox.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQDropDownListRenderer.cs" />
+    <Compile Include="Trirand\Web\Mvc\DropDownListClientSideEvents.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQDropDownList.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQMultiSelectRenderer.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQMultiSelect.cs" />
+    <Compile Include="Trirand\Web\Mvc\MultiSelectClientSideEvents.cs" />
+    <Compile Include="Trirand\Web\Mvc\Filter.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQListItem.cs" />
+    <Compile Include="Trirand\Web\Mvc\TreeViewClientSideEvents.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQTreeNode.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQTreeNodeDropEventArgs.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQTreeView.cs" />
+    <Compile Include="Trirand\Web\Mvc\JQTreeViewRenderer.cs" />
+    <Compile Include="Trirand\Web\Mvc\CompiledOn.cs" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+</Project>
