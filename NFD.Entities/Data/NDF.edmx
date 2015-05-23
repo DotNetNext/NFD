@@ -170,6 +170,8 @@
       [V_CutBill].[bnum] AS [bnum], 
       [V_CutBill].[check_date] AS [check_date], 
       [V_CutBill].[remark] AS [remark], 
+      [V_CutBill].[export_price] AS [export_price], 
+      [V_CutBill].[wellhead_price] AS [wellhead_price], 
       [V_CutBill].[order_quantity] AS [order_quantity]
       FROM [dbo].[V_CutBill] AS [V_CutBill]</DefiningQuery>
           </EntitySet>
@@ -548,6 +550,8 @@
           <Property Name="bnum" Type="money" />
           <Property Name="check_date" Type="datetime" />
           <Property Name="remark" Type="varchar" MaxLength="200" />
+          <Property Name="export_price" Type="money" />
+          <Property Name="wellhead_price" Type="money" />
         </EntityType>
         <EntityType Name="CutBillShipment">
           <Key>
@@ -1066,6 +1070,8 @@
           <Property Name="bnum" Type="money" />
           <Property Name="check_date" Type="datetime" />
           <Property Name="remark" Type="varchar" MaxLength="200" />
+          <Property Name="export_price" Type="money" />
+          <Property Name="wellhead_price" Type="money" />
           <Property Name="order_quantity" Type="int" />
         </EntityType>
         <!--生成过程中发现错误:
@@ -1978,6 +1984,8 @@
           <Property Type="Decimal" Name="bnum" Precision="19" Scale="4" />
           <Property Type="DateTime" Name="check_date" />
           <Property Type="String" Name="remark" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="CutBill">
           <Key>
@@ -2006,6 +2014,8 @@
           <Property Type="Decimal" Name="bnum" Precision="19" Scale="4" />
           <Property Type="DateTime" Name="check_date" />
           <Property Type="String" Name="remark" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="V_Report_Order">
           <Key>
@@ -2862,6 +2872,8 @@
           <EntitySetMapping Name="V_CutBill">
             <EntityTypeMapping TypeName="NFDModel.V_CutBill">
               <MappingFragment StoreEntitySet="V_CutBill">
+                <ScalarProperty Name="wellhead_price" ColumnName="wellhead_price" />
+                <ScalarProperty Name="export_price" ColumnName="export_price" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="check_date" ColumnName="check_date" />
                 <ScalarProperty Name="bnum" ColumnName="bnum" />
@@ -2892,6 +2904,8 @@
           <EntitySetMapping Name="CutBill">
             <EntityTypeMapping TypeName="NFDModel.CutBill">
               <MappingFragment StoreEntitySet="CutBill">
+                <ScalarProperty Name="wellhead_price" ColumnName="wellhead_price" />
+                <ScalarProperty Name="export_price" ColumnName="export_price" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="check_date" ColumnName="check_date" />
                 <ScalarProperty Name="bnum" ColumnName="bnum" />

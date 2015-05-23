@@ -257,6 +257,36 @@ namespace NFD.Areas.Bill.Controllers
                                                                 },
                });
                 reval.Columns.Add(
+ new JQGridColumn()
+ {
+
+     HeaderText = "进口费用",
+     DataField = "wellhead_price",
+     Editable = true,
+     Formatter = new CustomFormatter() { FormatFunction = "ToRound" },
+     Searchable = false,
+     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                         new NumberValidator()
+                        }
+
+ }
+ );
+                reval.Columns.Add(
+            new JQGridColumn()
+            {
+
+                HeaderText = "出口费用",
+                Formatter = new CustomFormatter() { FormatFunction = "ToRound" },
+                DataField = "export_price",
+                Editable = true,
+                Searchable = false,
+                EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                         new NumberValidator()
+                        }
+
+            }
+            );
+                reval.Columns.Add(
        new JQGridColumn()
        {
 

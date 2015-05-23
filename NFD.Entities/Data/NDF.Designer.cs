@@ -4172,6 +4172,54 @@ namespace NFD.Entities.Data
         private global::System.String _remark;
         partial void OnremarkChanging(global::System.String value);
         partial void OnremarkChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> export_price
+        {
+            get
+            {
+                return _export_price;
+            }
+            set
+            {
+                Onexport_priceChanging(value);
+                ReportPropertyChanging("export_price");
+                _export_price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("export_price");
+                Onexport_priceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _export_price;
+        partial void Onexport_priceChanging(Nullable<global::System.Decimal> value);
+        partial void Onexport_priceChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> wellhead_price
+        {
+            get
+            {
+                return _wellhead_price;
+            }
+            set
+            {
+                Onwellhead_priceChanging(value);
+                ReportPropertyChanging("wellhead_price");
+                _wellhead_price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("wellhead_price");
+                Onwellhead_priceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _wellhead_price;
+        partial void Onwellhead_priceChanging(Nullable<global::System.Decimal> value);
+        partial void Onwellhead_priceChanged();
 
         #endregion
     
@@ -13977,6 +14025,54 @@ namespace NFD.Entities.Data
         private global::System.String _remark;
         partial void OnremarkChanging(global::System.String value);
         partial void OnremarkChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> export_price
+        {
+            get
+            {
+                return _export_price;
+            }
+            set
+            {
+                Onexport_priceChanging(value);
+                ReportPropertyChanging("export_price");
+                _export_price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("export_price");
+                Onexport_priceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _export_price;
+        partial void Onexport_priceChanging(Nullable<global::System.Decimal> value);
+        partial void Onexport_priceChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> wellhead_price
+        {
+            get
+            {
+                return _wellhead_price;
+            }
+            set
+            {
+                Onwellhead_priceChanging(value);
+                ReportPropertyChanging("wellhead_price");
+                _wellhead_price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("wellhead_price");
+                Onwellhead_priceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _wellhead_price;
+        partial void Onwellhead_priceChanging(Nullable<global::System.Decimal> value);
+        partial void Onwellhead_priceChanged();
 
         #endregion
     

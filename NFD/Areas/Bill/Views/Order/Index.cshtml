@@ -77,6 +77,7 @@
         }
 
         function ToFactoryName(value, colname) {
+            if (value == "") return "";
             var data = $.linq.first(json2, function (o) { return o.dd_id == value; });
             return data.d_name;
         }

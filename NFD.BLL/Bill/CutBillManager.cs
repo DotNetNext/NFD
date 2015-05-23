@@ -57,7 +57,9 @@ namespace NFD.BLL.Bill
                         out_num = bill.out_num,
                         bnum=bill.bnum,
                         check_date=bill.check_date,
-                        remark=bill.remark
+                        remark=bill.remark,
+                        export_price=bill.export_price,
+                        wellhead_price=bill.wellhead_price
 
 
                     });
