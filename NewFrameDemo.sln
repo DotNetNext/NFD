@@ -16,33 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trirand.Web.Mvc", "Trirand.Web.Mvc2\Trirand.Web.Mvc.csproj", "{29ADB14E-7D47-40CA-88F7-CF08B77AB9FA}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://llu7:8080/tfs/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = NFD.Entities\\NFD.Entities.csproj
-		SccProjectName1 = NFD.Entities
-		SccLocalPath1 = NFD.Entities
-		SccProjectUniqueName2 = NFD.BLL\\NFD.BLL.csproj
-		SccProjectName2 = NFD.BLL
-		SccLocalPath2 = NFD.BLL
-		SccProjectUniqueName3 = COM.Utility\\COM.Utility.csproj
-		SccProjectName3 = COM.Utility
-		SccLocalPath3 = COM.Utility
-		SccProjectUniqueName4 = COM.Extension\\COM.Extension.csproj
-		SccProjectName4 = COM.Extension
-		SccLocalPath4 = COM.Extension
-		SccProjectUniqueName5 = NFD.ExceptionHandling\\NFD.ExceptionHandling.csproj
-		SccProjectName5 = NFD.ExceptionHandling
-		SccLocalPath5 = NFD.ExceptionHandling
-		SccProjectUniqueName6 = NFD\\NFD.csproj
-		SccProjectName6 = NFD
-		SccLocalPath6 = NFD
-		SccProjectUniqueName7 = Trirand.Web.Mvc2\\Trirand.Web.Mvc.csproj
-		SccProjectName7 = Trirand.Web.Mvc2
-		SccLocalPath7 = Trirand.Web.Mvc2
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms

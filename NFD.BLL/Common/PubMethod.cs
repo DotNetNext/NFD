@@ -89,7 +89,7 @@ namespace NFD.BLL
                 });
 
                 List.Add(new Ztree() { id = 34, name = "订单总览", open = "true", pId = 201541401, target = "_self", url = "/Bill/Order/Index" });
-                List.Add(new Ztree() { id = 37, name = "发注", open = "true", pId = 201541401, target = "_self", url = "/Bill/ProductionPlan/Index" });
+                List.Add(new Ztree() { id = 37, name = "计划", open = "true", pId = 201541401, target = "_self", url = "/Bill/ProductionPlan/Index" });
                 List.Add(new Ztree() { id = 36, name = "面料订购", open = "true", pId = 201541401, target = "_self", url = "/Bill/FabricOrder/Index" });
                 List.Add(new Ztree() { id = 35, name = "裁剪总览", open = "true", pId = 201541401, target = "_self", url = "/Bill/Cut/Index" });
 

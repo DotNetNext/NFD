@@ -120,7 +120,7 @@ namespace NFD.Areas.Crm.Controllers
 
                                                                   DataField="tel",
                                                                   Editable=true    ,
-                                                                  HeaderText="坐机",
+                                                                  HeaderText="电话",
                                                                   Searchable=false
                                              },
                                                     new JQGridColumn{
@@ -165,7 +165,7 @@ namespace NFD.Areas.Crm.Controllers
 
                                                                   DataField="url",
                                                                   Editable=true    ,
-                                                                  HeaderText="公司网址",
+                                                                  HeaderText="公司地址",
                                                                   Searchable=false,
                                                                   
                                              },
