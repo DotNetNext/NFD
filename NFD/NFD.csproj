@@ -119,7 +119,6 @@
     <Folder Include="Content\File\ht\" />
     <Folder Include="Content\File\temp\" />
     <Folder Include="Content\themes\redmond\images\" />
-    <Folder Include="sqlData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Css\jqgrid.css" />
@@ -1516,6 +1515,7 @@
     <None Include="Content\Scripts\Plugs\Multiple\zTree-zTree_v3-master\zTree_v3\demo\en\asyncData\getNodes.php" />
     <None Include="Content\Scripts\Plugs\Multiple\zTree-zTree_v3-master\zTree_v3\demo\en\asyncData\getNodesForBigData.php" />
     <None Include="Content\Scripts\Plugs\Multiple\zTree-zTree_v3-master\zTree_v3\README.md" />
+    <None Include="sqlData\nfd.bak" />
     <None Include="uploadify\check-exists.php" />
     <None Include="uploadify\index.php" />
     <None Include="uploadify\uploadify.php" />
