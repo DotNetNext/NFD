@@ -119,6 +119,7 @@
     <Folder Include="Content\File\ht\" />
     <Folder Include="Content\File\temp\" />
     <Folder Include="Content\themes\redmond\images\" />
+    <Folder Include="sqlData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Css\jqgrid.css" />
