@@ -1515,7 +1515,7 @@
     <None Include="Content\Scripts\Plugs\Multiple\zTree-zTree_v3-master\zTree_v3\demo\en\asyncData\getNodes.php" />
     <None Include="Content\Scripts\Plugs\Multiple\zTree-zTree_v3-master\zTree_v3\demo\en\asyncData\getNodesForBigData.php" />
     <None Include="Content\Scripts\Plugs\Multiple\zTree-zTree_v3-master\zTree_v3\README.md" />
-    <None Include="sqlData\nfd.bak" />
+    <None Include="nfd.bak" />
     <None Include="uploadify\check-exists.php" />
     <None Include="uploadify\index.php" />
     <None Include="uploadify\uploadify.php" />
