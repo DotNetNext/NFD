@@ -49,9 +49,16 @@
 
         function ToSupplier(value) {
 
-            var json = _jsonProvider;
-            var reval = $.linq.first(json, function (v) { return v.dd_id == value }).d_name;
-            return reval;
+            try {
+                var json = _jsonProvider;
+                if (json != null && json.length > 0 && value != "") {
+                    var reval = $.linq.first(json, function (v) { return v.dd_id == value }).d_name;
+                    return reval;
+                }
+                return "";
+            } catch (e) {
+            return "";
+            }
         }
 
         //添加客户
@@ -287,16 +294,41 @@
                 <td colspan="10">
                     <input type="submit" class="btn" value="保存" />
                     <input onclick="$.response.redirect('/Bill/Order')" type="button" class="btn" value="返回订单总览" />
-                    <input onclick="$.response.redirect('/Bill/FabricDetail')" type="button" class="btn"
-                        value="返回订面料总览" />
+                    <input onclick="$.response.redirect('/Bill/FabricOrder/Index')" type="button" class="btn"
+                        value="返回面料订购" />
                     <input onclick="$.response.redirect('/Bill/AccessoriesDetail')" type="button" class="btn"
-                        value="返回订辅料总览" />
+                        value="返回辅料总览" />
                 </td>
             </tr>
         </table>
         </form>
     </div>
     <div style="width: 95%; padding-left: 10px">
+
+            @if (ViewBag.fdoGrid != null)
+        {
+            <div>
+                @{JQGrid fdoGrid = ViewBag.fdoGrid;
+                }
+                @Html.Trirand().JQGrid(fdoGrid, "fdoGrid").JqGridAppendOption(@"gridComplete:function(){ 
+      
+     
+       if(indexNum3==0){
+  $( ""#fdoGrid"" ).jqGrid( 'setGroupHeaders' , {
+                useColSpanStyle :  true ,  // 没有表头的列是否与表头列位置的空单元格合并
+                groupHeaders : [ {
+                startColumnName :  'fob_id' ,  // 对应colModel中的name
+                numberOfColumns : 18,  // 跨越的列数
+                titleText :  '面料订购'
+         }]
+        });
+        }
+        indexNum3++;
+    }")
+            </div>
+            <br />
+        }
+
         @if (ViewBag.fdGrid != null)
         {
             JQGrid fdgrid = ViewBag.fdGrid;
@@ -310,7 +342,7 @@
                 groupHeaders : [ {
                 startColumnName :  'fd_id' ,  // 对应colModel中的name
                 numberOfColumns : 12,  // 跨越的列数
-                titleText :  '面料'
+                titleText :  '面料总览'
          }]
         });
         }
@@ -341,29 +373,7 @@
             </div>
         }
         <br />
-        @if (ViewBag.fdoGrid != null)
-        {
-            <div>
-                @{JQGrid fdoGrid = ViewBag.fdoGrid;
-                }
-                @Html.Trirand().JQGrid(fdoGrid, "fdoGrid").JqGridAppendOption(@"gridComplete:function(){ 
-      
-     
-       if(indexNum3==0){
-  $( ""#fdoGrid"" ).jqGrid( 'setGroupHeaders' , {
-                useColSpanStyle :  true ,  // 没有表头的列是否与表头列位置的空单元格合并
-                groupHeaders : [ {
-                startColumnName :  'fob_id' ,  // 对应colModel中的name
-                numberOfColumns : 18,  // 跨越的列数
-                titleText :  '订购计划'
-         }]
-        });
-        }
-        indexNum3++;
-    }")
-            </div>
-            <br />
-        }
+
         @if (ViewBag.ppGrid != null)
         {
             <div>

@@ -33,10 +33,14 @@
         type="text/javascript"></script>
     <script>
         function ToSupplier(value) {
+            try {
+                var json = _jsonProvider;
+                var reval = $.linq.first(json, function (v) { return v.dd_id == value }).d_name;
+                return reval;
+            } catch (e) {
+                return "";
+            }
 
-            var json = _jsonProvider;
-            var reval = $.linq.first(json, function (v) { return v.dd_id == value }).d_name;
-            return reval;
         }
 
     </script>
@@ -54,6 +58,4 @@
              class="hand"  href="@Url.Action("Index")">单据管理</a>><a>@ViewBag.Title</a></li>
     </ul>
 </div>
-   @Html.Trirand().JQGrid(Model, "fdoGrid")
-
-
+@Html.Trirand().JQGrid(Model, "fdoGrid")

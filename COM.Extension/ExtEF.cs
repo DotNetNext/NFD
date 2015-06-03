@@ -82,7 +82,7 @@ namespace COM.Extension
         /// </summary>
         /// <param name="oc"></param>
         /// <param name="whereIn">in的集合</param>
-        public static bool Delete<TEntity>(this ObjectContext objectContext, params dynamic[] whereIn)
+        public static bool Delete<TEntity>(this ObjectContext objectContext, params object[] whereIn)
         {
             try
             {
@@ -109,7 +109,35 @@ namespace COM.Extension
         /// </summary>
         /// <param name="oc"></param>
         /// <param name="whereIn">in的集合</param>
-        public static bool FalseDelete<TEntity>(this ObjectContext objectContext, params dynamic[] whereIn)
+        public static bool FalseDelete<TEntity>(this ObjectContext objectContext, params int[] whereIn)
+        {
+            try
+            {
+                Type type = typeof(TEntity);
+                string key = type.FullName;
+                bool isSuccess = false;
+                if (whereIn != null && whereIn.Length > 0)
+                {
+                    string sql = "update  {0} set is_Del=1 where {1} in ({2})".ToFormat(type.Name, GetPrimaryKey(type, key), whereIn.Select(c=>c.ToString()).ToArray().ToJoinSqlInVal());
+                    isSuccess = objectContext.ExecuteStoreCommand(sql) > 0;
+                }
+                return isSuccess;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 批量删除 调用  将列is_Del设为1
+        /// BulkDelete<T>(new int[]{1,2,3})
+        /// 或者
+        /// BulkDelete<T>(3)
+        /// </summary>
+        /// <param name="oc"></param>
+        /// <param name="whereIn">in的集合</param>
+        public static bool FalseDelete<TEntity>(this ObjectContext objectContext, params object[] whereIn)
         {
             try
             {

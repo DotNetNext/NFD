@@ -372,7 +372,7 @@ namespace COM.Extension
             }
             else
             {
-                return string.Join(",", array.Where(c => c != null).Select(c => "'" + c.ToSqlFilter() + "'"));//除止SQL注入
+                return string.Join(",", array.Where(c => c != null).Select(c => "'" +( c+"").ToSqlFilter() + "'"));//除止SQL注入
             }
         }
         /// <summary>
