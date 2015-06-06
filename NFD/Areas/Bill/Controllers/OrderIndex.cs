@@ -153,7 +153,7 @@ namespace NFD.Areas.Bill.Controllers
                                                                 HeaderText="编号",
                                                                 Width = 30 } ,
                                                                  
-                                                                  new JQGridColumn { DataField="trader_id", Width=90,HeaderText="客户",Frozen = true,SearchToolBarOperation=SearchOperation.IsEqualTo,DataType=typeof(int),SearchType=SearchType.DropDown,SearchList=traderList,Formatter= new  CustomFormatter(){FormatFunction="ToTrader"} },
+                                                                  new JQGridColumn { DataField="trader_id", Width=150,HeaderText="客户",Frozen = true,SearchToolBarOperation=SearchOperation.IsEqualTo,DataType=typeof(int),SearchType=SearchType.DropDown,SearchList=traderList,Formatter= new  CustomFormatter(){FormatFunction="ToTrader"} },
                                                
                                                                       new JQGridColumn { DataField = "factory_name", 
                                                        
