@@ -308,7 +308,7 @@ namespace NFD.Areas.Bill.Controllers
             using (NFDEntities db = new NFDEntities())
             {
                 DataTable dt = GetExportDataTable(dateMin, dateMax, trader_id, db);
-                AsposeExcel.MergeCellExport(dt, "新丝露国际贸易公司面料订购单.xls");
+                AsposeExcel.MergeCellExport(dt, "新丝路国际贸易公司面料订购单.xls");
 
             }
         }
