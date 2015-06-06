@@ -222,10 +222,21 @@ namespace COM.Utility
                     int colCount = dt.Columns.Count;
                     int rowCount = dt.Rows.Count;
                     cellSheet.Cells.SetRowHeight(0, 30);
-                    for (int i = 1; i <= dt.Rows.Count; i++)
+                    for (int i = 1; i <= dt.Rows.Count+1; i++)
                     {
                         cellSheet.Cells.SetRowHeight(i, 25);
                     }
+
+
+
+                
+
+                    cellSheet.Cells[rowIndex,0].PutValue(name.Split('.')[0]);
+                    cellSheet.Cells[rowIndex,5].PutValue(DateTime.Now.ToString("yyyy-MM-dd"));;
+                    var cr= cellSheet.Cells.CreateRange(0,0,1,3);
+                    cr.Merge();
+
+                    rowIndex++;
                     //列名的处理  
                     for (int i = 0; i < colCount; i++)
                     {
@@ -236,6 +247,8 @@ namespace COM.Utility
                         //cellSheet.Cells[rowIndex, colIndex].Style = style;  
                         colIndex++;
                     }
+
+
                     rowIndex++;
                     for (int i = 0; i < rowCount; i++)
                     {

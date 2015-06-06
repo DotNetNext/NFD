@@ -27,12 +27,27 @@ namespace NFD.BLL.Bill
         }
 
         /// <summary>
+        /// 获取裁剪
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static IQueryable<FabricOrderBill> GetFabricOrderBillList(NFDEntities db)
+        {
+
+                return db.FabricOrderBill;
+        }
+
+        /// <summary>
         /// 保存裁剪单
         /// </summary>
         /// <param name="bill"></param>
         /// <returns></returns>
         public static bool SaveFabricOrderBillAll(FabricOrderBill bill)
         {
+            if (!bill.area.ToConvertString().Contains("±") || bill.area.ToConvertString().Contains("+")|| bill.area.ToConvertString().Contains("-"))
+            {
+                bill.area= "±"+bill.area;
+            }
             using (NFDEntities db = new NFDEntities())
             {
                 if (bill.fob_id.IsZero())
@@ -42,6 +57,7 @@ namespace NFD.BLL.Bill
                     bill.trader_id = orderBill.trader_id;
                     bill.creator_id = UserManager.GetCurrentUserInfo.user_id;
                     bill.creator_name = UserManager.GetCurrentUserInfo.userName;
+                    bill.create_time = DateTime.Now;
                     db.FabricOrderBill.AddObject(bill);
                     var isSaved = db.SaveChanges() > 0;
                     return isSaved;
