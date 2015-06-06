@@ -436,22 +436,6 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        public ObjectSet<V_FabricDetail> V_FabricDetail
-        {
-            get
-            {
-                if ((_V_FabricDetail == null))
-                {
-                    _V_FabricDetail = base.CreateObjectSet<V_FabricDetail>("V_FabricDetail");
-                }
-                return _V_FabricDetail;
-            }
-        }
-        private ObjectSet<V_FabricDetail> _V_FabricDetail;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
         public ObjectSet<V_CutBill> V_CutBill
         {
             get
@@ -672,6 +656,22 @@ namespace NFD.Entities.Data
             }
         }
         private ObjectSet<V_ProductionPlan> _V_ProductionPlan;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<V_FabricDetail> V_FabricDetail
+        {
+            get
+            {
+                if ((_V_FabricDetail == null))
+                {
+                    _V_FabricDetail = base.CreateObjectSet<V_FabricDetail>("V_FabricDetail");
+                }
+                return _V_FabricDetail;
+            }
+        }
+        private ObjectSet<V_FabricDetail> _V_FabricDetail;
 
         #endregion
         #region AddTo 方法
@@ -861,14 +861,6 @@ namespace NFD.Entities.Data
         }
     
         /// <summary>
-        /// 用于向 V_FabricDetail EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddToV_FabricDetail(V_FabricDetail v_FabricDetail)
-        {
-            base.AddObject("V_FabricDetail", v_FabricDetail);
-        }
-    
-        /// <summary>
         /// 用于向 V_CutBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
         /// </summary>
         public void AddToV_CutBill(V_CutBill v_CutBill)
@@ -978,6 +970,14 @@ namespace NFD.Entities.Data
         public void AddToV_ProductionPlan(V_ProductionPlan v_ProductionPlan)
         {
             base.AddObject("V_ProductionPlan", v_ProductionPlan);
+        }
+    
+        /// <summary>
+        /// 用于向 V_FabricDetail EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToV_FabricDetail(V_FabricDetail v_FabricDetail)
+        {
+            base.AddObject("V_FabricDetail", v_FabricDetail);
         }
 
         #endregion
@@ -14171,6 +14171,30 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String color_foreign
+        {
+            get
+            {
+                return _color_foreign;
+            }
+            set
+            {
+                Oncolor_foreignChanging(value);
+                ReportPropertyChanging("color_foreign");
+                _color_foreign = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("color_foreign");
+                Oncolor_foreignChanged();
+            }
+        }
+        private global::System.String _color_foreign;
+        partial void Oncolor_foreignChanging(global::System.String value);
+        partial void Oncolor_foreignChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String color_name
         {
             get
@@ -14639,24 +14663,24 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String color_foreign
+        public global::System.String specifications
         {
             get
             {
-                return _color_foreign;
+                return _specifications;
             }
             set
             {
-                Oncolor_foreignChanging(value);
-                ReportPropertyChanging("color_foreign");
-                _color_foreign = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("color_foreign");
-                Oncolor_foreignChanged();
+                OnspecificationsChanging(value);
+                ReportPropertyChanging("specifications");
+                _specifications = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("specifications");
+                OnspecificationsChanged();
             }
         }
-        private global::System.String _color_foreign;
-        partial void Oncolor_foreignChanging(global::System.String value);
-        partial void Oncolor_foreignChanged();
+        private global::System.String _specifications;
+        partial void OnspecificationsChanging(global::System.String value);
+        partial void OnspecificationsChanged();
 
         #endregion
     

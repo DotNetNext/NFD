@@ -39,6 +39,7 @@ namespace NFD.BLL.Bill
                 {//添加
                     var orderBill = db.OrderBill.Single(c => c.o_id == bill.order_id);
                     bill.no = orderBill.no;
+                    bill.trader_id = orderBill.trader_id;
                     bill.creator_id = UserManager.GetCurrentUserInfo.user_id;
                     bill.creator_name = UserManager.GetCurrentUserInfo.userName;
                     db.FabricOrderBill.AddObject(bill);
@@ -47,6 +48,8 @@ namespace NFD.BLL.Bill
                 }
                 else
                 {
+                    var fbBill = db.FabricOrderBill.Single(c => c.fob_id == bill.fob_id);
+                    var orderBill = db.OrderBill.Single(c => c.o_id == fbBill.order_id);
                     //编辑
                     db.Update<FabricOrderBill>(bill.fob_id, new
 
@@ -57,7 +60,7 @@ namespace NFD.BLL.Bill
                         num = bill.num,
                         price = bill.price,
                         element = bill.element,
-                        trader_id = bill.trader_id,
+                        trader_id = orderBill.trader_id,
                         clothing_number = bill.clothing_number,
                         address = bill.address,
                         area = bill.area,

@@ -43,14 +43,12 @@ namespace NFD.Areas.Bill.Controllers
             }
             else
             {
-                var orderId = RequestHelper.QueryStringByUrlString(Request.UrlReferrer.ToString(), "id").ToInt();
-                if (orderId > 0)
+                if (fd.fob_id > 0)
                 {
-                    fd.order_id = orderId;
                     FabricOrderBillManager.SaveFabricOrderBillAll(fd);
                 }
             }
-            return RedirectToAction("Save");
+            return RedirectToAction("Index");
         }
         /// <summary>
         /// 获取面料订购
@@ -61,6 +59,8 @@ namespace NFD.Areas.Bill.Controllers
             {
                 //供应商
                 var providerList = DictManager.GetProvider().Select(c => new SelectListItem() { Value = c.dd_id + "", Text = c.d_name }).ToList();
+                var traderList = BLL.TraderManager.GetList().Select(c => new SelectListItem() { Value = c.trader_id + "", Text = c.name }).ToList();
+                traderList.Insert(0, new SelectListItem());
                 #region 设置
                 var reval = new JQGrid();
                 reval.AutoWidth = true;
@@ -70,7 +70,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     Width = 400,
                     CloseAfterAdding = true,
-                 
+
 
                 };
                 reval.EditDialogSettings = new EditDialogSettings()
@@ -98,19 +98,17 @@ namespace NFD.Areas.Bill.Controllers
                 reval.Columns = new List<JQGridColumn>();
                 #endregion
                 #region 列
-                reval.Columns.Add(new JQGridColumn()
-                {
-                    DataField = "fob_id",
-                    PrimaryKey = true,
-                    Editable = false,
-                    HeaderText = "编号"
 
-                });
+             
+                reval.Columns.Add(new JQGridColumn {  DataField = "trader_id", HeaderText = "客户", Frozen = true, SearchToolBarOperation = SearchOperation.IsEqualTo, DataType = typeof(int), SearchType = SearchType.DropDown, SearchList = traderList, Formatter = new CustomFormatter() { FormatFunction = "ToTrader" } });
                 reval.Columns.Add(new JQGridColumn()
                 {
+                    Frozen = true,
                     DataField = "no",
                     Editable = true,
-                    HeaderText = "品番",
+                    HeaderText = "面料品番",
+                    Searchable = true,
+                    SearchType = SearchType.TextBox,
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                                      new  RequiredValidator()
                                     }
@@ -130,7 +128,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "price",
                     Editable = true,
-                    HeaderText = "单价",
+                    HeaderText = "面料单价",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                      new  RequiredValidator(),
                      new NumberValidator()
@@ -145,7 +143,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "sdf",
                     Editable = true,
-                    HeaderText = "生地幅"
+                    HeaderText = "生地幅(厘米)"
 
 
 
@@ -183,7 +181,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "num",
                     Editable = true,
-                    HeaderText = "数量",
+                    HeaderText = "面料数量",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                      new  RequiredValidator(),
                      new NumberValidator()
@@ -194,6 +192,8 @@ namespace NFD.Areas.Bill.Controllers
                     }
 
                 });
+
+
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "get_date",
@@ -210,6 +210,7 @@ namespace NFD.Areas.Bill.Controllers
 
                 });
 
+
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "area",
@@ -219,7 +220,6 @@ namespace NFD.Areas.Bill.Controllers
 
 
                 });
-
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "datum",
@@ -244,6 +244,9 @@ namespace NFD.Areas.Bill.Controllers
 
 
                 });
+
+
+
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "address",
@@ -270,6 +273,16 @@ namespace NFD.Areas.Bill.Controllers
                     HeaderText = "创建人"
 
 
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "fob_id",
+                    PrimaryKey = true,
+                    Editable = false,
+                    Visible = true,
+                    HeaderText = "编号",
+                    Frozen = true
 
                 });
                 #endregion
