@@ -127,7 +127,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     Width = 400,
                     CloseAfterAdding = true,
-                    TopOffset = 500,
+                    TopOffset = 1100,
                     LeftOffset = 400
 
                 };
@@ -393,7 +393,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     Width = 400,
                     CloseAfterAdding = true,
-                    TopOffset = 850,
+                    TopOffset = 1450,
                     LeftOffset = 400
 
                 };
@@ -592,7 +592,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     Width = 400,
                     CloseAfterAdding = true,
-                    TopOffset = 1200,
+                    TopOffset = 500,
                     LeftOffset = 300
 
                 };
