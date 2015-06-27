@@ -655,6 +655,7 @@
     <Content Include="Content\Scripts\Plugs\Single\loading.js" />
     <Content Include="Content\Scripts\Plugs\Single\metable.js" />
     <Content Include="Content\Scripts\View\Atta.js" />
+    <Content Include="Content\Scripts\View\girdHelper.js" />
     <Content Include="Content\Scripts\View\layout.js" />
     <Content Include="Content\Scripts\View\SelectBind.js" />
     <Content Include="Content\Templates\jquery-ui-1.11.1\external\jquery\jquery.js" />

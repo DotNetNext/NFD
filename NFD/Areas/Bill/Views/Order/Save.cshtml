@@ -23,12 +23,21 @@
         type="text/javascript"></script>
     <link href="/Content/Scripts/Plugs/Multiple/My97DatePickerBeta/My97DatePicker/skin/WdatePicker.css"
         rel="stylesheet" type="text/css" />
+    <script src="/Content/Scripts/View/girdHelper.js" type="text/javascript"></script>
     <script type="text/javascript">
 
         $(function () {
             var $$ = window.$$ = {
                 init: function () {
                     $$.addEvents();
+                    JQgridSaved("FrmGrid_fdoGrid", function (formObj) {
+
+                        JQgridSaveBindByFirst("fdoGrid", formObj, "no");
+                        JQgridSaveBindByFirst("fdoGrid", formObj, "specifications")
+                        JQgridSaveBindByFirst("fdoGrid", formObj, "sdf")
+                        JQgridSaveBindByFirst("fdoGrid", formObj, "element")
+                        
+                    });
                 },
                 addEvents: function () {
                     $("#btnTrader").click(function () {
@@ -39,7 +48,6 @@
                     })
                     //                    $("input[id*='cost_price'],input[id*='custome_price'],input[id*='market_price']").placeholder();
                 }
-
             }
 
             $$.init();
@@ -57,7 +65,7 @@
                 }
                 return "";
             } catch (e) {
-            return "";
+                return "";
             }
         }
 
@@ -304,8 +312,7 @@
         </form>
     </div>
     <div style="width: 95%; padding-left: 10px">
-
-            @if (ViewBag.fdoGrid != null)
+        @if (ViewBag.fdoGrid != null)
         {
             <div>
                 @{JQGrid fdoGrid = ViewBag.fdoGrid;
@@ -328,7 +335,6 @@
             </div>
             <br />
         }
-
         @if (ViewBag.fdGrid != null)
         {
             JQGrid fdgrid = ViewBag.fdGrid;
@@ -373,7 +379,6 @@
             </div>
         }
         <br />
-
         @if (ViewBag.ppGrid != null)
         {
             <div>
