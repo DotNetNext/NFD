@@ -241,7 +241,7 @@ namespace NFD.Areas.Report.Controllers
                 {
                     DataField = "inspection_fee",
                     Editable=false,
-                    HeaderText = "检品费",
+                    HeaderText = "检品费(元)",
                     Searchable = false,
                     Formatter = new CustomFormatter()
                     {
@@ -253,7 +253,7 @@ namespace NFD.Areas.Report.Controllers
                 {
                     DataField = "contract_price",
                     Editable = false,
-                    HeaderText = "合同单价",
+                    HeaderText = "合同单价（$）",
                     Searchable = false,
                     Formatter = new CustomFormatter()
                     {
@@ -265,19 +265,7 @@ namespace NFD.Areas.Report.Controllers
                 {
                     DataField = "contract_price_total",
                     Editable = false,
-                    HeaderText = "金额",
-                    Searchable = false,
-                    Formatter = new CustomFormatter()
-                    {
-                        FormatFunction = "ToRound"
-                    }
-
-                });
-                reval.Columns.Add(new JQGridColumn()
-                {
-                    DataField = "inspection_fee",
-                    Editable = false,
-                    HeaderText = "检品金额",
+                    HeaderText = "金额($)",
                     Searchable = false,
                     Formatter = new CustomFormatter()
                     {
