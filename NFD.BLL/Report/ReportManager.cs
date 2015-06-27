@@ -68,11 +68,11 @@ namespace NFD.BLL.Report
                     dr["成品金额"] = r.reality_total_price.ToMoneyString();
                     dr["辅料金额"] = r.my_accesssor.ToMoney()+r.factory_accesssor.ToMoney();
                     dr["检品费(元)"] = r.inspection_fee.ToMoney();
-                    dr["合同单价 $"] = (r.contract_price/r.rate).ToMoneyString();
-                    dr["金额 $"] = (r.contract_price_total/r.rate).ToMoneyString();
+                    dr["合同单价 $"] = r.contract_price.ToMoneyString();
+                    dr["金额 $"] = r.contract_price_total.ToMoneyString();
                     dr["收汇时间"] = r.get_price_date.ToDateStr("yyyy-MM-dd");
                     dr["汇率"] = r.rate.ToMoneyString();
-                    dr["人民币"] = r.contract_price_total.ToMoney(); 
+                    dr["人民币"] = (r.contract_price_total * r.rate).ToMoneyString(); 
                     dr["快件费"] = r.single_fee.ToMoneyString();
                     dr["出口报关费"] = r.export_price.ToMoneyString();
                     dr["进口报关费"] = r.wellhead_price.ToMoneyString();
