@@ -1509,7 +1509,6 @@
     <Content Include="Areas\Htm\Views\Sample\ReSample.cshtml" />
     <Content Include="Areas\Bill\Views\FabricOrder\Index.cshtml" />
     <Content Include="Areas\Bill\Views\ProductionPlan\Index.cshtml" />
-    <None Include="Content\NFD.bak" />
     <None Include="Content\Scripts\Plugs\Multiple\zTree-zTree_v3-master\zTree_v3\.gitignore" />
     <None Include="Content\Scripts\Plugs\Multiple\zTree-zTree_v3-master\zTree_v3\demo\cn\asyncData\getNodes.php" />
     <None Include="Content\Scripts\Plugs\Multiple\zTree-zTree_v3-master\zTree_v3\demo\cn\asyncData\getNodesForBigData.php" />
