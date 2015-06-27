@@ -1236,11 +1236,10 @@
         <EntityType Name="V_Report_Order">
           <Key>
             <PropertyRef Name="num" />
-            <PropertyRef Name="clothing_number" />
           </Key>
           <Property Name="trader_id" Type="int" />
           <Property Name="trader_name" Type="varchar" MaxLength="50" />
-          <Property Name="clothing_number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="clothing_number" Type="varchar" MaxLength="50" />
           <Property Name="num" Type="int" Nullable="false" />
           <Property Name="single_fee" Type="money" />
           <Property Name="consumption" Type="money" />
@@ -1386,7 +1385,6 @@
           <EntitySet Name="CutBillShipment" EntityType="NFDModel.CutBillShipment" />
           <EntitySet Name="V_CutBill" EntityType="NFDModel.V_CutBill" />
           <EntitySet Name="CutBill" EntityType="NFDModel.CutBill" />
-          <EntitySet Name="V_Report_Order" EntityType="NFDModel.V_Report_Order" />
           <EntitySet Name="UserInfoMenuMapping" EntityType="NFDModel.UserInfoMenuMapping" />
           <EntitySet Name="HandmadeThingsDetailHistory" EntityType="NFDModel.HandmadeThingsDetailHistory" />
           <EntitySet Name="AmplifierSampleHistory" EntityType="NFDModel.AmplifierSampleHistory" />
@@ -1399,6 +1397,7 @@
           <EntitySet Name="ProductionPlan" EntityType="NFDModel.ProductionPlan" />
           <EntitySet Name="V_ProductionPlan" EntityType="NFDModel.V_ProductionPlan" />
           <EntitySet Name="V_FabricDetail" EntityType="NFDModel.V_FabricDetail" />
+          <EntitySet Name="V_Report_Order" EntityType="NFDModel.V_Report_Order" />
         </EntityContainer>
         <EntityType Name="Linkman">
           <Key>
@@ -1987,37 +1986,6 @@
           <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
         </EntityType>
-        <EntityType Name="V_Report_Order">
-          <Key>
-            <PropertyRef Name="clothing_number" />
-            <PropertyRef Name="num" />
-          </Key>
-          <Property Type="Int32" Name="trader_id" />
-          <Property Type="String" Name="clothing_number" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="num" Nullable="false" />
-          <Property Type="Int32" Name="order_quantity" />
-          <Property Type="Decimal" Name="fabric_price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="fabric_total_price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="my_accesssor" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="factory_accesssor" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="pricessing_fee" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="tatol_pricessing_fee" Precision="19" Scale="4" />
-          <Property Type="DateTime" Name="get_price_date" />
-          <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="inspection_fee" Precision="19" Scale="4" />
-          <Property Type="Int32" Name="delivers_num" />
-          <Property Type="Decimal" Name="contract_price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="reality_total_price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="rate" Precision="19" Scale="4" />
-          <Property Type="DateTime" Name="create_time" />
-          <Property Type="DateTime" Name="ship_date" />
-          <Property Type="Decimal" Name="single_fee" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="consumption" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="contract_price_total" Precision="19" Scale="4" />
-          <Property Type="Int32" Name="arrival_num" />
-          <Property Type="String" Name="trader_name" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="UserInfoMenuMapping">
           <Key>
             <PropertyRef Name="mapping_id" />
@@ -2316,6 +2284,36 @@
           <Property Type="Int32" Name="trader_id" />
           <Property Type="Decimal" Name="tatol" Precision="19" Scale="4" />
           <Property Type="String" Name="specifications" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="V_Report_Order">
+          <Key>
+            <PropertyRef Name="num" />
+          </Key>
+          <Property Type="Int32" Name="trader_id" />
+          <Property Type="String" Name="trader_name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="clothing_number" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="num" Nullable="false" />
+          <Property Type="Decimal" Name="single_fee" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="consumption" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="arrival_num" />
+          <Property Type="Int32" Name="order_quantity" />
+          <Property Type="Decimal" Name="fabric_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="fabric_total_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="my_accesssor" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="factory_accesssor" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="pricessing_fee" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="tatol_pricessing_fee" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="get_price_date" />
+          <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="inspection_fee" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="ship_date" />
+          <Property Type="Int32" Name="delivers_num" />
+          <Property Type="Decimal" Name="contract_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="contract_price_total" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="reality_total_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="rate" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="create_time" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2907,37 +2905,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="V_Report_Order">
-            <EntityTypeMapping TypeName="NFDModel.V_Report_Order">
-              <MappingFragment StoreEntitySet="V_Report_Order">
-                <ScalarProperty Name="trader_name" ColumnName="trader_name" />
-                <ScalarProperty Name="arrival_num" ColumnName="arrival_num" />
-                <ScalarProperty Name="contract_price_total" ColumnName="contract_price_total" />
-                <ScalarProperty Name="consumption" ColumnName="consumption" />
-                <ScalarProperty Name="single_fee" ColumnName="single_fee" />
-                <ScalarProperty Name="ship_date" ColumnName="ship_date" />
-                <ScalarProperty Name="create_time" ColumnName="create_time" />
-                <ScalarProperty Name="rate" ColumnName="rate" />
-                <ScalarProperty Name="reality_total_price" ColumnName="reality_total_price" />
-                <ScalarProperty Name="contract_price" ColumnName="contract_price" />
-                <ScalarProperty Name="delivers_num" ColumnName="delivers_num" />
-                <ScalarProperty Name="inspection_fee" ColumnName="inspection_fee" />
-                <ScalarProperty Name="export_price" ColumnName="export_price" />
-                <ScalarProperty Name="wellhead_price" ColumnName="wellhead_price" />
-                <ScalarProperty Name="get_price_date" ColumnName="get_price_date" />
-                <ScalarProperty Name="tatol_pricessing_fee" ColumnName="tatol_pricessing_fee" />
-                <ScalarProperty Name="pricessing_fee" ColumnName="pricessing_fee" />
-                <ScalarProperty Name="factory_accesssor" ColumnName="factory_accesssor" />
-                <ScalarProperty Name="my_accesssor" ColumnName="my_accesssor" />
-                <ScalarProperty Name="fabric_total_price" ColumnName="fabric_total_price" />
-                <ScalarProperty Name="fabric_price" ColumnName="fabric_price" />
-                <ScalarProperty Name="order_quantity" ColumnName="order_quantity" />
-                <ScalarProperty Name="num" ColumnName="num" />
-                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
-                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserInfoMenuMapping">
             <EntityTypeMapping TypeName="NFDModel.UserInfoMenuMapping">
               <MappingFragment StoreEntitySet="UserInfoMenuMapping">
@@ -3231,6 +3198,37 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="V_Report_Order">
+            <EntityTypeMapping TypeName="NFDModel.V_Report_Order">
+              <MappingFragment StoreEntitySet="V_Report_Order">
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="reality_total_price" ColumnName="reality_total_price" />
+                <ScalarProperty Name="contract_price_total" ColumnName="contract_price_total" />
+                <ScalarProperty Name="contract_price" ColumnName="contract_price" />
+                <ScalarProperty Name="delivers_num" ColumnName="delivers_num" />
+                <ScalarProperty Name="ship_date" ColumnName="ship_date" />
+                <ScalarProperty Name="inspection_fee" ColumnName="inspection_fee" />
+                <ScalarProperty Name="export_price" ColumnName="export_price" />
+                <ScalarProperty Name="wellhead_price" ColumnName="wellhead_price" />
+                <ScalarProperty Name="get_price_date" ColumnName="get_price_date" />
+                <ScalarProperty Name="tatol_pricessing_fee" ColumnName="tatol_pricessing_fee" />
+                <ScalarProperty Name="pricessing_fee" ColumnName="pricessing_fee" />
+                <ScalarProperty Name="factory_accesssor" ColumnName="factory_accesssor" />
+                <ScalarProperty Name="my_accesssor" ColumnName="my_accesssor" />
+                <ScalarProperty Name="fabric_total_price" ColumnName="fabric_total_price" />
+                <ScalarProperty Name="fabric_price" ColumnName="fabric_price" />
+                <ScalarProperty Name="order_quantity" ColumnName="order_quantity" />
+                <ScalarProperty Name="arrival_num" ColumnName="arrival_num" />
+                <ScalarProperty Name="consumption" ColumnName="consumption" />
+                <ScalarProperty Name="single_fee" ColumnName="single_fee" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
+                <ScalarProperty Name="trader_name" ColumnName="trader_name" />
+                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3277,19 +3275,19 @@
         <EntityTypeShape EntityType="NFDModel.CutBillShipment" Width="1.5" PointX="3.375" PointY="5.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_CutBill" Width="1.5" PointX="7.75" PointY="7.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.CutBill" Width="1.5" PointX="3.375" PointY="6.25" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="0.75" PointY="8.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.UserInfoMenuMapping" Width="1.5" PointX="9.625" PointY="2" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.HandmadeThingsDetailHistory" Width="1.5" PointX="4" PointY="2.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.AmplifierSampleHistory" Width="1.5" PointX="3.375" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_AmplifierSampleHistory" Width="1.5" PointX="7.625" PointY="8.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.Role" Width="1.5" PointX="7.375" PointY="9.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.SampleDetailHistory" Width="1.5" PointX="8.125" PointY="10.625" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_Sample_Detail_History" Width="2" PointX="0.75" PointY="10.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.V_Sample_Detail_History" Width="2" PointX="3.875" PointY="10.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_Sample_Detail" Width="1.5" PointX="3.375" PointY="9.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.FabricOrderBill" Width="1.5" PointX="12" PointY="4.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.ProductionPlan" Width="1.5" PointX="5.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_ProductionPlan" Width="1.5" PointX="9.375" PointY="9.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_FabricDetail" Width="1.5" PointX="7.75" PointY="6.875" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="0.75" PointY="8.75" Height="5.7904264322916674" />
       </Diagram>
     </Diagrams>
   </Designer>
