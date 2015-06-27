@@ -58,7 +58,8 @@ namespace NFD.BLL.Bill
                         wellhead_price = bill.wellhead_price,
                         export_price = bill.export_price,
                         get_price_date = bill.get_price_date,
-                        inspection_fee = bill.inspection_fee
+                        inspection_fee = bill.inspection_fee,
+                        pricessing_fee=bill.pricessing_fee
 
 
                     });

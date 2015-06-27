@@ -178,7 +178,7 @@
                         合同单价
                     </td>
                     <td>
-                        @Html.TextBox("cost_price", Model.cost_price.ToDecimal("n2"), new { reg = RegList.MONEY, tip = RegList.MONEY_TIP })
+                        @Html.TextBox("cost_price", Model.cost_price.ToMoney(), new { reg = RegList.MONEY, tip = RegList.MONEY_TIP })
                     </td>
                 }
                 else
@@ -188,7 +188,7 @@
                     </td>
                     <td>
                         -
-                        @Html.Hidden("cost_price", Model.cost_price.ToDecimal("n2"), new { reg = RegList.MONEY, tip = RegList.MONEY_TIP })
+                        @Html.Hidden("cost_price", Model.cost_price.ToMoney(), new { reg = RegList.MONEY, tip = RegList.MONEY_TIP })
                     </td>
                 
                 }
@@ -253,7 +253,7 @@
                     加工费单价
                 </td>
                 <td>
-                    @Html.TextBox("pricessing_fee", Model.pricessing_fee.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                    @Html.TextBox("pricessing_fee", Model.pricessing_fee.ToMoney(), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
                 </td>
             </tr>
             <tr>
@@ -261,13 +261,13 @@
                     进口报关费
                 </td>
                 <td>
-                    @Html.TextBox("wellhead_price", Model.wellhead_price.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                    @Html.TextBox("wellhead_price", Model.wellhead_price.ToMoney(), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
                 </td>
                 <td>
                     出口报关费
                 </td>
                 <td>
-                    @Html.TextBox("export_price", Model.export_price.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                    @Html.TextBox("export_price", Model.export_price.ToMoney(), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
                 </td>
             </tr>
             <tr>
@@ -275,7 +275,7 @@
                     检品费
                 </td>
                 <td>
-                    @Html.TextBox("inspection_fee", Model.inspection_fee.ToDecimal("n2"), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                    @Html.TextBox("inspection_fee", Model.inspection_fee.ToMoney(), new { reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
                 </td>
                 <td>
                     收款日期
