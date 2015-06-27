@@ -100,7 +100,7 @@
         //绑定操作
         function action(value, name, row, X, X2, X3) {
             if (value == true || value == "True") {
-                return "<a class='btn btn-mini' style='margin:auto' onclick='$.response.redirect(\"/Bill/Cut/Index\",{id:" + name.rowId + "})'>查看裁剪</a>";
+                return "<a class='btn btn-mini' style='margin:auto' onclick='$.response.redirect(\"/Bill/Cut/Index\",{id:" + name.rowId + "})'>查看</a>" + "&nbsp;&nbsp;<input value='重新创建' onclick='createCut(" + name.rowId + ")' class='btn btn-mini' type='button' />";
             }
             var inputNext = "<input value='创建裁剪' onclick='createCut(" + name.rowId + ")' class='btn btn-mini' type='button' />";
             return  inputNext;

@@ -31,7 +31,7 @@ namespace NFD.Areas.Bill.Controllers
         public ActionResult CreateCut(int id)
         {
             OrderBillManager.CreateCutBill(id);
-            return this.Redirect("/Bill/Cut/Index");
+            return this.Redirect("/Bill/Cut/Index?id="+id);
         }
 
         //获取统计信息

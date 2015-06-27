@@ -58,7 +58,7 @@ namespace NFD.BLL.Bill
                         wellhead_price = bill.wellhead_price,
                         export_price = bill.export_price,
                         get_price_date = bill.get_price_date,
-                        inspection_fee= bill.inspection_fee
+                        inspection_fee = bill.inspection_fee
 
 
                     });
@@ -299,15 +299,24 @@ namespace NFD.BLL.Bill
         {
             using (NFDEntities db = new NFDEntities())
             {
-                var orderDeatil = db.FabricDetail.Where(c => c.order_id == orderId);
+                var orderDeatil = db.FabricOrderBill.Where(c => c.order_id == orderId);
                 var order = db.OrderBill.Single(c => c.o_id == orderId);
                 order.is_cut = true;
+                var removeOldCutList = db.CutBill.Where(c => c.order_id == order.o_id);
+                foreach (var r in removeOldCutList)
+                {
+                    db.CutBill.DeleteObject(r);
+                    foreach (var rr in db.CutBillShipment.Where(cbs => cbs.c_id == r.c_id))
+                    {
+                        db.CutBillShipment.DeleteObject(rr);
+                    }
+                }
                 foreach (var r in orderDeatil)
                 {
                     CutBill c = new CutBill()
                     {
                         order_id = r.order_id,
-                        fd_id = r.fd_id,
+                        fd_id = r.fob_id,
                         color_name = r.color_name,
                         color_foreign = r.color_foreign,
                         trader_id = order.trader_id,
