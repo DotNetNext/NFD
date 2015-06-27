@@ -239,6 +239,18 @@ namespace NFD.Areas.Report.Controllers
                 });
                 reval.Columns.Add(new JQGridColumn()
                 {
+                    DataField = "inspection_fee",
+                    Editable=false,
+                    HeaderText = "检品费",
+                    Searchable = false,
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+                });
+
+                reval.Columns.Add(new JQGridColumn()
+                {
                     DataField = "contract_price",
                     Editable = false,
                     HeaderText = "合同单价",
