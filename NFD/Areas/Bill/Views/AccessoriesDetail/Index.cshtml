@@ -71,6 +71,15 @@
             }, 50)
 
         }
+
+        function exExcel() {
+            ed_alertBox("#divExExcel", "导出EXCEL", function () {
+                var trader = $(".easyDialog_text #trader_id").val();
+                var dateMin = $(".easyDialog_text #dateMin").val();
+                var dateMax = $(".easyDialog_text #dateMax").val();
+                window.open("/Bill/AccessoriesDetail/ExportExcel?trader_id=" + trader + "&dateMin=" + dateMin + "&dateMax=" + dateMax);
+            })
+        }
     </script>
 }
 <div>
@@ -82,3 +91,25 @@
 </div>
 @Html.Trirand().JQGrid(Model, "adgrid").JqGridAppendOption(@"gridComplete:function(){ 
       mergeCell();  }")
+
+<div id="divExExcel" style="display: none">
+    <table>
+        <tr>
+            <td>
+                创建时间:
+            </td>
+            <td>
+                &nbsp; @Html.TextBox("dateMin", "", new { @class = "Wdate", @onclick = "WdatePicker()", style = "width:110px" })
+                - @Html.TextBox("dateMax", DateTime.Now.ToString("yyyy-MM-dd"), new { style = "width:110px", @class = "Wdate", @onclick = "WdatePicker()" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                选择客户:
+            </td>
+            <td>
+                &nbsp; @Html.DropDownList("trader_id", new SelectList(NFD.BLL.TraderManager.GetList(), "trader_id", "name"))
+            </td>
+        </tr>
+    </table>
+</div>
