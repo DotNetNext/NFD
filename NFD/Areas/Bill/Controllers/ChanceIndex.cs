@@ -281,7 +281,7 @@ namespace NFD.Areas.Bill.Controllers
                                               
                                                       new JQGridColumn { DataField = "postage", 
                                                        
-                                                                HeaderText="邮费",
+                                                                HeaderText=" 通关费",
                                                                 Width=50,
                                                                 DataType=typeof(string),
                                                                 SearchToolBarOperation=SearchOperation.Contains,
