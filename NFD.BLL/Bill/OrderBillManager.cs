@@ -300,7 +300,7 @@ namespace NFD.BLL.Bill
         {
             using (NFDEntities db = new NFDEntities())
             {
-                var orderDeatil = db.FabricOrderBill.Where(c => c.order_id == orderId);
+                var orderDeatil = db.FabricOrderBill.Where(c => c.order_id == orderId).Where(c=>c.is_del==null||c.is_del==false);
                 var order = db.OrderBill.Single(c => c.o_id == orderId);
                 order.is_cut = true;
                 var removeOldCutList = db.CutBill.Where(c => c.order_id == order.o_id);
