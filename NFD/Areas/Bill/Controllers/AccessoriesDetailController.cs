@@ -353,6 +353,7 @@ namespace NFD.Areas.Bill.Controllers
                 dr["辅料总价"] = r.tol_price.ToMoney();
                 dr["供应商"] = r.supplier_name;
                 dr["创建人"]=r.creator_name;
+                dr["交货时间"] = r.get_date.ToDateStr("yyyy-MM-dd");
                 dt.Rows.Add(dr);
             }
             return dt;
