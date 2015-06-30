@@ -340,22 +340,6 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        public ObjectSet<V_OrderBill> V_OrderBill
-        {
-            get
-            {
-                if ((_V_OrderBill == null))
-                {
-                    _V_OrderBill = base.CreateObjectSet<V_OrderBill>("V_OrderBill");
-                }
-                return _V_OrderBill;
-            }
-        }
-        private ObjectSet<V_OrderBill> _V_OrderBill;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
         public ObjectSet<DictionariesDetail> DictionariesDetail
         {
             get
@@ -660,6 +644,22 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
+        public ObjectSet<V_OrderBill> V_OrderBill
+        {
+            get
+            {
+                if ((_V_OrderBill == null))
+                {
+                    _V_OrderBill = base.CreateObjectSet<V_OrderBill>("V_OrderBill");
+                }
+                return _V_OrderBill;
+            }
+        }
+        private ObjectSet<V_OrderBill> _V_OrderBill;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
         public ObjectSet<V_Report_Order> V_Report_Order
         {
             get
@@ -813,14 +813,6 @@ namespace NFD.Entities.Data
         }
     
         /// <summary>
-        /// 用于向 V_OrderBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddToV_OrderBill(V_OrderBill v_OrderBill)
-        {
-            base.AddObject("V_OrderBill", v_OrderBill);
-        }
-    
-        /// <summary>
         /// 用于向 DictionariesDetail EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
         /// </summary>
         public void AddToDictionariesDetail(DictionariesDetail dictionariesDetail)
@@ -970,6 +962,14 @@ namespace NFD.Entities.Data
         public void AddToV_FabricDetail(V_FabricDetail v_FabricDetail)
         {
             base.AddObject("V_FabricDetail", v_FabricDetail);
+        }
+    
+        /// <summary>
+        /// 用于向 V_OrderBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToV_OrderBill(V_OrderBill v_OrderBill)
+        {
+            base.AddObject("V_OrderBill", v_OrderBill);
         }
     
         /// <summary>
@@ -16174,6 +16174,30 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> factory_id
+        {
+            get
+            {
+                return _factory_id;
+            }
+            set
+            {
+                Onfactory_idChanging(value);
+                ReportPropertyChanging("factory_id");
+                _factory_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("factory_id");
+                Onfactory_idChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _factory_id;
+        partial void Onfactory_idChanging(Nullable<global::System.Int32> value);
+        partial void Onfactory_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String factory_fill_name
         {
             get
@@ -16216,30 +16240,6 @@ namespace NFD.Entities.Data
         private global::System.String _trader_name;
         partial void Ontrader_nameChanging(global::System.String value);
         partial void Ontrader_nameChanged();
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> factory_id
-        {
-            get
-            {
-                return _factory_id;
-            }
-            set
-            {
-                Onfactory_idChanging(value);
-                ReportPropertyChanging("factory_id");
-                _factory_id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("factory_id");
-                Onfactory_idChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _factory_id;
-        partial void Onfactory_idChanging(Nullable<global::System.Int32> value);
-        partial void Onfactory_idChanged();
 
         #endregion
     
@@ -16870,16 +16870,47 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 创建新的 V_Report_Order 对象。
         /// </summary>
+        /// <param name="o_id">o_id 属性的初始值。</param>
+        /// <param name="clothing_number">clothing_number 属性的初始值。</param>
         /// <param name="num">num 属性的初始值。</param>
-        public static V_Report_Order CreateV_Report_Order(global::System.Int32 num)
+        public static V_Report_Order CreateV_Report_Order(global::System.Int32 o_id, global::System.String clothing_number, global::System.Int32 num)
         {
             V_Report_Order v_Report_Order = new V_Report_Order();
+            v_Report_Order.o_id = o_id;
+            v_Report_Order.clothing_number = clothing_number;
             v_Report_Order.num = num;
             return v_Report_Order;
         }
 
         #endregion
         #region 基元属性
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 o_id
+        {
+            get
+            {
+                return _o_id;
+            }
+            set
+            {
+                if (_o_id != value)
+                {
+                    Ono_idChanging(value);
+                    ReportPropertyChanging("o_id");
+                    _o_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("o_id");
+                    Ono_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _o_id;
+        partial void Ono_idChanging(global::System.Int32 value);
+        partial void Ono_idChanged();
     
         /// <summary>
         /// 没有元数据文档可用。
@@ -16932,7 +16963,7 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String clothing_number
         {
@@ -16944,7 +16975,7 @@ namespace NFD.Entities.Data
             {
                 Onclothing_numberChanging(value);
                 ReportPropertyChanging("clothing_number");
-                _clothing_number = StructuralObject.SetValidValue(value, true);
+                _clothing_number = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("clothing_number");
                 Onclothing_numberChanged();
             }
@@ -16956,7 +16987,7 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 num
         {
@@ -16966,14 +16997,11 @@ namespace NFD.Entities.Data
             }
             set
             {
-                if (_num != value)
-                {
-                    OnnumChanging(value);
-                    ReportPropertyChanging("num");
-                    _num = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("num");
-                    OnnumChanged();
-                }
+                OnnumChanging(value);
+                ReportPropertyChanging("num");
+                _num = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("num");
+                OnnumChanged();
             }
         }
         private global::System.Int32 _num;

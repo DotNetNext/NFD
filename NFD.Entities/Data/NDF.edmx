@@ -301,6 +301,7 @@
           </EntitySet>
           <EntitySet Name="V_Report_Order" EntityType="NFDModel.Store.V_Report_Order" store:Type="Views" store:Schema="dbo" store:Name="V_Report_Order">
             <DefiningQuery>SELECT 
+      [V_Report_Order].[o_id] AS [o_id], 
       [V_Report_Order].[trader_id] AS [trader_id], 
       [V_Report_Order].[trader_name] AS [trader_name], 
       [V_Report_Order].[clothing_number] AS [clothing_number], 
@@ -1235,11 +1236,12 @@
       -->
         <EntityType Name="V_Report_Order">
           <Key>
-            <PropertyRef Name="num" />
+            <PropertyRef Name="o_id" />
           </Key>
+          <Property Name="o_id" Type="int" Nullable="false" />
           <Property Name="trader_id" Type="int" />
           <Property Name="trader_name" Type="varchar" MaxLength="50" />
-          <Property Name="clothing_number" Type="varchar" MaxLength="50" />
+          <Property Name="clothing_number" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="num" Type="int" Nullable="false" />
           <Property Name="single_fee" Type="money" />
           <Property Name="consumption" Type="money" />
@@ -1377,7 +1379,6 @@
           <EntitySet Name="V_ChanceBill" EntityType="NFDModel.V_ChanceBill" />
           <EntitySet Name="OrderBill" EntityType="NFDModel.OrderBill" />
           <EntitySet Name="Dictionaries" EntityType="NFDModel.Dictionaries" />
-          <EntitySet Name="V_OrderBill" EntityType="NFDModel.V_OrderBill" />
           <EntitySet Name="DictionariesDetail" EntityType="NFDModel.DictionariesDetail" />
           <EntitySet Name="AccessoriesDetail" EntityType="NFDModel.AccessoriesDetail" />
           <EntitySet Name="FabricDetail" EntityType="NFDModel.FabricDetail" />
@@ -1397,6 +1398,7 @@
           <EntitySet Name="ProductionPlan" EntityType="NFDModel.ProductionPlan" />
           <EntitySet Name="V_ProductionPlan" EntityType="NFDModel.V_ProductionPlan" />
           <EntitySet Name="V_FabricDetail" EntityType="NFDModel.V_FabricDetail" />
+          <EntitySet Name="V_OrderBill" EntityType="NFDModel.V_OrderBill" />
           <EntitySet Name="V_Report_Order" EntityType="NFDModel.V_Report_Order" />
         </EntityContainer>
         <EntityType Name="Linkman">
@@ -1787,40 +1789,6 @@
           <Property Type="String" Name="value1" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="value2" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="value3" MaxLength="500" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="V_OrderBill">
-          <Key>
-            <PropertyRef Name="o_id" />
-            <PropertyRef Name="clothing_number" />
-            <PropertyRef Name="no" />
-            <PropertyRef Name="num" />
-            <PropertyRef Name="creator_name" />
-            <PropertyRef Name="creator_id" />
-          </Key>
-          <Property Type="Int32" Name="o_id" Nullable="false" />
-          <Property Type="String" Name="clothing_number" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="no" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="styles" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="num" Nullable="false" />
-          <Property Type="DateTime" Name="order_date" />
-          <Property Type="DateTime" Name="get_date" />
-          <Property Type="String" Name="submission_date" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Type="Boolean" Name="is_del" />
-          <Property Type="String" Name="creator_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="creator_id" Nullable="false" />
-          <Property Type="DateTime" Name="modified_time" />
-          <Property Type="DateTime" Name="create_time" />
-          <Property Type="Int32" Name="trader_id" />
-          <Property Type="String" Name="factory_name" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="ht_id" />
-          <Property Type="Int32" Name="chance_id" />
-          <Property Type="Decimal" Name="cost_price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="custome_price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="market_price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="rate" Precision="19" Scale="4" />
-          <Property Type="String" Name="factory_fill_name" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="trader_name" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="factory_id" />
         </EntityType>
         <EntityType Name="DictionariesDetail">
           <Key>
@@ -2285,13 +2253,48 @@
           <Property Type="Decimal" Name="tatol" Precision="19" Scale="4" />
           <Property Type="String" Name="specifications" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="V_OrderBill">
+          <Key>
+            <PropertyRef Name="o_id" />
+            <PropertyRef Name="clothing_number" />
+            <PropertyRef Name="no" />
+            <PropertyRef Name="num" />
+            <PropertyRef Name="creator_name" />
+            <PropertyRef Name="creator_id" />
+          </Key>
+          <Property Type="Int32" Name="o_id" Nullable="false" />
+          <Property Type="String" Name="clothing_number" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="no" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="styles" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="num" Nullable="false" />
+          <Property Type="DateTime" Name="order_date" />
+          <Property Type="DateTime" Name="get_date" />
+          <Property Type="String" Name="submission_date" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="is_del" />
+          <Property Type="String" Name="creator_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="creator_id" Nullable="false" />
+          <Property Type="DateTime" Name="modified_time" />
+          <Property Type="DateTime" Name="create_time" />
+          <Property Type="Int32" Name="trader_id" />
+          <Property Type="String" Name="factory_name" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ht_id" />
+          <Property Type="Int32" Name="chance_id" />
+          <Property Type="Decimal" Name="cost_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="custome_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="market_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="rate" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="factory_id" />
+          <Property Type="String" Name="factory_fill_name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="trader_name" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="V_Report_Order">
           <Key>
-            <PropertyRef Name="num" />
+            <PropertyRef Name="o_id" />
           </Key>
+          <Property Type="Int32" Name="o_id" Nullable="false" />
           <Property Type="Int32" Name="trader_id" />
           <Property Type="String" Name="trader_name" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="clothing_number" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="clothing_number" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="num" Nullable="false" />
           <Property Type="Decimal" Name="single_fee" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="consumption" Precision="19" Scale="4" />
@@ -2708,36 +2711,6 @@
                 <ScalarProperty Name="sort" ColumnName="sort" />
                 <ScalarProperty Name="key" ColumnName="key" />
                 <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_OrderBill">
-            <EntityTypeMapping TypeName="NFDModel.V_OrderBill">
-              <MappingFragment StoreEntitySet="V_OrderBill">
-                <ScalarProperty Name="factory_id" ColumnName="factory_id" />
-                <ScalarProperty Name="trader_name" ColumnName="trader_name" />
-                <ScalarProperty Name="factory_fill_name" ColumnName="factory_fill_name" />
-                <ScalarProperty Name="rate" ColumnName="rate" />
-                <ScalarProperty Name="market_price" ColumnName="market_price" />
-                <ScalarProperty Name="custome_price" ColumnName="custome_price" />
-                <ScalarProperty Name="cost_price" ColumnName="cost_price" />
-                <ScalarProperty Name="chance_id" ColumnName="chance_id" />
-                <ScalarProperty Name="ht_id" ColumnName="ht_id" />
-                <ScalarProperty Name="factory_name" ColumnName="factory_name" />
-                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
-                <ScalarProperty Name="create_time" ColumnName="create_time" />
-                <ScalarProperty Name="modified_time" ColumnName="modified_time" />
-                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
-                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
-                <ScalarProperty Name="is_del" ColumnName="is_del" />
-                <ScalarProperty Name="submission_date" ColumnName="submission_date" />
-                <ScalarProperty Name="get_date" ColumnName="get_date" />
-                <ScalarProperty Name="order_date" ColumnName="order_date" />
-                <ScalarProperty Name="num" ColumnName="num" />
-                <ScalarProperty Name="styles" ColumnName="styles" />
-                <ScalarProperty Name="no" ColumnName="no" />
-                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
-                <ScalarProperty Name="o_id" ColumnName="o_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3198,6 +3171,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="V_OrderBill">
+            <EntityTypeMapping TypeName="NFDModel.V_OrderBill">
+              <MappingFragment StoreEntitySet="V_OrderBill">
+                <ScalarProperty Name="trader_name" ColumnName="trader_name" />
+                <ScalarProperty Name="factory_fill_name" ColumnName="factory_fill_name" />
+                <ScalarProperty Name="factory_id" ColumnName="factory_id" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="market_price" ColumnName="market_price" />
+                <ScalarProperty Name="custome_price" ColumnName="custome_price" />
+                <ScalarProperty Name="cost_price" ColumnName="cost_price" />
+                <ScalarProperty Name="chance_id" ColumnName="chance_id" />
+                <ScalarProperty Name="ht_id" ColumnName="ht_id" />
+                <ScalarProperty Name="factory_name" ColumnName="factory_name" />
+                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="modified_time" ColumnName="modified_time" />
+                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
+                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
+                <ScalarProperty Name="is_del" ColumnName="is_del" />
+                <ScalarProperty Name="submission_date" ColumnName="submission_date" />
+                <ScalarProperty Name="get_date" ColumnName="get_date" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="styles" ColumnName="styles" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
+                <ScalarProperty Name="o_id" ColumnName="o_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="V_Report_Order">
             <EntityTypeMapping TypeName="NFDModel.V_Report_Order">
               <MappingFragment StoreEntitySet="V_Report_Order">
@@ -3226,6 +3229,7 @@
                 <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
                 <ScalarProperty Name="trader_name" ColumnName="trader_name" />
                 <ScalarProperty Name="trader_id" ColumnName="trader_id" />
+                <ScalarProperty Name="o_id" ColumnName="o_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3267,7 +3271,6 @@
         <EntityTypeShape EntityType="NFDModel.V_ChanceBill" Width="1.5" PointX="7.75" PointY="4.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.OrderBill" Width="1.5" PointX="9.75" PointY="4.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.Dictionaries" Width="1.5" PointX="0.75" PointY="5.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_OrderBill" Width="1.5" PointX="7.75" PointY="6.125" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.DictionariesDetail" Width="1.5" PointX="0.75" PointY="6.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.AccessoriesDetail" Width="1.5" PointX="2.375" PointY="2" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.FabricDetail" Width="1.5" PointX="0.75" PointY="7.125" Height="0.4" IsExpanded="false" />
@@ -3287,7 +3290,8 @@
         <EntityTypeShape EntityType="NFDModel.ProductionPlan" Width="1.5" PointX="5.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_ProductionPlan" Width="1.5" PointX="9.375" PointY="9.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_FabricDetail" Width="1.5" PointX="7.75" PointY="6.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="0.75" PointY="8.75" Height="5.7904264322916674" />
+        <EntityTypeShape EntityType="NFDModel.V_OrderBill" Width="1.5" PointX="11.375" PointY="7.75" Height="5.59940673828126" />
+        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="0.75" PointY="8.75" Height="5.9814461263020746" />
       </Diagram>
     </Diagrams>
   </Designer>
