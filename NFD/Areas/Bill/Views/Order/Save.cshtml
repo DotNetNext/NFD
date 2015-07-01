@@ -110,6 +110,10 @@
         var indexNum2 = 0;
         var indexNum3 = 0;
         var indexNum4 = 0;
+
+        function exportAdExcel() {
+            window.location.href = "/Bill/Order/ExportADExcel?id="+@(Request["id"]);
+        }
     </script>
 }
 @provider

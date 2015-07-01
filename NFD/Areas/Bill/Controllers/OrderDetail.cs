@@ -334,6 +334,17 @@ namespace NFD.Areas.Bill.Controllers
 
 
         #region 辅料
+        public void ExportADExcel(int id=0)
+        {
+            using (NFDEntities db = new NFDEntities())
+            {
+                var adGrid = GetAccessoriesDetailGridModel;
+                adGrid.ExportSettings.ExportDataRange = ExportDataRange.FilteredAndPaged;
+                var modelData = AccessoriesDetailManager.GetAccessoriesDetailByOrderId(id, db);
+                adGrid.ExportToExcel(modelData, " 辅料.xls");
+            }
+        }
+
         public JsonResult GetADGridData(int id = 0)
         {
             using (NFDEntities db = new NFDEntities())
@@ -385,9 +396,16 @@ namespace NFD.Areas.Bill.Controllers
                 };
                 reval.ToolBarSettings = new ToolBarSettings()
                 {
+                    CustomButtons = new List<JQGridToolBarButton>() { 
+                         new JQGridToolBarButton(){
+                       Text="导出EXCEL",
+                        OnClick="exportAdExcel"
+                      } 
+                    },
                     ShowEditButton = true,
                     ShowAddButton = true,
                     ShowDeleteButton = true
+                    
                 };
                 reval.AddDialogSettings = new AddDialogSettings()
                 {
@@ -952,7 +970,7 @@ namespace NFD.Areas.Bill.Controllers
 
                 });
 
-             
+
 
                 reval.Columns.Add(new JQGridColumn()
                 {
@@ -1111,7 +1129,7 @@ namespace NFD.Areas.Bill.Controllers
                                                                 },
 
                 });
- 
+
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "remark",
