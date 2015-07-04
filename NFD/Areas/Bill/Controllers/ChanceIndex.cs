@@ -145,16 +145,25 @@ namespace NFD.Areas.Bill.Controllers
                     
                       new JQGridToolBarButton(){
                        Text="发送邮件",
+                          ButtonIcon="ui-icon-mail-open",
                         OnClick="sendMail"
                       },
                         new JQGridToolBarButton(){
                        Text="导出EXCEL",
-                        OnClick="exExcel"
+                        OnClick="exExcel",
+                        ButtonIcon="ui-icon-bookmark"
                       },
                         new JQGridToolBarButton(){
                        Text="打印PDF",
-                        OnClick="exPdf"
-                      },new JQGridToolBarButton(){
+                        OnClick="exPdf",
+                        ButtonIcon="ui-icon-bookmark"
+                      }
+                      ,new JQGridToolBarButton(){
+                       Text="修改报价",
+                        ButtonIcon="ui-icon-pencil",
+                        OnClick="editChanceBill"
+                      }
+                      ,new JQGridToolBarButton(){
                        Text="添加报价",
                         OnClick="addChanceBill"
                       },

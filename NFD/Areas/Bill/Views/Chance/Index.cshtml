@@ -75,7 +75,7 @@
         }
         //生成订单
         function createOrderBill(id, status) {
-            if (status ==0) {
+            if (status == 0) {
                 $.response.redirect("/Bill/Order/Save", { chanceId: id });
             } else {
                 $.response.redirect("/Bill/Order/Index", { chanceId: id });
@@ -158,6 +158,14 @@
             var dateMax = $(".easyDialog_text #dateMax").val()
             window.open("/bill/Chance/Export?type=1&" + $(".easyDialog_text #frmMail").serialize());
         }
+        function editChanceBill() {
+            var id = $("#chance").jqGrid('getGridParam', 'selrow');
+            if (id == null) {
+                ed_alert("温馨提醒", "请选择记录！")
+            } else {
+               window.location.href="/Bill/Chance/Save?id="+id;
+            }
+        }
     </script>
 }
 <div>
@@ -209,9 +217,9 @@
             <td>
                 &nbsp;
                 <select id="priceType">
-                @*    <option value="3">客户价</option>*@
+                    @*    <option value="3">客户价</option>*@
                     <option value="1">成本价</option>
-             @*       <option value="2">市场价</option>*@
+                    @*       <option value="2">市场价</option>*@
                 </select>
             </td>
         </tr>
@@ -287,10 +295,10 @@
                                 </td>
                                 <td>
                                     &nbsp;
-                                    <select    id="priceType">
-                      @*                  <option value="3">客户价</option>*@
+                                    <select id="priceType">
+                                        @*                  <option value="3">客户价</option>*@
                                         <option value="1">成本价</option>
-                        @*                <option value="2">市场价</option>*@
+                                        @*                <option value="2">市场价</option>*@
                                     </select>
                                 </td>
                             </tr>
