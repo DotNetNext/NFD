@@ -326,6 +326,7 @@
       [V_Report_Order].[clothing_number] AS [clothing_number], 
       [V_Report_Order].[num] AS [num], 
       [V_Report_Order].[single_fee] AS [single_fee], 
+      [V_Report_Order].[fabric_order_num] AS [fabric_order_num], 
       [V_Report_Order].[consumption] AS [consumption], 
       [V_Report_Order].[arrival_num] AS [arrival_num], 
       [V_Report_Order].[order_quantity] AS [order_quantity], 
@@ -341,6 +342,8 @@
       [V_Report_Order].[inspection_fee] AS [inspection_fee], 
       [V_Report_Order].[ship_date] AS [ship_date], 
       [V_Report_Order].[delivers_num] AS [delivers_num], 
+      [V_Report_Order].[actual_num_tol] AS [actual_num_tol], 
+      [V_Report_Order].[bnum] AS [bnum], 
       [V_Report_Order].[contract_price] AS [contract_price], 
       [V_Report_Order].[contract_price_total] AS [contract_price_total], 
       [V_Report_Order].[reality_total_price] AS [reality_total_price], 
@@ -1285,8 +1288,6 @@
         <EntityType Name="V_Report_Order">
           <Key>
             <PropertyRef Name="o_id" />
-            
-            
           </Key>
           <Property Name="o_id" Type="int" Nullable="false" />
           <Property Name="trader_id" Type="int" />
@@ -1294,6 +1295,7 @@
           <Property Name="clothing_number" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="num" Type="int" Nullable="false" />
           <Property Name="single_fee" Type="money" />
+          <Property Name="fabric_order_num" Type="int" />
           <Property Name="consumption" Type="money" />
           <Property Name="arrival_num" Type="int" />
           <Property Name="order_quantity" Type="int" />
@@ -1309,6 +1311,8 @@
           <Property Name="inspection_fee" Type="money" />
           <Property Name="ship_date" Type="datetime" />
           <Property Name="delivers_num" Type="int" />
+          <Property Name="actual_num_tol" Type="int" />
+          <Property Name="bnum" Type="money" />
           <Property Name="contract_price" Type="money" />
           <Property Name="contract_price_total" Type="money" />
           <Property Name="reality_total_price" Type="money" />
@@ -2376,6 +2380,7 @@
           <Property Type="String" Name="clothing_number" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="num" Nullable="false" />
           <Property Type="Decimal" Name="single_fee" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="fabric_order_num" />
           <Property Type="Decimal" Name="consumption" Precision="19" Scale="4" />
           <Property Type="Int32" Name="arrival_num" />
           <Property Type="Int32" Name="order_quantity" />
@@ -2391,6 +2396,8 @@
           <Property Type="Decimal" Name="inspection_fee" Precision="19" Scale="4" />
           <Property Type="DateTime" Name="ship_date" />
           <Property Type="Int32" Name="delivers_num" />
+          <Property Type="Int32" Name="actual_num_tol" />
+          <Property Type="Decimal" Name="bnum" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="contract_price" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="contract_price_total" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="reality_total_price" Precision="19" Scale="4" />
@@ -3317,6 +3324,8 @@
                 <ScalarProperty Name="reality_total_price" ColumnName="reality_total_price" />
                 <ScalarProperty Name="contract_price_total" ColumnName="contract_price_total" />
                 <ScalarProperty Name="contract_price" ColumnName="contract_price" />
+                <ScalarProperty Name="bnum" ColumnName="bnum" />
+                <ScalarProperty Name="actual_num_tol" ColumnName="actual_num_tol" />
                 <ScalarProperty Name="delivers_num" ColumnName="delivers_num" />
                 <ScalarProperty Name="ship_date" ColumnName="ship_date" />
                 <ScalarProperty Name="inspection_fee" ColumnName="inspection_fee" />
@@ -3332,6 +3341,7 @@
                 <ScalarProperty Name="order_quantity" ColumnName="order_quantity" />
                 <ScalarProperty Name="arrival_num" ColumnName="arrival_num" />
                 <ScalarProperty Name="consumption" ColumnName="consumption" />
+                <ScalarProperty Name="fabric_order_num" ColumnName="fabric_order_num" />
                 <ScalarProperty Name="single_fee" ColumnName="single_fee" />
                 <ScalarProperty Name="num" ColumnName="num" />
                 <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
@@ -3399,7 +3409,7 @@
         <EntityTypeShape EntityType="NFDModel.V_ProductionPlan" Width="1.5" PointX="9.375" PointY="9.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_FabricDetail" Width="1.5" PointX="7.75" PointY="6.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_OrderBill" Width="1.5" PointX="11.375" PointY="7.75" Height="5.59940673828126" />
-        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="0.75" PointY="8.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="0.75" PointY="8.75" Height="6.5545052083333246" />
       </Diagram>
     </Diagrams>
   </Designer>

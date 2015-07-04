@@ -94,31 +94,18 @@ namespace NFD.Areas.Report.Controllers
 
                 });
 
-
                 reval.Columns.Add(new JQGridColumn()
-            {
-                DataField = "arrival_num",
-                Editable = false,
-                Searchable = false,
-                HeaderText = "面料到货数量(米)",
-                Formatter = new CustomFormatter()
                 {
-                    FormatFunction = "ToRound"
-                }
+                    DataField = "fabric_order_num",
+                    Editable = false,
+                    Searchable = false,
+                    HeaderText = "面料订货数（米）",
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
 
-            });
-                reval.Columns.Add(new JQGridColumn()
-                 {
-                     DataField = "order_quantity",
-                     Editable = false,
-                     Searchable = false,
-                     HeaderText = "面料数量(米)",
-                     Formatter = new CustomFormatter()
-                     {
-                         FormatFunction = "ToRound"
-                     }
-
-                 });
+                });
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "consumption",
@@ -133,11 +120,25 @@ namespace NFD.Areas.Report.Controllers
                 });
 
                 reval.Columns.Add(new JQGridColumn()
+            {
+                DataField = "arrival_num",
+                Editable = false,
+                Searchable = false,
+                HeaderText = "面料到货数(米)",
+                Formatter = new CustomFormatter()
+                {
+                    FormatFunction = "ToRound"
+                }
+
+            });
+     
+
+                reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "fabric_price",
                     Searchable = false,
                     Editable = false,
-                    HeaderText = "面料单价(米)",
+                    HeaderText = "面料单价(元)",
                     Formatter = new CustomFormatter()
                     {
                         FormatFunction = "ToRound"
@@ -149,7 +150,7 @@ namespace NFD.Areas.Report.Controllers
                 {
                     DataField = "fabric_total_price",
                     Editable = false,
-                    HeaderText = "面料金额(米)",
+                    HeaderText = "面料金额(元)",
                     Searchable = false,
                     Formatter = new CustomFormatter()
                     {
@@ -158,12 +159,50 @@ namespace NFD.Areas.Report.Controllers
 
                 });
 
+                     reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "actual_num_tol",
+                    Editable = false,
+                    HeaderText = "裁剪数(套)",
+                    Searchable = false,
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+                     //reval.Columns.Add(new JQGridColumn()
+                     //{
+                     //    DataField = "actual_num_tol",
+                     //    Editable = false,
+                     //    HeaderText = "送检数(套)",
+                     //    Searchable = false,
+                     //    Formatter = new CustomFormatter()
+                     //    {
+                     //        FormatFunction = "ToRound"
+                     //    }
+
+                     //});
+                
+
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "delivers_num",
                     Editable = false,
                     Searchable = false,
-                    HeaderText = "出货数量",
+                    HeaderText = "出货数（套）",
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "bnum",
+                    Editable = false,
+                    Searchable = false,
+                    HeaderText = "B品数量",
                     Formatter = new CustomFormatter()
                     {
                         FormatFunction = "ToRound"

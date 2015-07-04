@@ -17733,6 +17733,30 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> fabric_order_num
+        {
+            get
+            {
+                return _fabric_order_num;
+            }
+            set
+            {
+                Onfabric_order_numChanging(value);
+                ReportPropertyChanging("fabric_order_num");
+                _fabric_order_num = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fabric_order_num");
+                Onfabric_order_numChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _fabric_order_num;
+        partial void Onfabric_order_numChanging(Nullable<global::System.Int32> value);
+        partial void Onfabric_order_numChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Decimal> consumption
         {
             get
@@ -18087,6 +18111,54 @@ namespace NFD.Entities.Data
         private Nullable<global::System.Int32> _delivers_num;
         partial void Ondelivers_numChanging(Nullable<global::System.Int32> value);
         partial void Ondelivers_numChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> actual_num_tol
+        {
+            get
+            {
+                return _actual_num_tol;
+            }
+            set
+            {
+                Onactual_num_tolChanging(value);
+                ReportPropertyChanging("actual_num_tol");
+                _actual_num_tol = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("actual_num_tol");
+                Onactual_num_tolChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _actual_num_tol;
+        partial void Onactual_num_tolChanging(Nullable<global::System.Int32> value);
+        partial void Onactual_num_tolChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> bnum
+        {
+            get
+            {
+                return _bnum;
+            }
+            set
+            {
+                OnbnumChanging(value);
+                ReportPropertyChanging("bnum");
+                _bnum = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bnum");
+                OnbnumChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _bnum;
+        partial void OnbnumChanging(Nullable<global::System.Decimal> value);
+        partial void OnbnumChanged();
     
         /// <summary>
         /// 没有元数据文档可用。
