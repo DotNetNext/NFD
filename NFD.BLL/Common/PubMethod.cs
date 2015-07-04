@@ -48,6 +48,7 @@ namespace NFD.BLL
                 }
             }
         }
+
         public static HtmlString GetLeftMenuJson
         {
             get

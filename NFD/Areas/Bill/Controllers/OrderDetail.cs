@@ -9,6 +9,7 @@ using COM.Extension;
 using Trirand.Web.Mvc;
 using COM.Utility;
 using NFD.BLL;
+using System.Data;
 namespace NFD.Areas.Bill.Controllers
 {
     public partial class OrderController : Controller
@@ -340,8 +341,16 @@ namespace NFD.Areas.Bill.Controllers
             {
                 var adGrid = GetAccessoriesDetailGridModel;
                 adGrid.ExportSettings.ExportDataRange = ExportDataRange.FilteredAndPaged;
-                var modelData = AccessoriesDetailManager.GetAccessoriesDetailByOrderId(id, db);
-                adGrid.ExportToExcel(modelData, " 辅料.xls");
+                var modelData = AccessoriesDetailManager.GetV_AccessoriesDetail(db).Where(c=>c.order_id==id);
+                adGrid.ExportToExcel(modelData, " 辅料.xls", dt => {
+                    DataTable newDt = new DataTable();
+                    PubMethod.CopyDataTable(dt,newDt);
+                    var dr = newDt.NewRow();
+                    dr["clothing_number"] = "合计:";
+                    dr["tol_price"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["tol_price"])).Sum().ToMoneyString();
+                    newDt.Rows.Add(dr);
+                    return newDt;
+                });
             }
         }
 
@@ -350,7 +359,7 @@ namespace NFD.Areas.Bill.Controllers
             using (NFDEntities db = new NFDEntities())
             {
                 var gridModel = GetAccessoriesDetailGridModel;
-                var modelData = AccessoriesDetailManager.GetAccessoriesDetailByOrderId(id, db);
+                var modelData = AccessoriesDetailManager.GetV_AccessoriesDetail(db).Where(c => c.order_id == id);
                 return gridModel.DataBind(modelData);
             }
         }
@@ -432,7 +441,15 @@ namespace NFD.Areas.Bill.Controllers
                     DataField = "ad_id",
                     PrimaryKey = true,
                     Editable = false,
-                    HeaderText = "编号"
+                    HeaderText = "编号",
+                    Visible=false,
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "clothing_number",
+                     Visible=true,
+                     HeaderText="款号"
 
                 });
                 reval.Columns.Add(new JQGridColumn()
@@ -517,7 +534,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "price",
                     Editable = true,
-                    HeaderText = "单价",
+                    HeaderText = "单价(元)",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                      new  NumberValidator(),
                      new RequiredValidator()
@@ -528,8 +545,22 @@ namespace NFD.Areas.Bill.Controllers
                     }
 
                 });
+                             reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "tol_price",
+                    Editable = true,
+                    HeaderText = "小计（元）",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                     new  NumberValidator(),
+                     new RequiredValidator()
+                    },
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
 
-
+                });
+                
                 reval.Columns.Add(new JQGridColumn()
             {
                 DataField = "get_date",
