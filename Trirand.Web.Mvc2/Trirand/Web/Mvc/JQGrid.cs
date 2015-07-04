@@ -138,6 +138,23 @@
             exportGrid.DataBind();
             this.RenderExcelToStream(exportGrid, fileName);
         }
+        public void ExportToExcel(object dataSource, string fileName,Func<DataTable,DataTable> addTolRow)
+        {
+            DataGrid exportGrid = this.GetExportGrid();
+            IQueryable en = dataSource as IQueryable;
+            if (en != null)
+            {
+                var dt= en.ToDataTable(this);;
+                exportGrid.DataSource = addTolRow(dt);
+            }
+            else
+            {
+                exportGrid.DataSource = dataSource;
+            }
+            exportGrid.DataBind();
+            this.RenderExcelToStream(exportGrid, fileName);
+        }
+
 
         public void ExportToExcel(object dataSource, string fileName, JQGridState gridState)
         {

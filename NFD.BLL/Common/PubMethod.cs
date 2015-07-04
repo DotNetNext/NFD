@@ -6,6 +6,7 @@ using COM.Extension;
 using COM.Utility;
 using System.Web;
 using NFD.Entities.Common;
+using System.Data;
 namespace NFD.BLL
 {
     public class PubMethod
@@ -18,7 +19,35 @@ namespace NFD.BLL
 
             }
         }
+        public static void CopyDataTable(DataTable dt, DataTable newDt)
+        {
+            foreach (DataColumn r in dt.Columns)
+            {
+                newDt.Columns.Add(r.ColumnName, typeof(string));
+            }
+            foreach (DataRow r in dt.Rows)
+            {
+                var newdr = newDt.NewRow();
+                try
+                {
 
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        newdr[i] = r[i];
+                    }
+
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+                finally
+                {
+                    newDt.Rows.Add(newdr);
+
+                }
+            }
+        }
         public static HtmlString GetLeftMenuJson
         {
             get
