@@ -81,7 +81,8 @@ namespace NFD.Areas.Bill.Controllers
         //获取grid model
         private JQGrid GetGridModel()
         {
-
+            //供应商
+            var providerList = DictManager.GetProvider().Select(c => new SelectListItem() { Value = c.d_name + "", Text = c.d_name }).ToList();
             return new JQGrid
             {
                 PagerSettings = new Trirand.Web.Mvc.PagerSettings()
@@ -131,31 +132,37 @@ namespace NFD.Areas.Bill.Controllers
                                                                 HeaderText="报价单编号",
                                                                 Searchable=false,
                                                                 Width = 50 } ,
+
                                               new JQGridColumn { DataField = "name", 
                                                                 Editable = true,
                                                                 HeaderText="辅料",
                                                                 EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
                                                                   new RequiredValidator()
-                                                                },
-                                                                Formatter=new  CustomFormatter(){
-                                                                 FormatFunction="ToRound"
-                                                                }
+                                                                } 
                                                                },
+                                                                     new JQGridColumn { DataField = "specifications", 
+                                                                Editable = true,
+                                                                HeaderText="规格",
+                                                                EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
+                                                                  new RequiredValidator()
+                                                                } 
+                                                               },
+
+                                             //new JQGridColumn { DataField = "cost_price", 
+                                             //                   Editable = true,
+                                             //                   HeaderText="成本价",
+                                             //                   EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
+                                             //                    new NumberValidator()
+                                             //                   },
+                                             //                      Formatter=new  CustomFormatter(){
+                                             //                    FormatFunction="ToRound"
+                                             //                   },
+                                             //                   Width=100,
+                                             //                   Searchable=true,
+                                             //                   DataType=typeof(string)},
                                              new JQGridColumn { DataField = "cost_price", 
                                                                 Editable = true,
-                                                                HeaderText="成本价",
-                                                                EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
-                                                                 new NumberValidator()
-                                                                },
-                                                                   Formatter=new  CustomFormatter(){
-                                                                 FormatFunction="ToRound"
-                                                                },
-                                                                Width=100,
-                                                                Searchable=true,
-                                                                DataType=typeof(string)},
-                                             new JQGridColumn { DataField = "custome_price", 
-                                                                Editable = true,
-                                                                HeaderText="客户价",
+                                                                HeaderText="单价(元)",
                                                                   EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
                                                                  new NumberValidator()
                                                                 },
@@ -165,31 +172,41 @@ namespace NFD.Areas.Bill.Controllers
                                                                 Width=100,
                                                                 Searchable=true,
                                                                 DataType=typeof(string)},
-                                             new JQGridColumn { DataField = "market_price", 
-                                                                Editable = true,
-                                                                   Formatter=new  CustomFormatter(){
-                                                                 FormatFunction="ToRound"
-                                                                },
-                                                                HeaderText="市场价",
-                                                                  EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
-                                                                 new NumberValidator()
-                                                                },
-                                                                Width=100,
-                                                                Searchable=true,
-                                                                DataType=typeof(string)},               
+                                             //new JQGridColumn { DataField = "market_price", 
+                                             //                   Editable = true,
+                                             //                      Formatter=new  CustomFormatter(){
+                                             //                    FormatFunction="ToRound"
+                                             //                   },
+                                             //                   HeaderText="市场价",
+                                             //                     EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
+                                             //                    new NumberValidator()
+                                             //                   },
+                                             //                   Width=100,
+                                             //                   Searchable=true,
+                                             //                   DataType=typeof(string)},               
                                                           
                                              new JQGridColumn { DataField = "num", 
                                                                 Editable = true,
                                                                    Formatter=new  CustomFormatter(){
                                                                  FormatFunction="ToRound"
                                                                 },
-                                                                HeaderText="用料",
+                                                                HeaderText="单耗",
                                                                 Width=100,
                                                                   EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
                                                                  new NumberValidator()
                                                                 },
                                                                 Searchable=true,
-                                                                DataType=typeof(string)},       
+                                                                DataType=typeof(string)},  
+     
+                                        new JQGridColumn()
+                {
+                    DataField = "supplier_name",
+                    Editable = true,
+                    HeaderText = "供应商",
+                    EditList = providerList,
+                    EditType = EditType.DropDown
+
+                }
 
                                              
                },

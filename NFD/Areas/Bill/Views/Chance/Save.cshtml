@@ -102,15 +102,12 @@
                 <td>
                     @Html.TextBox("num", Model.num.ToMoney(), new { placeholder = "市场价", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
                 </td>
-            
-                 <td>
+                <td>
                     单价
                 </td>
                 <td>
                     @Html.TextBox("cost_price", Model.cost_price.ToMoney(), new { placeholder = "成本价", reg = RegList.MONEY, tip = RegList.MONEY_TIP })
                 </td>
-
-
                 <td>
                     汇率 USD
                 </td>
@@ -129,12 +126,11 @@
             </tr>
             <tr>
                 <td>
-                   通关费
+                    通关费
                 </td>
                 <td>
                     @Html.TextBox("postage", Model.num.ToMoney(), new { placeholder = "邮费", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
                 </td>
-           
                 <td>
                     客户
                 </td>
@@ -143,8 +139,10 @@
                     <input id="btnTrader" class="btn" value="新增" type="button" />
                 </td>
                 <td>
+                    检品费
                 </td>
                 <td>
+                    @Html.TextBox("check_price", Model.check_price.ToDecimal("n2"), new { placeholder = "检品费", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
                 </td>
             </tr>
             <tr>
@@ -157,7 +155,7 @@
                 <td>
                     纸型
                 </td>
-                <td  >
+                <td>
                     @Html.TextBox("paper", Model.paper)
                 </td>
                 <td>
@@ -165,6 +163,62 @@
                 </td>
                 <td>
                     @Html.TextBox("door", Model.door)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    成份
+                </td>
+                <td>
+                    @Html.TextBox("element", Model.element)
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    款号2
+                </td>
+                <td>
+                    @Html.TextBox("clothing_number2", Model.clothing_number2)
+                </td>
+                <td>
+                    用料
+                </td>
+                <td>
+                        @Html.TextBox("num2", Model.num2.ToMoney(), new { placeholder = "用料", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+                <td>
+                    单价
+                </td>
+                <td>
+                    @Html.TextBox("cost_price2", Model.cost_price2.ToMoney(), new { placeholder = "单价", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    款号3
+                </td>
+                <td>
+                    @Html.TextBox("clothing_numbe3", Model.clothing_numbe3)
+                </td>
+                <td>
+                    用料
+                </td>
+                <td>
+                        @Html.TextBox("num3", Model.num3.ToMoney(), new { placeholder = "用料", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
+                </td>
+                <td>
+                    单价
+                </td>
+                <td>
+                    @Html.TextBox("cost_price3", Model.cost_price3.ToMoney(), new { placeholder = "单价", reg = RegList.MONEY_NULL, tip = RegList.MONEY_TIP })
                 </td>
             </tr>
             <tr>

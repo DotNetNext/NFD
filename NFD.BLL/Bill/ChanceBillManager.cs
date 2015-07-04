@@ -47,7 +47,15 @@ namespace NFD.BLL.Bill
                         ht_specifications = bill.ht_specifications,
                         ht_no = bill.ht_no,
                         num = bill.num,
-                        postage = bill.postage
+                        postage = bill.postage,
+                        check_price=bill.check_price,
+                        element=bill.element,
+                        clothing_numbe3=bill.clothing_numbe3,
+                        clothing_number2=bill.clothing_number2,
+                        num2=bill.num2,
+                        num3=bill.num3,
+                        cost_price2=bill.cost_price2,
+                        cost_price3=bill.cost_price3
 
 
                     });

@@ -140,6 +140,14 @@
       [V_ChanceBill].[door] AS [door], 
       [V_ChanceBill].[paper] AS [paper], 
       [V_ChanceBill].[status] AS [status], 
+      [V_ChanceBill].[element] AS [element], 
+      [V_ChanceBill].[check_price] AS [check_price], 
+      [V_ChanceBill].[clothing_number2] AS [clothing_number2], 
+      [V_ChanceBill].[clothing_numbe3] AS [clothing_numbe3], 
+      [V_ChanceBill].[num2] AS [num2], 
+      [V_ChanceBill].[num3] AS [num3], 
+      [V_ChanceBill].[cost_price2] AS [cost_price2], 
+      [V_ChanceBill].[cost_price3] AS [cost_price3], 
       [V_ChanceBill].[detailCostPrice] AS [detailCostPrice], 
       [V_ChanceBill].[detailMarketPrice] AS [detailMarketPrice], 
       [V_ChanceBill].[detailCustomePrice] AS [detailCustomePrice]
@@ -247,6 +255,7 @@
             <DefiningQuery>SELECT 
       [V_OrderBill].[o_id] AS [o_id], 
       [V_OrderBill].[clothing_number] AS [clothing_number], 
+      [V_OrderBill].[specifications] AS [specifications], 
       [V_OrderBill].[no] AS [no], 
       [V_OrderBill].[styles] AS [styles], 
       [V_OrderBill].[num] AS [num], 
@@ -267,6 +276,16 @@
       [V_OrderBill].[market_price] AS [market_price], 
       [V_OrderBill].[rate] AS [rate], 
       [V_OrderBill].[factory_id] AS [factory_id], 
+      [V_OrderBill].[pricessing_fee] AS [pricessing_fee], 
+      [V_OrderBill].[is_cut] AS [is_cut], 
+      [V_OrderBill].[get_price_date] AS [get_price_date], 
+      [V_OrderBill].[wellhead_price] AS [wellhead_price], 
+      [V_OrderBill].[export_price] AS [export_price], 
+      [V_OrderBill].[inspection_fee] AS [inspection_fee], 
+      [V_OrderBill].[ship_date] AS [ship_date], 
+      [V_OrderBill].[single_fee] AS [single_fee], 
+      [V_OrderBill].[is_plan] AS [is_plan], 
+      [V_OrderBill].[is_order] AS [is_order], 
       [V_OrderBill].[factory_fill_name] AS [factory_fill_name], 
       [V_OrderBill].[trader_name] AS [trader_name]
       FROM [dbo].[V_OrderBill] AS [V_OrderBill]</DefiningQuery>
@@ -507,6 +526,14 @@
           <Property Name="door" Type="varchar" MaxLength="250" />
           <Property Name="paper" Type="varchar" MaxLength="250" />
           <Property Name="status" Type="int" />
+          <Property Name="element" Type="varchar" MaxLength="250" />
+          <Property Name="check_price" Type="money" />
+          <Property Name="clothing_number2" Type="varchar" MaxLength="250" />
+          <Property Name="clothing_numbe3" Type="varchar" MaxLength="250" />
+          <Property Name="num2" Type="money" />
+          <Property Name="num3" Type="money" />
+          <Property Name="cost_price2" Type="money" />
+          <Property Name="cost_price3" Type="money" />
         </EntityType>
         <EntityType Name="ChanceBillDetail">
           <Key>
@@ -524,6 +551,8 @@
           <Property Name="modified_time" Type="datetime" />
           <Property Name="create_time" Type="datetime" />
           <Property Name="is_del" Type="bit" />
+          <Property Name="specifications" Type="varchar" MaxLength="250" />
+          <Property Name="supplier_name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CutBill">
           <Key>
@@ -1036,6 +1065,14 @@
           <Property Name="door" Type="varchar" MaxLength="250" />
           <Property Name="paper" Type="varchar" MaxLength="250" />
           <Property Name="status" Type="int" />
+          <Property Name="element" Type="varchar" MaxLength="250" />
+          <Property Name="check_price" Type="money" />
+          <Property Name="clothing_number2" Type="varchar" MaxLength="250" />
+          <Property Name="clothing_numbe3" Type="varchar" MaxLength="250" />
+          <Property Name="num2" Type="money" />
+          <Property Name="num3" Type="money" />
+          <Property Name="cost_price2" Type="money" />
+          <Property Name="cost_price3" Type="money" />
           <Property Name="detailCostPrice" Type="money" />
           <Property Name="detailMarketPrice" Type="money" />
           <Property Name="detailCustomePrice" Type="money" />
@@ -1175,6 +1212,7 @@
           </Key>
           <Property Name="o_id" Type="int" Nullable="false" />
           <Property Name="clothing_number" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="specifications" Type="varchar" MaxLength="250" />
           <Property Name="no" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="styles" Type="varchar" MaxLength="100" />
           <Property Name="num" Type="int" Nullable="false" />
@@ -1195,6 +1233,16 @@
           <Property Name="market_price" Type="money" />
           <Property Name="rate" Type="money" />
           <Property Name="factory_id" Type="int" />
+          <Property Name="pricessing_fee" Type="money" />
+          <Property Name="is_cut" Type="bit" />
+          <Property Name="get_price_date" Type="datetime" />
+          <Property Name="wellhead_price" Type="money" />
+          <Property Name="export_price" Type="money" />
+          <Property Name="inspection_fee" Type="money" />
+          <Property Name="ship_date" Type="datetime" />
+          <Property Name="single_fee" Type="money" />
+          <Property Name="is_plan" Type="bit" />
+          <Property Name="is_order" Type="bit" />
           <Property Name="factory_fill_name" Type="varchar" MaxLength="50" />
           <Property Name="trader_name" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -1237,6 +1285,8 @@
         <EntityType Name="V_Report_Order">
           <Key>
             <PropertyRef Name="o_id" />
+            
+            
           </Key>
           <Property Name="o_id" Type="int" Nullable="false" />
           <Property Name="trader_id" Type="int" />
@@ -1692,6 +1742,14 @@
           <Property Type="String" Name="door" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="paper" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="status" />
+          <Property Type="String" Name="element" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="check_price" Precision="19" Scale="4" />
+          <Property Type="String" Name="clothing_number2" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="clothing_numbe3" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="num2" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="num3" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="cost_price2" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="cost_price3" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="ChanceBillDetail">
           <Key>
@@ -1709,6 +1767,8 @@
           <Property Type="DateTime" Name="modified_time" />
           <Property Type="DateTime" Name="create_time" />
           <Property Type="Boolean" Name="is_del" />
+          <Property Type="String" Name="specifications" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="supplier_name" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="V_ChanceBill">
           <Key>
@@ -1740,6 +1800,14 @@
           <Property Type="String" Name="door" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="paper" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="status" />
+          <Property Type="String" Name="element" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="check_price" Precision="19" Scale="4" />
+          <Property Type="String" Name="clothing_number2" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="clothing_numbe3" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="num2" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="num3" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="cost_price2" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="cost_price3" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="OrderBill">
           <Key>
@@ -2286,6 +2354,17 @@
           <Property Type="Int32" Name="factory_id" />
           <Property Type="String" Name="factory_fill_name" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="trader_name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="specifications" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="pricessing_fee" Precision="19" Scale="4" />
+          <Property Type="Boolean" Name="is_cut" />
+          <Property Type="DateTime" Name="get_price_date" />
+          <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="inspection_fee" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="ship_date" />
+          <Property Type="Decimal" Name="single_fee" Precision="19" Scale="4" />
+          <Property Type="Boolean" Name="is_plan" />
+          <Property Type="Boolean" Name="is_order" />
         </EntityType>
         <EntityType Name="V_Report_Order">
           <Key>
@@ -2591,6 +2670,14 @@
           <EntitySetMapping Name="ChanceBill">
             <EntityTypeMapping TypeName="NFDModel.ChanceBill">
               <MappingFragment StoreEntitySet="ChanceBill">
+                <ScalarProperty Name="cost_price3" ColumnName="cost_price3" />
+                <ScalarProperty Name="cost_price2" ColumnName="cost_price2" />
+                <ScalarProperty Name="num3" ColumnName="num3" />
+                <ScalarProperty Name="num2" ColumnName="num2" />
+                <ScalarProperty Name="clothing_numbe3" ColumnName="clothing_numbe3" />
+                <ScalarProperty Name="clothing_number2" ColumnName="clothing_number2" />
+                <ScalarProperty Name="check_price" ColumnName="check_price" />
+                <ScalarProperty Name="element" ColumnName="element" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="paper" ColumnName="paper" />
                 <ScalarProperty Name="door" ColumnName="door" />
@@ -2618,6 +2705,8 @@
           <EntitySetMapping Name="ChanceBillDetail">
             <EntityTypeMapping TypeName="NFDModel.ChanceBillDetail">
               <MappingFragment StoreEntitySet="ChanceBillDetail">
+                <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+                <ScalarProperty Name="specifications" ColumnName="specifications" />
                 <ScalarProperty Name="is_del" ColumnName="is_del" />
                 <ScalarProperty Name="create_time" ColumnName="create_time" />
                 <ScalarProperty Name="modified_time" ColumnName="modified_time" />
@@ -2636,6 +2725,14 @@
           <EntitySetMapping Name="V_ChanceBill">
             <EntityTypeMapping TypeName="NFDModel.V_ChanceBill">
               <MappingFragment StoreEntitySet="V_ChanceBill">
+                <ScalarProperty Name="cost_price3" ColumnName="cost_price3" />
+                <ScalarProperty Name="cost_price2" ColumnName="cost_price2" />
+                <ScalarProperty Name="num3" ColumnName="num3" />
+                <ScalarProperty Name="num2" ColumnName="num2" />
+                <ScalarProperty Name="clothing_numbe3" ColumnName="clothing_numbe3" />
+                <ScalarProperty Name="clothing_number2" ColumnName="clothing_number2" />
+                <ScalarProperty Name="check_price" ColumnName="check_price" />
+                <ScalarProperty Name="element" ColumnName="element" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="paper" ColumnName="paper" />
                 <ScalarProperty Name="door" ColumnName="door" />
@@ -3174,6 +3271,17 @@
           <EntitySetMapping Name="V_OrderBill">
             <EntityTypeMapping TypeName="NFDModel.V_OrderBill">
               <MappingFragment StoreEntitySet="V_OrderBill">
+                <ScalarProperty Name="is_order" ColumnName="is_order" />
+                <ScalarProperty Name="is_plan" ColumnName="is_plan" />
+                <ScalarProperty Name="single_fee" ColumnName="single_fee" />
+                <ScalarProperty Name="ship_date" ColumnName="ship_date" />
+                <ScalarProperty Name="inspection_fee" ColumnName="inspection_fee" />
+                <ScalarProperty Name="export_price" ColumnName="export_price" />
+                <ScalarProperty Name="wellhead_price" ColumnName="wellhead_price" />
+                <ScalarProperty Name="get_price_date" ColumnName="get_price_date" />
+                <ScalarProperty Name="is_cut" ColumnName="is_cut" />
+                <ScalarProperty Name="pricessing_fee" ColumnName="pricessing_fee" />
+                <ScalarProperty Name="specifications" ColumnName="specifications" />
                 <ScalarProperty Name="trader_name" ColumnName="trader_name" />
                 <ScalarProperty Name="factory_fill_name" ColumnName="factory_fill_name" />
                 <ScalarProperty Name="factory_id" ColumnName="factory_id" />
@@ -3267,7 +3375,7 @@
         <EntityTypeShape EntityType="NFDModel.V_Ht_Htd_A_S_Sd" Width="1.5" PointX="10.625" PointY="5.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.Attas" Width="1.5" PointX="11.625" PointY="1.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.ChanceBill" Width="1.5" PointX="3.375" PointY="3.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.ChanceBillDetail" Width="1.5" PointX="3.375" PointY="4.25" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.ChanceBillDetail" Width="1.5" PointX="3.375" PointY="4.25" Height="3.6892097981770826" IsExpanded="true" />
         <EntityTypeShape EntityType="NFDModel.V_ChanceBill" Width="1.5" PointX="7.75" PointY="4.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.OrderBill" Width="1.5" PointX="9.75" PointY="4.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.Dictionaries" Width="1.5" PointX="0.75" PointY="5.75" Height="0.4" IsExpanded="false" />
@@ -3291,7 +3399,7 @@
         <EntityTypeShape EntityType="NFDModel.V_ProductionPlan" Width="1.5" PointX="9.375" PointY="9.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_FabricDetail" Width="1.5" PointX="7.75" PointY="6.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_OrderBill" Width="1.5" PointX="11.375" PointY="7.75" Height="5.59940673828126" />
-        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="0.75" PointY="8.75" Height="5.9814461263020746" />
+        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="0.75" PointY="8.75" Height="0.4" IsExpanded="false" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -79,6 +79,8 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     billd_id = c.billd_id,
                     name = c.name,
+                   specifications= c.specifications,
+                   supplier_name= c.supplier_name,
                     num = SqlFunctions.StringConvert(c.num, 10, 2).Trim(),
                     cost_price = SqlFunctions.StringConvert(c.cost_price, 10, 2).Trim(),
                     //market_price = SqlFunctions.StringConvert(c.market_price, 10, 2).Trim(),
@@ -245,7 +247,9 @@ namespace NFD.Areas.Bill.Controllers
                                                               Searchable=false,
                                                                 DataType=typeof(string),
                                                               
-                                                            
+                                                              Formatter=new  CustomFormatter(){
+                                                                 FormatFunction="ToRound"
+                                                                },
                                                           
 
                                              } 
@@ -256,7 +260,9 @@ namespace NFD.Areas.Bill.Controllers
                                                                 Width=80,
                                                                 DataType=typeof(string),
                                                                Searchable=false,
-                                                            
+                                                              Formatter=new  CustomFormatter(){
+                                                                 FormatFunction="ToRound"
+                                                                },
                                                           
 
                                               } ,
@@ -268,7 +274,9 @@ namespace NFD.Areas.Bill.Controllers
                                                                 SearchToolBarOperation=SearchOperation.Contains,
                                                                 SearchType=SearchType.TextBox,
                                                                  Searchable=false,
-                                                            
+                                                              Formatter=new  CustomFormatter(){
+                                                                 FormatFunction="ToRound"
+                                                                },
                                                           
 
                                               } 
@@ -284,7 +292,9 @@ namespace NFD.Areas.Bill.Controllers
                                                                 SearchType=SearchType.TextBox,
                                                                  Searchable=false,
                                                             
-                                                          
+                                                            Formatter=new  CustomFormatter(){
+                                                                 FormatFunction="ToRound"
+                                                                },
 
                                              } ,
                                               
@@ -442,6 +452,18 @@ namespace NFD.Areas.Bill.Controllers
                                                           
 
                                              },
+                                                      new JQGridColumn { DataField = "specifications", 
+                                                                Editable = true,
+                                                                HeaderText="规格",
+                                                                Width=100,
+                                                                Searchable=true,
+                                                                    EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
+                                                                     new RequiredValidator()
+                                                                 },
+                                                                 DataType=typeof(string)
+                                                          
+
+                                             },
                                                     new JQGridColumn { DataField = "num", 
                                                                 Editable = true,
                                                                 HeaderText="用量",
@@ -469,6 +491,7 @@ namespace NFD.Areas.Bill.Controllers
                                                           
 
                                              },
+
                                              //       new JQGridColumn { DataField = "market_price", 
                                              //                   Editable = true,
                                              //                   HeaderText="市场价",
@@ -497,7 +520,7 @@ namespace NFD.Areas.Bill.Controllers
                                              //},
                                                     new JQGridColumn { DataField = "tol", 
                                                                 Editable = false,
-                                                                HeaderText="合计(单价 × 用料)",
+                                                                HeaderText="合计(元)",
                                                                 Width=100,
                                                                 Searchable=true,
                                                                     EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
@@ -506,9 +529,20 @@ namespace NFD.Areas.Bill.Controllers
                                                                  DataType=typeof(string)
                                                           
 
-                                             }
+                                             },
 
-                                             
+                                              new JQGridColumn { DataField = "supplier_name", 
+                                                                Editable = true,
+                                                                HeaderText="供应商",
+                                                                Width=100,
+                                                                Searchable=true,
+                                                                    EditClientSideValidators=new List<JQGridEditClientSideValidator>(){
+                                                                     new RequiredValidator()
+                                                                 },
+                                                                 DataType=typeof(string)
+                                                          
+
+                                             },
                                              
 
 

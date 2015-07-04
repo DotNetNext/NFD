@@ -123,7 +123,7 @@ namespace NFD.BLL.Bill
 
                 //生成行2 标题行    
                 cells.Merge(1, 0, 1, 4);//合并单元格 
-                cells[1, 0].PutValue("面料规格:" + r.ht_specifications);//填写内容 
+                cells[1, 0].PutValue("面料规格:" + r.ht_specifications+" 幅宽:"+r.door+" 成份:"+r.element);//填写内容 
                 cells[1, 0].SetStyle(AsposeExcel.GetStyle(workbook, 2));
                 cells[1, 1].SetStyle(AsposeExcel.GetStyle(workbook, 2));
                 cells[1, 2].SetStyle(AsposeExcel.GetStyle(workbook, 2));
@@ -181,8 +181,8 @@ namespace NFD.BLL.Bill
 
 
                 //生成行4 标题行    
-                cells[4, 0].PutValue("面料门幅");//填写内容 
-                cells[4, 0].PutValue(r.door);
+                cells[4, 0].PutValue("检品费");//填写内容 
+                cells[4, 3].PutValue(r.check_price);
                 cells[4, 0].SetStyle(AsposeExcel.GetStyle(workbook, 3));
                 cells[4, 1].SetStyle(AsposeExcel.GetStyle(workbook, 3));
                 cells[4, 2].SetStyle(AsposeExcel.GetStyle(workbook, 3));
@@ -233,6 +233,7 @@ namespace NFD.BLL.Bill
                         cells[j, 2].PutValue(rr.custome_price.ToDecimal("n2"));//填写内容 
                         cells[j, 3].PutValue((rr.num * rr.custome_price).ToDecimal("n2"));//填写内容 
                     }
+                    cells[j, 4].PutValue(rr.supplier_name);
                     cells[j, 0].SetStyle(AsposeExcel.GetStyle(workbook, 3));
                     cells[j, 1].SetStyle(AsposeExcel.GetStyle(workbook, 3));
                     cells[j, 2].SetStyle(AsposeExcel.GetStyle(workbook, 3));
@@ -244,24 +245,12 @@ namespace NFD.BLL.Bill
 
                 ++j;
                 //生成行j 标题行    
-                cells[j, 0].PutValue("TTL:");//填写内容 
-                cells[j, 1].PutValue("损耗");//填写内容 
-                if (priceType == 1)
-                {
-                    cells[j, 2].PutValue(detailList.Select(c => c.cost_price).Sum().ToDecimal("n2"));//填写内容 
-                    cells[j, 3].PutValue(detailList.Select(c => c.cost_price * c.num).Sum().ToDecimal("n2"));//填写内容 
-                }
-                else if (priceType == 2)
-                {
-                    cells[j, 2].PutValue(detailList.Select(c => c.market_price).Sum().ToDecimal("n2"));//填写内容 
-                    cells[j, 3].PutValue(detailList.Select(c => c.market_price * c.num).Sum().ToDecimal("n2"));//填写内容 
-                }
-                else
-                {
-                    cells[j, 2].PutValue(detailList.Select(c => c.custome_price).Sum().ToDecimal("n2"));//填写内容 
-                    cells[j, 3].PutValue(detailList.Select(c => c.custome_price * c.num).Sum().ToDecimal("n2"));//填写内容 
-
-                }
+                cells[j, 0].PutValue("TTL:（含损耗3%）");//填写内容 
+                cells[j, 1].PutValue("");//填写内容 
+               
+                cells[j, 2].PutValue("");//填写内容 
+                cells[j, 3].PutValue(detailList.Select(c =>( c.cost_price.ToDecimal() * c.num)*Convert.ToDecimal(1.03)).Sum().ToMoneyString());//填写内容 
+              
 
                 cells[j, 0].SetStyle(AsposeExcel.GetStyle(workbook, 3));
                 cells[j, 1].SetStyle(AsposeExcel.GetStyle(workbook, 3));
@@ -281,19 +270,10 @@ namespace NFD.BLL.Bill
                 j++;
 
                 //生成行j 标题行    
-                cells[j, 0].PutValue("TOTAL:");//填写内容 
-                if (priceType == 1)
-                {
-                    cells[j, 3].PutValue(r.detailCostPrice.ToDecimal("n2"));//填写内容 
-                }
-                else if (priceType == 2)
-                {
-                    cells[j, 3].PutValue(r.detailMarketPrice.ToDecimal("n2"));//填写内容 
-                }
-                else
-                {
-                    cells[j, 3].PutValue(r.detailCustomePrice.ToDecimal("n2"));//填写内容 
-                }
+                cells[j, 0].PutValue("合计：");//填写内容 
+                
+                 cells[j, 3].PutValue((r.detailCostPrice+r.check_price).ToDecimal("n2"));//填写内容 
+                
 
                 cells[j, 0].SetStyle(AsposeExcel.GetStyle(workbook, 3));
                 cells[j, 1].SetStyle(AsposeExcel.GetStyle(workbook, 3));
@@ -314,18 +294,11 @@ namespace NFD.BLL.Bill
                 j++;
                 //生成行j 标题行    
                 cells[j, 0].PutValue("成衣价USD:");//填写内容 
-                if (priceType == 1)
-                {
-                    cells[j, 3].PutValue((r.detailCostPrice / r.rate).ToDecimal("n2"));//填写内容 
-                }
-                else if (priceType == 2)
-                {
-                    cells[j, 3].PutValue((r.detailMarketPrice / r.rate).ToDecimal("n2"));//填写内容 
-                }
-                else
-                {
-                    cells[j, 3].PutValue((r.detailCustomePrice / r.rate).ToDecimal("n2"));//填写内容 
-                }
+               
+                var tol=r.detailCostPrice +r.check_price;
+                cells[j, 3].PutValue((tol / r.rate).ToDecimal("n2"));//填写内容 
+              
+              
                 cells[j, 0].SetStyle(AsposeExcel.GetStyle(workbook, 3));
                 cells[j, 1].SetStyle(AsposeExcel.GetStyle(workbook, 3));
                 cells[j, 2].SetStyle(AsposeExcel.GetStyle(workbook, 3));
@@ -335,9 +308,10 @@ namespace NFD.BLL.Bill
 
                 j++;
                 //生成行j 标题行    
-                cells[j, 0].PutValue(r.paper);//填写内容 
+                cells[j, 0].PutValue("备注：");//填写内容
+                cells[j, 1].PutValue("纸型：" + r.paper);//填写内容
                 cells.SetRowHeight(j, 38);
-
+                cells.Merge(j,1,1,2);
                 j++;
                 //生成行j 标题行    
                 cells[j, 2].PutValue(r.create_time.ToDateStr("yyyy-MM-dd"));//填写内容 
