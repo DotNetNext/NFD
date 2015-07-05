@@ -86,14 +86,18 @@ namespace NFD.BLL.Report
                     dr["金额 $"] = r.contract_price_total.ToMoneyString();
                     dr["收汇时间"] = r.get_price_date.ToDateStr("yyyy-MM-dd");
                     dr["汇率"] = r.rate.ToMoneyString();
-                    dr["人民币"] = (r.contract_price_total * r.rate).ToMoneyString(); 
+                    dr["人民币"] = (r.contract_price_total * r.rate).ToMoneyString();
                     dr["快件费(元)"] = r.single_fee.ToMoneyString();
                     dr["出口报关费(元)"] = r.export_price.ToMoneyString();
                     dr["进口报关费(元)"] = r.wellhead_price.ToMoneyString();
                     dr["备注"] = "";
                     dt.Rows.Add(dr);
                 }
-                COM.Utility.AsposeExcel.MergeCellExport(dt,"订单汇总表.xls");
+                var toldr = dt.NewRow();
+                toldr["客户"] = "统计：";
+                toldr["面料金额(元)"] = orderList.Select(c => c.fabric_total_price).Sum().ToMoneyString();
+                dt.Rows.Add(toldr);
+                COM.Utility.AsposeExcel.MergeCellExport(dt, "订单汇总表.xls");
 
             }
 
