@@ -96,6 +96,12 @@ namespace NFD.BLL.Report
                 var toldr = dt.NewRow();
                 toldr["客户"] = "统计：";
                 toldr["面料金额(元)"] = orderList.Select(c => c.fabric_total_price).Sum().ToMoneyString();
+                toldr["金额 $"] = orderList.Select(c => c.contract_price_total).Sum().ToMoneyString();
+                toldr["人民币"] = orderList.Select(c => (c.contract_price_total * c.rate)).Sum().ToMoneyString();
+                toldr["加工费单价（元）"] = orderList.Select(c => c.pricessing_fee).Sum().ToMoneyString();
+                toldr["快件费(元)"] = orderList.Select(c => c.single_fee).Sum().ToMoneyString();
+                toldr["出口报关费(元)"] = orderList.Select(c => c.export_price).Sum().ToMoneyString();
+                toldr["进口报关费(元)"] = orderList.Select(c => c.wellhead_price).Sum().ToMoneyString();
                 dt.Rows.Add(toldr);
                 COM.Utility.AsposeExcel.MergeCellExport(dt, "订单汇总表.xls");
 
