@@ -257,25 +257,25 @@ namespace NFD.Areas.Report.Controllers
                     DataField = "my_accesssor",
                     Editable = false,
                     Searchable = false,
-                    HeaderText = "公司辅料金额",
+                    HeaderText = "辅料金额",
                     Formatter = new CustomFormatter()
                     {
                         FormatFunction = "ToRound"
                     }
 
                 });
-                reval.Columns.Add(new JQGridColumn()
-                {
-                    DataField = "factory_accesssor",
-                    Editable = false,
-                    HeaderText = "服装厂辅料金额",
-                    Searchable = false,
-                    Formatter = new CustomFormatter()
-                    {
-                        FormatFunction = "ToRound"
-                    }
+                //reval.Columns.Add(new JQGridColumn()
+                //{
+                //    DataField = "factory_accesssor",
+                //    Editable = false,
+                //    HeaderText = "服装厂辅料金额",
+                //    Searchable = false,
+                //    Formatter = new CustomFormatter()
+                //    {
+                //        FormatFunction = "ToRound"
+                //    }
 
-                });
+                //});
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "inspection_fee",
@@ -355,7 +355,7 @@ namespace NFD.Areas.Report.Controllers
                     DataField = "wellhead_price",
                     Editable = false,
                     Searchable = false,
-                    HeaderText = "进口报关费",
+                    HeaderText = "进口报关费(元)",
                     Formatter = new CustomFormatter()
                     {
                         FormatFunction = "ToRound"
@@ -368,7 +368,7 @@ namespace NFD.Areas.Report.Controllers
                     DataField = "export_price",
                     Searchable = false,
                     Editable = false,
-                    HeaderText = "出口报关费",
+                    HeaderText = "出口报关费（元）",
                     Formatter = new CustomFormatter()
                     {
                         FormatFunction = "ToRound"
