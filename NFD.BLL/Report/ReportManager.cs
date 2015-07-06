@@ -41,19 +41,23 @@ namespace NFD.BLL.Report
 
             dt.Columns.Add(new DataColumn("出货数量（套）"));
             dt.Columns.Add(new DataColumn("B品数量"));
-
             dt.Columns.Add(new DataColumn("加工费单价（元）"));
-            dt.Columns.Add(new DataColumn("成品金额（元）"));
+            dt.Columns.Add(new DataColumn("加工费金额（元）"));
             dt.Columns.Add(new DataColumn("辅料金额（元）"));
             dt.Columns.Add(new DataColumn("检品费(元)"));
+            dt.Columns.Add(new DataColumn("成品金额（元）"));
+
+
+            dt.Columns.Add(new DataColumn("快件费(元)"));
+            dt.Columns.Add(new DataColumn("进口报关费(元)"));
+            dt.Columns.Add(new DataColumn("出口报关费(元)"));
+
             dt.Columns.Add(new DataColumn("合同单价 $"));
             dt.Columns.Add(new DataColumn("金额 $"));
             dt.Columns.Add(new DataColumn("收汇时间"));
             dt.Columns.Add(new DataColumn("汇率"));
             dt.Columns.Add(new DataColumn("人民币"));
-            dt.Columns.Add(new DataColumn("快件费(元)"));
-            dt.Columns.Add(new DataColumn("进口报关费(元)"));
-            dt.Columns.Add(new DataColumn("出口报关费(元)"));
+         
             dt.Columns.Add(new DataColumn("备注"));
             using (NFDEntities db = new NFDEntities())
             {
@@ -79,6 +83,7 @@ namespace NFD.BLL.Report
                     dr["B品数量"] = r.bnum;
 
                     dr["加工费单价（元）"] = r.pricessing_fee.ToMoneyString();
+                    dr["加工费金额（元）"] = r.tatol_pricessing_fee.ToMoneyString();
                     dr["成品金额（元）"] = r.reality_total_price.ToMoneyString();
                     dr["辅料金额（元）"] = r.my_accesssor.ToMoney();
                     dr["检品费(元)"] = r.inspection_fee.ToMoney();
@@ -95,6 +100,20 @@ namespace NFD.BLL.Report
                 }
                 var toldr = dt.NewRow();
                 toldr["客户"] = "统计：";
+                toldr["面料订货数（米）"] = orderList.Select(c => c.fabric_order_num).Sum().ToMoneyString(); ;
+                toldr["订单数量（套）"] = orderList.Select(c => c.num).Sum().ToMoneyString();
+                toldr["送检数（套）"] = 0;
+
+                toldr["面料到货数(米)"] = orderList.Select(c => c.arrival_num).Sum().ToMoneyString();
+                toldr["裁剪数(套)"] = orderList.Select(c => c.actual_num_tol).Sum().ToMoneyString();
+
+                toldr["出货数量（套）"] = orderList.Select(c => c.delivers_num).Sum().ToMoneyString();
+                toldr["B品数量"] = orderList.Select(c => c.bnum).Sum().ToMoneyString();
+                toldr["加工费金额（元）"] = orderList.Select(c => c.tatol_pricessing_fee).Sum().ToMoneyString();
+                toldr["辅料金额（元）"] = orderList.Select(c => c.my_accesssor).Sum().ToMoneyString();
+                toldr["检品费(元)"] = orderList.Select(c => c.inspection_fee).Sum().ToMoneyString();
+
+                toldr["成品金额（元）"] = orderList.Select(c => c.reality_total_price).Sum().ToMoneyString();  
                 toldr["面料金额(元)"] = orderList.Select(c => c.fabric_total_price).Sum().ToMoneyString();
                 toldr["金额 $"] = orderList.Select(c => c.contract_price_total).Sum().ToMoneyString();
                 toldr["人民币"] = orderList.Select(c => (c.contract_price_total * c.rate)).Sum().ToMoneyString();
