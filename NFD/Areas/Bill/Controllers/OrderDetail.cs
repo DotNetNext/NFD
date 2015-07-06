@@ -169,7 +169,7 @@ namespace NFD.Areas.Bill.Controllers
                     {
                         DataField = "color_foreign",
                         Editable = true,
-                        HeaderText = "色番",
+                        HeaderText = "品番",
                         EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                                      new  RequiredValidator()
                                     }

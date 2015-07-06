@@ -135,7 +135,9 @@ namespace NFD.BLL.Bill
                         custome_price = billDetail.custome_price,
                         market_price = billDetail.market_price,
                         name = billDetail.name,
-                        num = billDetail.num
+                        num = billDetail.num,
+                        specifications=billDetail.specifications,
+                        supplier_name=billDetail.supplier_name,
 
 
                     });

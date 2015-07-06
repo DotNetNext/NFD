@@ -214,7 +214,7 @@ namespace NFD.BLL.Bill
                 var detailList = db.ChanceBillDetail.Where(c => c.bill_id == r.bill_id).ToList();
                 foreach (var rr in detailList)
                 {
-                    j = detailList.IndexOf(rr) + j;
+                    j = j+1;
                     //生成行j 标题行    
                     cells[j, 0].PutValue(rr.name);//填写内容 
                     cells[j, 1].PutValue(rr.num.ToDecimal("n2"));//填写内容 

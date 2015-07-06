@@ -711,7 +711,7 @@ function ToDate(value, colname) {
 function ToRound(value, colname) {
     if (!$.valiData.isEmpty(value)) {
         value = value.toString();
-        return value.replace(/(0+$)|(\.0+$)/, "");
+        return  parseFloat(value);
 
     }
     return "";

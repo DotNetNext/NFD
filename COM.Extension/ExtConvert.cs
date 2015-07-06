@@ -618,7 +618,7 @@ namespace COM.Extension
         {
             decimal reval = 0;
             decimal.TryParse((o+"").ToString(), out reval);
-            return reval.ToString("n2");
+            return Convert.ToDouble(o)+"";
         }
 
 

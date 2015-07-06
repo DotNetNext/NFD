@@ -57,6 +57,7 @@ namespace NFD.BLL.Bill
                     db.Update<FabricDetail>(fd.fd_id, new 
                     {
                         clothes_orders_num = fd.clothes_orders_num,
+                        color_foreign=fd.color_foreign,
                         color_name = fd.color_name,
                         consumption = fd.consumption,
                         fabric_add_reduction = fd.fabric_add_reduction,
@@ -65,8 +66,7 @@ namespace NFD.BLL.Bill
                         mf = fd.mf,
                         modified_time = DateTime.Now,
                         order_quantity = fd.order_quantity,
-                        subtotal = fd.subtotal,
-                        color_foreign=fd.color_foreign
+                        subtotal = fd.subtotal
 
                     });
                     return true;

@@ -89,7 +89,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     PageSize = BLL.AppstringManager.GetPageSize
                 },
-                Height = BLL.PubMethod.IsWindow ? 100 : 150,
+                Height = BLL.PubMethod.IsWindow ? 100 : 550,
                 DataUrl = Url.Action("GridData"),
                 EditUrl = Url.Action("EditGrid"),
                 //MultiSelect = true,

@@ -215,7 +215,7 @@ namespace NFD.Areas.Bill.Controllers
                                                       ,
                                                new JQGridColumn { DataField = "styles", 
                                                        
-                                                                HeaderText="面料款号",
+                                                                HeaderText="款式",
                                                                 Width=150,
                                                                 DataType=typeof(string),
                                                                Searchable=false,
