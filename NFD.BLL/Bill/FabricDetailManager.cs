@@ -66,7 +66,8 @@ namespace NFD.BLL.Bill
                         mf = fd.mf,
                         modified_time = DateTime.Now,
                         order_quantity = fd.order_quantity,
-                        subtotal = fd.subtotal
+                        subtotal = fd.subtotal,
+                        price=fd.price
 
                     });
                     return true;
