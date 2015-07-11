@@ -260,22 +260,6 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        public ObjectSet<ChanceBill> ChanceBill
-        {
-            get
-            {
-                if ((_ChanceBill == null))
-                {
-                    _ChanceBill = base.CreateObjectSet<ChanceBill>("ChanceBill");
-                }
-                return _ChanceBill;
-            }
-        }
-        private ObjectSet<ChanceBill> _ChanceBill;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
         public ObjectSet<ChanceBillDetail> ChanceBillDetail
         {
             get
@@ -416,38 +400,6 @@ namespace NFD.Entities.Data
             }
         }
         private ObjectSet<CutBillShipment> _CutBillShipment;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        public ObjectSet<V_CutBill> V_CutBill
-        {
-            get
-            {
-                if ((_V_CutBill == null))
-                {
-                    _V_CutBill = base.CreateObjectSet<V_CutBill>("V_CutBill");
-                }
-                return _V_CutBill;
-            }
-        }
-        private ObjectSet<V_CutBill> _V_CutBill;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        public ObjectSet<CutBill> CutBill
-        {
-            get
-            {
-                if ((_CutBill == null))
-                {
-                    _CutBill = base.CreateObjectSet<CutBill>("CutBill");
-                }
-                return _CutBill;
-            }
-        }
-        private ObjectSet<CutBill> _CutBill;
     
         /// <summary>
         /// 没有元数据文档可用。
@@ -660,6 +612,54 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
+        public ObjectSet<ChanceBill> ChanceBill
+        {
+            get
+            {
+                if ((_ChanceBill == null))
+                {
+                    _ChanceBill = base.CreateObjectSet<ChanceBill>("ChanceBill");
+                }
+                return _ChanceBill;
+            }
+        }
+        private ObjectSet<ChanceBill> _ChanceBill;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<CutBill> CutBill
+        {
+            get
+            {
+                if ((_CutBill == null))
+                {
+                    _CutBill = base.CreateObjectSet<CutBill>("CutBill");
+                }
+                return _CutBill;
+            }
+        }
+        private ObjectSet<CutBill> _CutBill;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<V_CutBill> V_CutBill
+        {
+            get
+            {
+                if ((_V_CutBill == null))
+                {
+                    _V_CutBill = base.CreateObjectSet<V_CutBill>("V_CutBill");
+                }
+                return _V_CutBill;
+            }
+        }
+        private ObjectSet<V_CutBill> _V_CutBill;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
         public ObjectSet<V_Report_Order> V_Report_Order
         {
             get
@@ -773,14 +773,6 @@ namespace NFD.Entities.Data
         }
     
         /// <summary>
-        /// 用于向 ChanceBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddToChanceBill(ChanceBill chanceBill)
-        {
-            base.AddObject("ChanceBill", chanceBill);
-        }
-    
-        /// <summary>
         /// 用于向 ChanceBillDetail EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
         /// </summary>
         public void AddToChanceBillDetail(ChanceBillDetail chanceBillDetail)
@@ -850,22 +842,6 @@ namespace NFD.Entities.Data
         public void AddToCutBillShipment(CutBillShipment cutBillShipment)
         {
             base.AddObject("CutBillShipment", cutBillShipment);
-        }
-    
-        /// <summary>
-        /// 用于向 V_CutBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddToV_CutBill(V_CutBill v_CutBill)
-        {
-            base.AddObject("V_CutBill", v_CutBill);
-        }
-    
-        /// <summary>
-        /// 用于向 CutBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddToCutBill(CutBill cutBill)
-        {
-            base.AddObject("CutBill", cutBill);
         }
     
         /// <summary>
@@ -970,6 +946,30 @@ namespace NFD.Entities.Data
         public void AddToV_OrderBill(V_OrderBill v_OrderBill)
         {
             base.AddObject("V_OrderBill", v_OrderBill);
+        }
+    
+        /// <summary>
+        /// 用于向 ChanceBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToChanceBill(ChanceBill chanceBill)
+        {
+            base.AddObject("ChanceBill", chanceBill);
+        }
+    
+        /// <summary>
+        /// 用于向 CutBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToCutBill(CutBill cutBill)
+        {
+            base.AddObject("CutBill", cutBill);
+        }
+    
+        /// <summary>
+        /// 用于向 V_CutBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToV_CutBill(V_CutBill v_CutBill)
+        {
+            base.AddObject("V_CutBill", v_CutBill);
         }
     
         /// <summary>
@@ -3938,7 +3938,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> arrival_num
+        public Nullable<global::System.Decimal> arrival_num
         {
             get
             {
@@ -3953,8 +3953,8 @@ namespace NFD.Entities.Data
                 Onarrival_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _arrival_num;
-        partial void Onarrival_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _arrival_num;
+        partial void Onarrival_numChanging(Nullable<global::System.Decimal> value);
         partial void Onarrival_numChanged();
     
         /// <summary>
@@ -3986,7 +3986,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> note_num
+        public Nullable<global::System.Decimal> note_num
         {
             get
             {
@@ -4001,8 +4001,8 @@ namespace NFD.Entities.Data
                 Onnote_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _note_num;
-        partial void Onnote_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _note_num;
+        partial void Onnote_numChanging(Nullable<global::System.Decimal> value);
         partial void Onnote_numChanged();
     
         /// <summary>
@@ -4010,7 +4010,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> will_num
+        public Nullable<global::System.Decimal> will_num
         {
             get
             {
@@ -4025,8 +4025,8 @@ namespace NFD.Entities.Data
                 Onwill_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _will_num;
-        partial void Onwill_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _will_num;
+        partial void Onwill_numChanging(Nullable<global::System.Decimal> value);
         partial void Onwill_numChanged();
     
         /// <summary>
@@ -4034,7 +4034,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> actual_num
+        public Nullable<global::System.Decimal> actual_num
         {
             get
             {
@@ -4049,8 +4049,8 @@ namespace NFD.Entities.Data
                 Onactual_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _actual_num;
-        partial void Onactual_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _actual_num;
+        partial void Onactual_numChanging(Nullable<global::System.Decimal> value);
         partial void Onactual_numChanged();
     
         /// <summary>
@@ -4058,7 +4058,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> delivers_num
+        public Nullable<global::System.Decimal> delivers_num
         {
             get
             {
@@ -4073,8 +4073,8 @@ namespace NFD.Entities.Data
                 Ondelivers_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _delivers_num;
-        partial void Ondelivers_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _delivers_num;
+        partial void Ondelivers_numChanging(Nullable<global::System.Decimal> value);
         partial void Ondelivers_numChanged();
     
         /// <summary>
@@ -13953,7 +13953,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> arrival_num
+        public Nullable<global::System.Decimal> arrival_num
         {
             get
             {
@@ -13968,8 +13968,8 @@ namespace NFD.Entities.Data
                 Onarrival_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _arrival_num;
-        partial void Onarrival_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _arrival_num;
+        partial void Onarrival_numChanging(Nullable<global::System.Decimal> value);
         partial void Onarrival_numChanged();
     
         /// <summary>
@@ -14001,7 +14001,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> note_num
+        public Nullable<global::System.Decimal> note_num
         {
             get
             {
@@ -14016,8 +14016,8 @@ namespace NFD.Entities.Data
                 Onnote_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _note_num;
-        partial void Onnote_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _note_num;
+        partial void Onnote_numChanging(Nullable<global::System.Decimal> value);
         partial void Onnote_numChanged();
     
         /// <summary>
@@ -14025,7 +14025,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> will_num
+        public Nullable<global::System.Decimal> will_num
         {
             get
             {
@@ -14040,8 +14040,8 @@ namespace NFD.Entities.Data
                 Onwill_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _will_num;
-        partial void Onwill_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _will_num;
+        partial void Onwill_numChanging(Nullable<global::System.Decimal> value);
         partial void Onwill_numChanged();
     
         /// <summary>
@@ -14049,7 +14049,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> actual_num
+        public Nullable<global::System.Decimal> actual_num
         {
             get
             {
@@ -14064,8 +14064,8 @@ namespace NFD.Entities.Data
                 Onactual_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _actual_num;
-        partial void Onactual_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _actual_num;
+        partial void Onactual_numChanging(Nullable<global::System.Decimal> value);
         partial void Onactual_numChanged();
     
         /// <summary>
@@ -14073,7 +14073,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> delivers_num
+        public Nullable<global::System.Decimal> delivers_num
         {
             get
             {
@@ -14088,8 +14088,8 @@ namespace NFD.Entities.Data
                 Ondelivers_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _delivers_num;
-        partial void Ondelivers_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _delivers_num;
+        partial void Ondelivers_numChanging(Nullable<global::System.Decimal> value);
         partial void Ondelivers_numChanged();
     
         /// <summary>
@@ -14367,30 +14367,6 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> order_quantity
-        {
-            get
-            {
-                return _order_quantity;
-            }
-            set
-            {
-                Onorder_quantityChanging(value);
-                ReportPropertyChanging("order_quantity");
-                _order_quantity = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("order_quantity");
-                Onorder_quantityChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _order_quantity;
-        partial void Onorder_quantityChanging(Nullable<global::System.Int32> value);
-        partial void Onorder_quantityChanged();
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Decimal> bnum
         {
             get
@@ -14505,6 +14481,30 @@ namespace NFD.Entities.Data
         private Nullable<global::System.Decimal> _wellhead_price;
         partial void Onwellhead_priceChanging(Nullable<global::System.Decimal> value);
         partial void Onwellhead_priceChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> order_quantity
+        {
+            get
+            {
+                return _order_quantity;
+            }
+            set
+            {
+                Onorder_quantityChanging(value);
+                ReportPropertyChanging("order_quantity");
+                _order_quantity = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("order_quantity");
+                Onorder_quantityChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _order_quantity;
+        partial void Onorder_quantityChanging(Nullable<global::System.Int32> value);
+        partial void Onorder_quantityChanged();
 
         #endregion
     
@@ -17781,7 +17781,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> arrival_num
+        public Nullable<global::System.Decimal> arrival_num
         {
             get
             {
@@ -17796,8 +17796,8 @@ namespace NFD.Entities.Data
                 Onarrival_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _arrival_num;
-        partial void Onarrival_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _arrival_num;
+        partial void Onarrival_numChanging(Nullable<global::System.Decimal> value);
         partial void Onarrival_numChanged();
     
         /// <summary>
@@ -18093,7 +18093,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> delivers_num
+        public Nullable<global::System.Decimal> delivers_num
         {
             get
             {
@@ -18108,8 +18108,8 @@ namespace NFD.Entities.Data
                 Ondelivers_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _delivers_num;
-        partial void Ondelivers_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _delivers_num;
+        partial void Ondelivers_numChanging(Nullable<global::System.Decimal> value);
         partial void Ondelivers_numChanged();
     
         /// <summary>
@@ -18117,7 +18117,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> actual_num_tol
+        public Nullable<global::System.Decimal> actual_num_tol
         {
             get
             {
@@ -18132,8 +18132,8 @@ namespace NFD.Entities.Data
                 Onactual_num_tolChanged();
             }
         }
-        private Nullable<global::System.Int32> _actual_num_tol;
-        partial void Onactual_num_tolChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _actual_num_tol;
+        partial void Onactual_num_tolChanging(Nullable<global::System.Decimal> value);
         partial void Onactual_num_tolChanged();
     
         /// <summary>

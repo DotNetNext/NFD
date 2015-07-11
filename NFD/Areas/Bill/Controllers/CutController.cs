@@ -217,7 +217,10 @@ namespace NFD.Areas.Bill.Controllers
                         DataField = "order_quantity",
                         Editable = false,
                         Searchable = false,
-
+                        Formatter = new CustomFormatter()
+                        {
+                            FormatFunction = "ToRound()"
+                        }
 
                     }
                     );
@@ -231,15 +234,15 @@ namespace NFD.Areas.Bill.Controllers
                         Searchable = false,
                         EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                          new NumberValidator()
-                        }
+                        }, Formatter = new CustomFormatter() { FormatFunction = "ToRound()"}
 
                     }
                     );
                 reval.Columns.Add(new JQGridColumn() { Editable = true, Searchable = false, HeaderText = "尺码", DataField = "size" });
-                reval.Columns.Add(new JQGridColumn() { Editable = true, Searchable = false, HeaderText = "発注数", DataField = "note_num", EditClientSideValidators = new List<JQGridEditClientSideValidator>() { new NumberValidator() } });
-                reval.Columns.Add(new JQGridColumn() { Editable = true, Searchable = false, HeaderText = "预裁数", DataField = "will_num", EditClientSideValidators = new List<JQGridEditClientSideValidator>() { new NumberValidator() } });
-                reval.Columns.Add(new JQGridColumn() { Editable = true, Searchable = false, HeaderText = "实裁数", DataField = "actual_num", EditClientSideValidators = new List<JQGridEditClientSideValidator>() { new NumberValidator() } });
-                reval.Columns.Add(new JQGridColumn() { Editable = true, Searchable = false, HeaderText = "出货数", DataField = "delivers_num", EditClientSideValidators = new List<JQGridEditClientSideValidator>() { new NumberValidator() } });
+                reval.Columns.Add(new JQGridColumn() { Editable = true, Searchable = false, HeaderText = "発注数", DataField = "note_num", Formatter = new CustomFormatter() { FormatFunction = "ToRound()"},EditClientSideValidators = new List<JQGridEditClientSideValidator>() { new NumberValidator() } });
+                reval.Columns.Add(new JQGridColumn() { Editable = true, Searchable = false, HeaderText = "预裁数", DataField = "will_num", Formatter = new CustomFormatter() { FormatFunction = "ToRound()" }, EditClientSideValidators = new List<JQGridEditClientSideValidator>() { new NumberValidator() } });
+                reval.Columns.Add(new JQGridColumn() { Editable = true, Searchable = false, HeaderText = "实裁数", DataField = "actual_num", Formatter = new CustomFormatter() { FormatFunction = "ToRound()" }, EditClientSideValidators = new List<JQGridEditClientSideValidator>() { new NumberValidator() } });
+                reval.Columns.Add(new JQGridColumn() { Editable = true, Searchable = false, HeaderText = "出货数", DataField = "delivers_num", Formatter = new CustomFormatter() { FormatFunction = "ToRound()" }, EditClientSideValidators = new List<JQGridEditClientSideValidator>() { new NumberValidator() } });
                 reval.Columns.Add(new JQGridColumn() { Editable = true, Searchable = false, HeaderText = "B品数", DataField = "bnum", Formatter = new CustomFormatter() {  FormatFunction="ToRound"}, EditClientSideValidators = new List<JQGridEditClientSideValidator>() { new NumberValidator() } });
                 reval.Columns.Add(new JQGridColumn()
                {
