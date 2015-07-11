@@ -555,7 +555,7 @@ namespace NFD.Areas.Bill.Controllers
                              reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "tol_price",
-                    Editable = true,
+                    Editable = false,
                     HeaderText = "小计（元）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                      new  NumberValidator(),

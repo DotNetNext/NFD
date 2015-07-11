@@ -712,7 +712,7 @@ function ToRound(value, colname) {
   
     if (!$.valiData.isEmpty(value)) {
         value = value.toString();
-        return  parseFloat(value);
+        return parseFloat(parseFloat(value).toFixed(2));
 
     }
     return "";

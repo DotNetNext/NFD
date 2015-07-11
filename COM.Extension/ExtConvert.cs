@@ -616,9 +616,9 @@ namespace COM.Extension
         /// <returns></returns>
         public static string ToMoneyString(this Object o)
         {
-            decimal reval = 0;
-            decimal.TryParse((o+"").ToString(), out reval);
-            return Convert.ToDouble(o)+"";
+            double reval = 0;
+            double.TryParse((o + "").ToString(), out reval);
+            return string.Format("{0:###.##}", reval);
         }
 
 

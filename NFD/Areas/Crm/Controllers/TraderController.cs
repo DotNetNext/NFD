@@ -147,7 +147,8 @@ namespace NFD.Areas.Crm.Controllers
                                                                   DataField="qq",
                                                                   Editable=true    ,
                                                                   HeaderText="qq",
-                                                                  Searchable=false
+                                                                  Searchable=false,
+                                                                  Visible=false
                                              },
                                               new JQGridColumn{
                                                                  

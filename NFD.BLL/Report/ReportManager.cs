@@ -73,20 +73,20 @@ namespace NFD.BLL.Report
                     dr["面料到货数(米)"] = r.arrival_num.ToMoneyString();
                     if (r.num > 0 && r.fabric_order_num > 0)
                     {
-                        dr["单耗"] = (Convert.ToDecimal(r.fabric_order_num) / Convert.ToDecimal(r.num)).ToMoneyString();
+                        dr["单耗"] = r.consumption.ToMoneyString();
                     }
                     dr["面料单价(元)"] = r.fabric_price.ToMoneyString();
                     dr["面料金额(元)"] = r.fabric_total_price.ToMoneyString();
                     dr["裁剪数(套)"] = r.actual_num_tol.ToMoneyString();
 
                     dr["出货数量（套）"] = r.delivers_num.ToMoneyString();
-                    dr["B品数量"] = r.bnum;
+                    dr["B品数量"] = r.bnum.ToMoneyString();
 
                     dr["加工费单价（元）"] = r.pricessing_fee.ToMoneyString();
                     dr["加工费金额（元）"] = r.tatol_pricessing_fee.ToMoneyString();
                     dr["成品金额（元）"] = r.reality_total_price.ToMoneyString();
-                    dr["辅料金额（元）"] = r.my_accesssor.ToMoney();
-                    dr["检品费(元)"] = r.inspection_fee.ToMoney();
+                    dr["辅料金额（元）"] = r.my_accesssor.ToMoneyString();
+                    dr["检品费(元)"] = r.inspection_fee.ToMoneyString();
                     dr["合同单价 $"] = r.contract_price.ToMoneyString();
                     dr["金额 $"] = r.contract_price_total.ToMoneyString();
                     dr["收汇时间"] = r.get_price_date.ToDateStr("yyyy-MM-dd");

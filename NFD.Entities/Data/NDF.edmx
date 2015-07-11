@@ -3410,7 +3410,7 @@
         <EntityTypeShape EntityType="NFDModel.V_OrderBill" Width="1.5" PointX="7.625" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.ChanceBill" Width="1.5" PointX="7.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.CutBill" Width="1.5" PointX="3.5" PointY="6.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="3.75" PointY="11.875" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="3.75" PointY="11.875" Height="6.5545052083333353" IsExpanded="true" />
         <EntityTypeShape EntityType="NFDModel.V_CutBill" Width="1.5" PointX="6.875" PointY="9.125" Height="0.4" IsExpanded="false" />
       </Diagram>
     </Diagrams>
