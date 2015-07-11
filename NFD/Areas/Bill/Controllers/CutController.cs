@@ -342,11 +342,13 @@ namespace NFD.Areas.Bill.Controllers
                 reval.EditDialogSettings = new EditDialogSettings()
                 {
                     CloseAfterEditing = true,
+                    Width=400,
                     TopOffset = 0
                 };
                 reval.AddDialogSettings = new AddDialogSettings()
                 {
-                    CloseAfterAdding = true
+                    CloseAfterAdding = true,
+                    Width=400
                 };
                 reval.Columns.Add(new JQGridColumn
                 {

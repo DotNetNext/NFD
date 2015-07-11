@@ -327,7 +327,7 @@
                 }
                 @Html.Trirand().JQGrid(fdoGrid, "fdoGrid").JqGridAppendOption(@"gridComplete:function(){ 
       
-     
+     $(""#fdgrid"").trigger(""reloadGrid"")
        if(indexNum3==0){
   $( ""#fdoGrid"" ).jqGrid( 'setGroupHeaders' , {
                 useColSpanStyle :  true ,  // 没有表头的列是否与表头列位置的空单元格合并

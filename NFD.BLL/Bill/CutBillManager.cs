@@ -60,7 +60,8 @@ namespace NFD.BLL.Bill
                         remark=bill.remark,
                         export_price=bill.export_price,
                         wellhead_price=bill.wellhead_price,
-                        no=bill.no
+                        no=bill.no,
+                        color_foreign=bill.color_foreign
 
 
                     });
