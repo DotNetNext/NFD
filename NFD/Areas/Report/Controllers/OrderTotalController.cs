@@ -171,18 +171,18 @@ namespace NFD.Areas.Report.Controllers
                     }
 
                 });
-                     //reval.Columns.Add(new JQGridColumn()
-                     //{
-                     //    DataField = "actual_num_tol",
-                     //    Editable = false,
-                     //    HeaderText = "送检数(套)",
-                     //    Searchable = false,
-                     //    Formatter = new CustomFormatter()
-                     //    {
-                     //        FormatFunction = "ToRound"
-                     //    }
+                     reval.Columns.Add(new JQGridColumn()
+                     {
+                         DataField = "actual_num_tol",
+                         Editable = false,
+                         HeaderText = "送检数(套)",
+                         Searchable = false,
+                         Formatter = new CustomFormatter()
+                         {
+                             FormatFunction = "ToRound"
+                         }
 
-                     //});
+                     });
                 
 
                 reval.Columns.Add(new JQGridColumn()
