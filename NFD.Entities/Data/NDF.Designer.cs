@@ -644,22 +644,6 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        public ObjectSet<V_CutBill> V_CutBill
-        {
-            get
-            {
-                if ((_V_CutBill == null))
-                {
-                    _V_CutBill = base.CreateObjectSet<V_CutBill>("V_CutBill");
-                }
-                return _V_CutBill;
-            }
-        }
-        private ObjectSet<V_CutBill> _V_CutBill;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
         public ObjectSet<V_Report_Order> V_Report_Order
         {
             get
@@ -672,6 +656,22 @@ namespace NFD.Entities.Data
             }
         }
         private ObjectSet<V_Report_Order> _V_Report_Order;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<V_CutBill> V_CutBill
+        {
+            get
+            {
+                if ((_V_CutBill == null))
+                {
+                    _V_CutBill = base.CreateObjectSet<V_CutBill>("V_CutBill");
+                }
+                return _V_CutBill;
+            }
+        }
+        private ObjectSet<V_CutBill> _V_CutBill;
 
         #endregion
         #region AddTo 方法
@@ -965,19 +965,19 @@ namespace NFD.Entities.Data
         }
     
         /// <summary>
-        /// 用于向 V_CutBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddToV_CutBill(V_CutBill v_CutBill)
-        {
-            base.AddObject("V_CutBill", v_CutBill);
-        }
-    
-        /// <summary>
         /// 用于向 V_Report_Order EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
         /// </summary>
         public void AddToV_Report_Order(V_Report_Order v_Report_Order)
         {
             base.AddObject("V_Report_Order", v_Report_Order);
+        }
+    
+        /// <summary>
+        /// 用于向 V_CutBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToV_CutBill(V_CutBill v_CutBill)
+        {
+            base.AddObject("V_CutBill", v_CutBill);
         }
 
         #endregion

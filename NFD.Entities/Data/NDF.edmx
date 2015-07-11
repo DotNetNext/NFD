@@ -1288,6 +1288,8 @@
         <EntityType Name="V_Report_Order">
           <Key>
             <PropertyRef Name="o_id" />
+            
+            
           </Key>
           <Property Name="o_id" Type="int" Nullable="false" />
           <Property Name="trader_id" Type="int" />
@@ -1452,8 +1454,8 @@
           <EntitySet Name="V_OrderBill" EntityType="NFDModel.V_OrderBill" />
           <EntitySet Name="ChanceBill" EntityType="NFDModel.ChanceBill" />
           <EntitySet Name="CutBill" EntityType="NFDModel.CutBill" />
-          <EntitySet Name="V_CutBill" EntityType="NFDModel.V_CutBill" />
           <EntitySet Name="V_Report_Order" EntityType="NFDModel.V_Report_Order" />
+          <EntitySet Name="V_CutBill" EntityType="NFDModel.V_CutBill" />
         </EntityContainer>
         <EntityType Name="Linkman">
           <Key>
@@ -2337,39 +2339,6 @@
           <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
         </EntityType>
-        <EntityType Name="V_CutBill">
-          <Key>
-            <PropertyRef Name="c_id" />
-            <PropertyRef Name="creator_name" />
-            <PropertyRef Name="creator_id" />
-          </Key>
-          <Property Type="Int32" Name="c_id" Nullable="false" />
-          <Property Type="Int32" Name="out_num" />
-          <Property Type="Int32" Name="order_id" />
-          <Property Type="Decimal" Name="arrival_num" Precision="19" Scale="4" />
-          <Property Type="String" Name="size" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="note_num" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="will_num" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="actual_num" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="delivers_num" Precision="19" Scale="4" />
-          <Property Type="Int32" Name="fd_id" />
-          <Property Type="Boolean" Name="is_del" />
-          <Property Type="String" Name="creator_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="creator_id" Nullable="false" />
-          <Property Type="DateTime" Name="modified_time" />
-          <Property Type="DateTime" Name="create_time" />
-          <Property Type="String" Name="color_name" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="color_foreign" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="clothing_number" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="no" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="trader_id" />
-          <Property Type="Decimal" Name="bnum" Precision="19" Scale="4" />
-          <Property Type="DateTime" Name="check_date" />
-          <Property Type="String" Name="remark" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
-          <Property Type="Int32" Name="order_quantity" />
-        </EntityType>
         <EntityType Name="V_Report_Order">
           <Key>
             <PropertyRef Name="o_id" />
@@ -2403,6 +2372,39 @@
           <Property Type="Decimal" Name="reality_total_price" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="rate" Precision="19" Scale="4" />
           <Property Type="DateTime" Name="create_time" />
+        </EntityType>
+        <EntityType Name="V_CutBill">
+          <Key>
+            <PropertyRef Name="c_id" />
+            <PropertyRef Name="creator_name" />
+            <PropertyRef Name="creator_id" />
+          </Key>
+          <Property Type="Int32" Name="c_id" Nullable="false" />
+          <Property Type="Int32" Name="out_num" />
+          <Property Type="Int32" Name="order_id" />
+          <Property Type="Decimal" Name="arrival_num" Precision="19" Scale="4" />
+          <Property Type="String" Name="size" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="note_num" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="will_num" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="actual_num" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="delivers_num" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="fd_id" />
+          <Property Type="Boolean" Name="is_del" />
+          <Property Type="String" Name="creator_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="creator_id" Nullable="false" />
+          <Property Type="DateTime" Name="modified_time" />
+          <Property Type="DateTime" Name="create_time" />
+          <Property Type="String" Name="color_name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="color_foreign" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="clothing_number" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="no" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="trader_id" />
+          <Property Type="Decimal" Name="bnum" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="check_date" />
+          <Property Type="String" Name="remark" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="order_quantity" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3284,38 +3286,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="V_CutBill">
-            <EntityTypeMapping TypeName="NFDModel.V_CutBill">
-              <MappingFragment StoreEntitySet="V_CutBill">
-                <ScalarProperty Name="order_quantity" ColumnName="order_quantity" />
-                <ScalarProperty Name="wellhead_price" ColumnName="wellhead_price" />
-                <ScalarProperty Name="export_price" ColumnName="export_price" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="check_date" ColumnName="check_date" />
-                <ScalarProperty Name="bnum" ColumnName="bnum" />
-                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
-                <ScalarProperty Name="no" ColumnName="no" />
-                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
-                <ScalarProperty Name="color_foreign" ColumnName="color_foreign" />
-                <ScalarProperty Name="color_name" ColumnName="color_name" />
-                <ScalarProperty Name="create_time" ColumnName="create_time" />
-                <ScalarProperty Name="modified_time" ColumnName="modified_time" />
-                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
-                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
-                <ScalarProperty Name="is_del" ColumnName="is_del" />
-                <ScalarProperty Name="fd_id" ColumnName="fd_id" />
-                <ScalarProperty Name="delivers_num" ColumnName="delivers_num" />
-                <ScalarProperty Name="actual_num" ColumnName="actual_num" />
-                <ScalarProperty Name="will_num" ColumnName="will_num" />
-                <ScalarProperty Name="note_num" ColumnName="note_num" />
-                <ScalarProperty Name="size" ColumnName="size" />
-                <ScalarProperty Name="arrival_num" ColumnName="arrival_num" />
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="out_num" ColumnName="out_num" />
-                <ScalarProperty Name="c_id" ColumnName="c_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="V_Report_Order">
             <EntityTypeMapping TypeName="NFDModel.V_Report_Order">
               <MappingFragment StoreEntitySet="V_Report_Order">
@@ -3351,6 +3321,38 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="V_CutBill">
+            <EntityTypeMapping TypeName="NFDModel.V_CutBill">
+              <MappingFragment StoreEntitySet="V_CutBill">
+                <ScalarProperty Name="order_quantity" ColumnName="order_quantity" />
+                <ScalarProperty Name="wellhead_price" ColumnName="wellhead_price" />
+                <ScalarProperty Name="export_price" ColumnName="export_price" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="check_date" ColumnName="check_date" />
+                <ScalarProperty Name="bnum" ColumnName="bnum" />
+                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
+                <ScalarProperty Name="color_foreign" ColumnName="color_foreign" />
+                <ScalarProperty Name="color_name" ColumnName="color_name" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="modified_time" ColumnName="modified_time" />
+                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
+                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
+                <ScalarProperty Name="is_del" ColumnName="is_del" />
+                <ScalarProperty Name="fd_id" ColumnName="fd_id" />
+                <ScalarProperty Name="delivers_num" ColumnName="delivers_num" />
+                <ScalarProperty Name="actual_num" ColumnName="actual_num" />
+                <ScalarProperty Name="will_num" ColumnName="will_num" />
+                <ScalarProperty Name="note_num" ColumnName="note_num" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="arrival_num" ColumnName="arrival_num" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="out_num" ColumnName="out_num" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3382,7 +3384,7 @@
         <EntityTypeShape EntityType="NFDModel.SampleDetail" Width="1.5" PointX="0.75" PointY="4.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.Sample" Width="1.5" PointX="0.75" PointY="3.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_Sample" Width="1.5" PointX="7.75" PointY="2.625" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_Ht_Htd_A_S_Sd" Width="1.5" PointX="10.625" PointY="5.625" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.V_Ht_Htd_A_S_Sd" Width="1.5" PointX="7.5" PointY="5.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.Attas" Width="1.5" PointX="11.625" PointY="1.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.ChanceBillDetail" Width="1.5" PointX="3.375" PointY="4.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_ChanceBill" Width="1.5" PointX="7.75" PointY="4.75" Height="0.4" IsExpanded="false" />
@@ -3397,19 +3399,19 @@
         <EntityTypeShape EntityType="NFDModel.HandmadeThingsDetailHistory" Width="1.5" PointX="4" PointY="2.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.AmplifierSampleHistory" Width="1.5" PointX="3.375" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_AmplifierSampleHistory" Width="1.5" PointX="7.625" PointY="8.625" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.Role" Width="1.5" PointX="7.375" PointY="9.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.Role" Width="1.5" PointX="4.375" PointY="9" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.SampleDetailHistory" Width="1.5" PointX="8.125" PointY="10.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_Sample_Detail_History" Width="2" PointX="3.875" PointY="10.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_Sample_Detail" Width="1.5" PointX="3.375" PointY="9.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.FabricOrderBill" Width="1.5" PointX="12" PointY="4.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.ProductionPlan" Width="1.5" PointX="5.375" PointY="12.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_ProductionPlan" Width="1.5" PointX="9.375" PointY="9.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.V_ProductionPlan" Width="1.5" PointX="6.75" PointY="10.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_FabricDetail" Width="1.5" PointX="7.75" PointY="6.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_OrderBill" Width="1.5" PointX="11.375" PointY="7.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.V_OrderBill" Width="1.5" PointX="7.625" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.ChanceBill" Width="1.5" PointX="7.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.CutBill" Width="1.5" PointX="3.5" PointY="6.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_CutBill" Width="1.5" PointX="9.625" PointY="8.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="3.75" PointY="11.875" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.V_CutBill" Width="1.5" PointX="6.875" PointY="9.125" Height="0.4" IsExpanded="false" />
       </Diagram>
     </Diagrams>
   </Designer>

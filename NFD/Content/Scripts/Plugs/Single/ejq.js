@@ -709,6 +709,7 @@ function ToDate(value, colname) {
 
 //四舍五入
 function ToRound(value, colname) {
+  
     if (!$.valiData.isEmpty(value)) {
         value = value.toString();
         return  parseFloat(value);

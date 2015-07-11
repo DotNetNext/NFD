@@ -205,7 +205,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "price",
                     Editable = true,
-                    HeaderText = "单价",
+                    HeaderText = "单价(元)",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                      new NumberValidator(),
                      new RequiredValidator()
@@ -234,7 +234,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "fabric_arrival",
                     Editable = true,
-                    HeaderText = "面料到货",
+                    HeaderText = "面料到货（米）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                              new NumberValidator()
                             },
@@ -248,7 +248,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "fabric_add_reduction",
                     Editable = true,
-                    HeaderText = "面料增减",
+                    HeaderText = "面料增减（米）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                              new NumberValidator()
                             },
@@ -263,7 +263,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "clothes_orders_num",
                     Editable = true,
-                    HeaderText = "成衣订单数",
+                    HeaderText = "成衣订单数（套）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                              new NumberValidator()
                             },
@@ -278,7 +278,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "consumption",
                     Editable = true,
-                    HeaderText = "单耗",
+                    HeaderText = "单耗（米）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                              new NumberValidator()
                             },
@@ -292,7 +292,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "mf",
                     Editable = true,
-                    HeaderText = "有效门幅",
+                    HeaderText = "有效门幅（厘米）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                              new NumberValidator()
                             },
@@ -702,14 +702,14 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "price",
                     Editable = true,
-                    HeaderText = "单价",
+                    HeaderText = "单价（元）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                      new  RequiredValidator(),
                      new NumberValidator()
                     },
                     Formatter = new CustomFormatter()
                     {
-                        FormatFunction = "ToRound()"
+                        FormatFunction = "ToRound"
                     }
 
                 });
@@ -755,14 +755,14 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "num",
                     Editable = true,
-                    HeaderText = "数量",
+                    HeaderText = "数量（米）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                      new  RequiredValidator(),
                      new NumberValidator()
                     },
                     Formatter = new CustomFormatter()
                     {
-                        FormatFunction = "ToRound()"
+                        FormatFunction = "ToRound"
                     }
 
                 });
