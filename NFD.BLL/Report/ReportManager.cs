@@ -96,13 +96,14 @@ namespace NFD.BLL.Report
                     dr["出口报关费(元)"] = r.export_price.ToMoneyString();
                     dr["进口报关费(元)"] = r.wellhead_price.ToMoneyString();
                     dr["备注"] = "";
+                    dr["送检数（套）"] = r.check_num.ToMoneyString();
                     dt.Rows.Add(dr);
                 }
                 var toldr = dt.NewRow();
                 toldr["客户"] = "统计：";
                 toldr["面料订货数（米）"] = orderList.Select(c => c.fabric_order_num).Sum().ToMoneyString(); ;
                 toldr["订单数量（套）"] = orderList.Select(c => c.num).Sum().ToMoneyString();
-                toldr["送检数（套）"] = 0;
+                toldr["送检数（套）"] = orderList.Select(c => c.check_num).Sum().ToMoneyString();
 
                 toldr["面料到货数(米)"] = orderList.Select(c => c.arrival_num).Sum().ToMoneyString();
                 toldr["裁剪数(套)"] = orderList.Select(c => c.actual_num_tol).Sum().ToMoneyString();

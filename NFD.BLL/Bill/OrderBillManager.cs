@@ -59,7 +59,8 @@ namespace NFD.BLL.Bill
                         export_price = bill.export_price,
                         get_price_date = bill.get_price_date,
                         inspection_fee = bill.inspection_fee,
-                        pricessing_fee=bill.pricessing_fee
+                        pricessing_fee=bill.pricessing_fee,
+                       ship_date= bill.ship_date
 
 
                     });

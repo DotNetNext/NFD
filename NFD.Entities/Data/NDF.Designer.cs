@@ -644,22 +644,6 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        public ObjectSet<V_Report_Order> V_Report_Order
-        {
-            get
-            {
-                if ((_V_Report_Order == null))
-                {
-                    _V_Report_Order = base.CreateObjectSet<V_Report_Order>("V_Report_Order");
-                }
-                return _V_Report_Order;
-            }
-        }
-        private ObjectSet<V_Report_Order> _V_Report_Order;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
         public ObjectSet<V_CutBill> V_CutBill
         {
             get
@@ -672,6 +656,22 @@ namespace NFD.Entities.Data
             }
         }
         private ObjectSet<V_CutBill> _V_CutBill;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<V_Report_Order> V_Report_Order
+        {
+            get
+            {
+                if ((_V_Report_Order == null))
+                {
+                    _V_Report_Order = base.CreateObjectSet<V_Report_Order>("V_Report_Order");
+                }
+                return _V_Report_Order;
+            }
+        }
+        private ObjectSet<V_Report_Order> _V_Report_Order;
 
         #endregion
         #region AddTo 方法
@@ -965,19 +965,19 @@ namespace NFD.Entities.Data
         }
     
         /// <summary>
-        /// 用于向 V_Report_Order EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddToV_Report_Order(V_Report_Order v_Report_Order)
-        {
-            base.AddObject("V_Report_Order", v_Report_Order);
-        }
-    
-        /// <summary>
         /// 用于向 V_CutBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
         /// </summary>
         public void AddToV_CutBill(V_CutBill v_CutBill)
         {
             base.AddObject("V_CutBill", v_CutBill);
+        }
+    
+        /// <summary>
+        /// 用于向 V_Report_Order EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToV_Report_Order(V_Report_Order v_Report_Order)
+        {
+            base.AddObject("V_Report_Order", v_Report_Order);
         }
 
         #endregion
@@ -18279,6 +18279,30 @@ namespace NFD.Entities.Data
         private Nullable<global::System.DateTime> _create_time;
         partial void Oncreate_timeChanging(Nullable<global::System.DateTime> value);
         partial void Oncreate_timeChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> check_num
+        {
+            get
+            {
+                return _check_num;
+            }
+            set
+            {
+                Oncheck_numChanging(value);
+                ReportPropertyChanging("check_num");
+                _check_num = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("check_num");
+                Oncheck_numChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _check_num;
+        partial void Oncheck_numChanging(Nullable<global::System.Int32> value);
+        partial void Oncheck_numChanged();
 
         #endregion
     

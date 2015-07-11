@@ -387,7 +387,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "num",
                     Editable = true,
-                    HeaderText = "送货数量",
+                    HeaderText = "送货数量(套)",
                     DataType = typeof(int),
                     Searchable = false,
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
