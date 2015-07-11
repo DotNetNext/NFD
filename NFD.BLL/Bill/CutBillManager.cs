@@ -96,11 +96,15 @@ namespace NFD.BLL.Bill
         {
             using (NFDEntities db = new NFDEntities())
             {
+                var cutBill=db.CutBill.Single(c=>c.c_id==bill.c_id);
                 if (bill.cs_id.IsZero())
                 {//添加
 
                     db.CutBillShipment.AddObject(bill);
-                    return db.SaveChanges() > 0;
+                   
+                    var isSuccess= db.SaveChanges() > 0;
+                    UpdateBnum(bill, db, cutBill);
+                    return isSuccess;
                 }
                 else
                 {
@@ -112,11 +116,20 @@ namespace NFD.BLL.Bill
                         num = bill.num
 
                     });
-
+                    UpdateBnum(bill, db, cutBill);
                     return true;
                 }
 
             }
+        }
+
+        private static void UpdateBnum(CutBillShipment bill, NFDEntities db, CutBill cutBill)
+        {
+            db.Update<CutBill>(bill.c_id, new
+            {
+
+                bnum = ((db.CutBillShipment.Where(c => c.c_id == bill.c_id).Select(c => c.num).Sum()) - cutBill.delivers_num).ToMoney()
+            });
         }
 
         /// <summary>
@@ -128,7 +141,13 @@ namespace NFD.BLL.Bill
         {
             using (NFDEntities db = new NFDEntities())
             {
-                return db.FalseDelete<CutBillShipment>(id);
+                
+                  var sid=id.Single();
+                  var bill = db.CutBillShipment.Single(c => c.cs_id == sid);
+                  var cutBill = db.CutBill.Single(c => c.c_id == bill.c_id);
+                  db.Delete<CutBillShipment>(id);
+                  UpdateBnum(bill,db,cutBill);
+                  return true;
             }
 
         }

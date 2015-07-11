@@ -74,7 +74,7 @@ namespace NFD.Areas.Bill.Controllers
             }
             else
             {
-                CutBillManager.DelCutBillShipment(bill.c_id);
+                CutBillManager.DelCutBillShipment(bill.cs_id);
             }
             return RedirectToAction("index");
 
@@ -103,7 +103,7 @@ namespace NFD.Areas.Bill.Controllers
                 reval.HierarchySettings = new HierarchySettings()
                 {
                     HierarchyMode = HierarchyMode.Parent,
-                    ReloadOnExpand = false,
+                    ReloadOnExpand = true,
                     SelectOnExpand = false,
                     ExpandOnLoad = false
                 };
@@ -114,6 +114,7 @@ namespace NFD.Areas.Bill.Controllers
                     //ShowAddButton = true,
                     ShowSearchToolBar = true,
                     ShowEditButton = true,
+                    ShowRefreshButton=true
                 };
                 reval.EditDialogSettings = new EditDialogSettings()
                 {

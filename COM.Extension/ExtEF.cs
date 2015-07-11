@@ -82,7 +82,7 @@ namespace COM.Extension
         /// </summary>
         /// <param name="oc"></param>
         /// <param name="whereIn">in的集合</param>
-        public static bool Delete<TEntity>(this ObjectContext objectContext, params object[] whereIn)
+        public static bool Delete<TEntity>(this ObjectContext objectContext, params int[] whereIn)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace COM.Extension
                 bool isSuccess = false;
                 if (whereIn != null && whereIn.Length > 0)
                 {
-                    string sql = "delete from {0} where {1} in ({2})".ToFormat(type.Name, GetPrimaryKey(type, key), whereIn.ToJoinSqlInVal());
+                    string sql = "delete from {0} where {1} in ({2})".ToFormat(type.Name, GetPrimaryKey(type, key), whereIn.Select(c => c.ToString()).ToArray().ToJoinSqlInVal());
                     isSuccess = objectContext.ExecuteStoreCommand(sql) > 0;
                 }
                 return isSuccess;
