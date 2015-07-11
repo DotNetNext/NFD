@@ -117,7 +117,8 @@ namespace NFD.Areas.Bill.Controllers
                 };
                 reval.EditDialogSettings = new EditDialogSettings()
                 {
-                    CloseAfterEditing = true
+                    CloseAfterEditing = true,
+                     Width=400
                 };
 
                 reval.SortSettings = new SortSettings()
