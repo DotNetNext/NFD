@@ -162,7 +162,8 @@ namespace NFD.Areas.Bill.Controllers
                            DataField = "fd_id",
                            PrimaryKey = true,
                            Editable = false,
-                           HeaderText = "编号"
+                           HeaderText = "编号",
+                           Visible=false
 
                        });
                 reval.Columns.Add(new JQGridColumn()
@@ -192,6 +193,7 @@ namespace NFD.Areas.Bill.Controllers
                     DataField = "order_quantity",
                     Editable = true,
                     HeaderText = "订货数量(米)",
+                    Width=200,
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                      new NumberValidator()
                     },
@@ -235,6 +237,7 @@ namespace NFD.Areas.Bill.Controllers
                     DataField = "fabric_arrival",
                     Editable = true,
                     HeaderText = "面料到货（米）",
+                    Width = 200,
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                              new NumberValidator()
                             },
@@ -248,6 +251,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "fabric_add_reduction",
                     Editable = true,
+                    Width = 200,
                     HeaderText = "面料增减（米）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                              new NumberValidator()
@@ -263,6 +267,7 @@ namespace NFD.Areas.Bill.Controllers
                 {
                     DataField = "clothes_orders_num",
                     Editable = true,
+                    Width = 200,
                     HeaderText = "成衣订单数（套）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                              new NumberValidator()
@@ -277,21 +282,23 @@ namespace NFD.Areas.Bill.Controllers
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "consumption",
-                    Editable = true,
+                    Editable = false,
                     HeaderText = "单耗（米）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                              new NumberValidator()
                             },
                     Formatter = new CustomFormatter()
                     {
-                        FormatFunction = "ToRound"
-                    }
+                        FormatFunction = "consumption"
+                    },
+                     
 
                 });
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "mf",
                     Editable = true,
+                    Width = 200,
                     HeaderText = "有效门幅（厘米）",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                              new NumberValidator()
@@ -675,7 +682,8 @@ namespace NFD.Areas.Bill.Controllers
                     DataField = "fob_id",
                     PrimaryKey = true,
                     Editable = false,
-                    HeaderText = "编号"
+                    HeaderText = "编号",
+                    Visible=false
 
                 });
                 reval.Columns.Add(new JQGridColumn()

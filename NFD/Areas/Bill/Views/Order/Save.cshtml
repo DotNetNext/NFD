@@ -69,6 +69,10 @@
             }
         }
 
+        function consumption(value,row,row2,row3){
+         return ToRound(row2[3]/row2[7]);
+        }
+
         //添加客户
         function addTrader() {
             easyDialog.open({

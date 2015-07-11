@@ -209,7 +209,7 @@ namespace NFD.Areas.Bill.Controllers
                             },
                     Formatter = new CustomFormatter()
                     {
-                        FormatFunction = "ToRound"
+                        FormatFunction = "consumption"
                     }
 
                 });
