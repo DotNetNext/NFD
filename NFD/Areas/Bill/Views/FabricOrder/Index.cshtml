@@ -49,7 +49,6 @@
                ed_alert("温馨提醒", "请选择记录！")
            } else {
                var rowData = $("#fdoGrid").jqGrid('getRowData', id);
-               debugger
                $.response.redirect("/Bill/Order/Save?", { id: rowData.order_id });
            }
         }
