@@ -43,6 +43,17 @@
             }
 
         }
+        function edit() {
+            var id = $("#fdoGrid").jqGrid('getGridParam', 'selrow');
+           if (id == null) {
+               ed_alert("温馨提醒", "请选择记录！")
+           } else {
+               var rowData = $("#fdoGrid").jqGrid('getRowData', id);
+               debugger
+               $.response.redirect("/Bill/Order/Save?", { id: rowData.order_id });
+           }
+        }
+
         function ToTrader(value, colname) {
             var data = $.linq.first(json, function (o) { return o.trader_id == value; });
             if (data == null) { return "已删除" }

@@ -90,14 +90,19 @@ namespace NFD.Areas.Bill.Controllers
                 };
                 reval.ToolBarSettings = new ToolBarSettings()
                 {
-                    ShowEditButton = true,
+                    ShowEditButton = false,
                     //ShowAddButton = true,
                     //ShowDeleteButton = true
                     CustomButtons = new List<JQGridToolBarButton>() { 
                       new JQGridToolBarButton(){
                        Text="导出EXCEL",
                         OnClick="exExcel"
-                      } 
+                      } ,
+                      new JQGridToolBarButton(){
+                          OnClick="edit",
+                       Text="编辑该定单",
+                        ButtonIcon="ui-icon-pencil"
+                      }
                     }
                 };
                 reval.DataUrl = Url.Action("GetFabricOrderGridData");
@@ -292,6 +297,11 @@ namespace NFD.Areas.Bill.Controllers
                     Frozen = true
 
                 });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "order_id",
+                    Visible = false
+                });
                 #endregion
                 return reval;
             }
@@ -302,7 +312,7 @@ namespace NFD.Areas.Bill.Controllers
         /// 导出excel
         /// </summary>
         /// <param name="trader_id"></param>
-        [OutputCache(Duration=0)]
+        [OutputCache(Duration = 0)]
         public void ExportExcel(DateTime? dateMin, DateTime? dateMax, int trader_id = 0, int typeId = 0)/* 0、excel 1、pdf*/
         {
             using (NFDEntities db = new NFDEntities())
