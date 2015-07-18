@@ -214,7 +214,7 @@ namespace NFD.Areas.Report.Controllers
                 {
                     DataField = "pricessing_fee",
                     Editable = false,
-                    HeaderText = "加工费单价",
+                    HeaderText = "加工费单价(元)",
                     Searchable = false,
                     Formatter = new CustomFormatter()
                     {
@@ -227,37 +227,20 @@ namespace NFD.Areas.Report.Controllers
                     DataField = "tatol_pricessing_fee",
                     Editable = false,
                     Searchable = false,
-                    HeaderText = "服装加工费",
+                    HeaderText = "工费金额（元）",
                     Formatter = new CustomFormatter()
                     {
                         FormatFunction = "ToRound"
                     }
 
                 });
-
-                reval.Columns.Add(new JQGridColumn()
-                {
-                    DataField = "reality_total_price",
-                    Editable = false,
-                    HeaderText = "成品金额（面料+加工费+辅料）",
-                    Searchable = false,
-                    Formatter = new CustomFormatter()
-                    {
-                        FormatFunction = "ToRound"
-                    }
-
-                });
-
-
-
-
 
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "my_accesssor",
                     Editable = false,
                     Searchable = false,
-                    HeaderText = "辅料金额",
+                    HeaderText = "辅料金额（元）",
                     Formatter = new CustomFormatter()
                     {
                         FormatFunction = "ToRound"
@@ -279,7 +262,7 @@ namespace NFD.Areas.Report.Controllers
                 reval.Columns.Add(new JQGridColumn()
                 {
                     DataField = "inspection_fee",
-                    Editable=false,
+                    Editable = false,
                     HeaderText = "检品费(元)",
                     Searchable = false,
                     Formatter = new CustomFormatter()
@@ -287,6 +270,60 @@ namespace NFD.Areas.Report.Controllers
                         FormatFunction = "ToRound"
                     }
                 });
+
+
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "reality_total_price",
+                    Editable = false,
+                    HeaderText = "成品金额（元）",
+                    Searchable = false,
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "single_fee",
+                    Editable = false,
+                    Searchable = false,
+                    HeaderText = "快件费（元）",
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+
+
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "wellhead_price",
+                    Editable = false,
+                    Searchable = false,
+                    HeaderText = "进口报关费(元)",
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "export_price",
+                    Searchable = false,
+                    Editable = false,
+                    HeaderText = "出口报关费（元）",
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+
 
                 reval.Columns.Add(new JQGridColumn()
                 {
@@ -336,45 +373,9 @@ namespace NFD.Areas.Report.Controllers
                     }
 
                 });
-                reval.Columns.Add(new JQGridColumn()
-                {
-                    DataField = "single_fee",
-                    Editable = false,
-                    Searchable = false,
-                    HeaderText = "快件费",
-                    Formatter = new CustomFormatter()
-                    {
-                        FormatFunction = "ToRound"
-                    }
+           
 
-                });
-
-
-                reval.Columns.Add(new JQGridColumn()
-                {
-                    DataField = "wellhead_price",
-                    Editable = false,
-                    Searchable = false,
-                    HeaderText = "进口报关费(元)",
-                    Formatter = new CustomFormatter()
-                    {
-                        FormatFunction = "ToRound"
-                    }
-
-                });
-
-                reval.Columns.Add(new JQGridColumn()
-                {
-                    DataField = "export_price",
-                    Searchable = false,
-                    Editable = false,
-                    HeaderText = "出口报关费（元）",
-                    Formatter = new CustomFormatter()
-                    {
-                        FormatFunction = "ToRound"
-                    }
-
-                });
+              
 
 
                 reval.Columns.Add(new JQGridColumn()
@@ -383,6 +384,7 @@ namespace NFD.Areas.Report.Controllers
                     Editable = false,
                     HeaderText = "出货日期",
                     Searchable = false,
+                    Visible=false,
                     Formatter = new CustomFormatter()
                     {
                         FormatFunction = "ToDate"

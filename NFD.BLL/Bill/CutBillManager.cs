@@ -109,7 +109,7 @@ namespace NFD.BLL.Bill
                 else
                 {
                     //编辑
-                    db.Update<CutBillShipment>(bill.c_id, new
+                    db.Update<CutBillShipment>(bill.cs_id, new
 
                     {
                         shipment_date = bill.shipment_date,
