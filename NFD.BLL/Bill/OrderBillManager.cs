@@ -59,8 +59,8 @@ namespace NFD.BLL.Bill
                         export_price = bill.export_price,
                         get_price_date = bill.get_price_date,
                         inspection_fee = bill.inspection_fee,
-                        pricessing_fee=bill.pricessing_fee,
-                       ship_date= bill.ship_date
+                        pricessing_fee = bill.pricessing_fee,
+                        ship_date = bill.ship_date
 
 
                     });
@@ -106,6 +106,14 @@ namespace NFD.BLL.Bill
                 return db.FalseDelete<OrderBill>(oId);
             }
         }
+        public static decimal GetADTolByOrderId(int order_id)
+        {
+            using (NFDEntities db = new NFDEntities())
+            {
+                return db.ExecuteStoreQuery<decimal>(" select  isnull(sum(isnull(order_num,0)*isnull(price,0)),0) from  dbo.AccessoriesDetail where order_id=" + order_id).Single();
+            }
+        }
+
 
         public static BillPrice GetTolByPars(OrderBill bill)
         {
@@ -301,7 +309,7 @@ namespace NFD.BLL.Bill
         {
             using (NFDEntities db = new NFDEntities())
             {
-                var orderDeatil = db.FabricOrderBill.Where(c => c.order_id == orderId).Where(c=>c.is_del==null||c.is_del==false);
+                var orderDeatil = db.FabricOrderBill.Where(c => c.order_id == orderId).Where(c => c.is_del == null || c.is_del == false);
                 var order = db.OrderBill.Single(c => c.o_id == orderId);
                 order.is_cut = true;
                 var removeOldCutList = db.CutBill.Where(c => c.order_id == order.o_id);

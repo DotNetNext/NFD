@@ -66,6 +66,8 @@ namespace NFD.Areas.Bill.Controllers
                 var ppGrid = GetProductionPlanGridModel;
                 ppGrid.DataUrl += "?id=" + id;
                 ViewBag.ppGrid = ppGrid;
+
+                ViewBag.adTol = OrderBillManager.GetADTolByOrderId(id);
             }
 
 
