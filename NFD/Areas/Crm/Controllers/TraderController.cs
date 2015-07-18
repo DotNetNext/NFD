@@ -100,6 +100,7 @@ namespace NFD.Areas.Crm.Controllers
                                                                 Editable = false,
                                                                 HeaderText="编号",
                                                                 Searchable=false,
+                                                                Frozen=true,
                                                                 Width = 50 },
                                              new JQGridColumn { DataField = "name", 
                                                                 Editable = true,
@@ -140,16 +141,7 @@ namespace NFD.Areas.Crm.Controllers
                                                                      new   Trirand.Web.Mvc.CustomValidator(){ ValidationFunction="isMobile"}
                                                                   }
                                              },
-                                          
-                                              new JQGridColumn{
-                                                                 
-
-                                                                  DataField="qq",
-                                                                  Editable=true    ,
-                                                                  HeaderText="qq",
-                                                                  Searchable=false,
-                                                                  Visible=false
-                                             },
+                                  
                                               new JQGridColumn{
                                                                  
 
@@ -169,6 +161,16 @@ namespace NFD.Areas.Crm.Controllers
                                                                   HeaderText="公司地址",
                                                                   Searchable=false,
                                                                   
+                                             },
+                                                     
+                                              new JQGridColumn{
+                                                                 
+
+                                                                  DataField="qq",
+                                                                  Editable=true    ,
+                                                                  HeaderText="公司地址",
+                                                                  Searchable=false,
+                                                                 
                                              },
                                                       new JQGridColumn{
                                                                  
