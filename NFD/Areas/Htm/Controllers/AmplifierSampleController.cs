@@ -27,7 +27,7 @@ namespace NFD.Areas.Htm.Controllers
             using (NFDEntities db = new NFDEntities())
             {
                 JQGrid model = GetHtGridModel();
-                return model.DataBind(HandmadeThingsManager.GetList(db).Where(c => c.status != null && c.status != 0));
+                return model.DataBind(HandmadeThingsManager.GetList(db).Where(c => c.status != null && c.status>0));
             }
         }
         //放大样数据 二级
