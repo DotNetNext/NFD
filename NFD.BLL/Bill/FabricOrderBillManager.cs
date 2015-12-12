@@ -16,14 +16,14 @@ namespace NFD.BLL.Bill
         /// </summary>
         /// <param name="db"></param>
         /// <returns></returns>
-        public static IQueryable<FabricOrderBill> GetFabricOrderBillList(NFDEntities db, int orderId)
+        public static IQueryable<V_FabricOrderBill> GetFabricOrderBillList(NFDEntities db, int orderId)
         {
             if (orderId == 0)
             {
-                return db.FabricOrderBill.Where(c => c.is_del == null || c.is_del == false);
+                return db.V_FabricOrderBill.Where(c => c.is_del == null || c.is_del == false);
             }
             else
-                return db.FabricOrderBill.Where(c => c.order_id == orderId).Where(c => c.is_del == null || c.is_del == false);
+                return db.V_FabricOrderBill.Where(c => c.order_id == orderId).Where(c => c.is_del == null || c.is_del == false);
         }
 
         /// <summary>
@@ -31,10 +31,10 @@ namespace NFD.BLL.Bill
         /// </summary>
         /// <param name="db"></param>
         /// <returns></returns>
-        public static IQueryable<FabricOrderBill> GetFabricOrderBillList(NFDEntities db)
+        public static IQueryable<V_FabricOrderBill> GetFabricOrderBillList(NFDEntities db)
         {
 
-                return db.FabricOrderBill;
+            return db.V_FabricOrderBill;
         }
 
         /// <summary>

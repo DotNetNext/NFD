@@ -356,22 +356,6 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        public ObjectSet<FabricDetail> FabricDetail
-        {
-            get
-            {
-                if ((_FabricDetail == null))
-                {
-                    _FabricDetail = base.CreateObjectSet<FabricDetail>("FabricDetail");
-                }
-                return _FabricDetail;
-            }
-        }
-        private ObjectSet<FabricDetail> _FabricDetail;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
         public ObjectSet<V_AccessoriesDetail> V_AccessoriesDetail
         {
             get
@@ -532,22 +516,6 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        public ObjectSet<FabricOrderBill> FabricOrderBill
-        {
-            get
-            {
-                if ((_FabricOrderBill == null))
-                {
-                    _FabricOrderBill = base.CreateObjectSet<FabricOrderBill>("FabricOrderBill");
-                }
-                return _FabricOrderBill;
-            }
-        }
-        private ObjectSet<FabricOrderBill> _FabricOrderBill;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
         public ObjectSet<ProductionPlan> ProductionPlan
         {
             get
@@ -576,22 +544,6 @@ namespace NFD.Entities.Data
             }
         }
         private ObjectSet<V_ProductionPlan> _V_ProductionPlan;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        public ObjectSet<V_FabricDetail> V_FabricDetail
-        {
-            get
-            {
-                if ((_V_FabricDetail == null))
-                {
-                    _V_FabricDetail = base.CreateObjectSet<V_FabricDetail>("V_FabricDetail");
-                }
-                return _V_FabricDetail;
-            }
-        }
-        private ObjectSet<V_FabricDetail> _V_FabricDetail;
     
         /// <summary>
         /// 没有元数据文档可用。
@@ -644,6 +596,54 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
+        public ObjectSet<FabricDetail> FabricDetail
+        {
+            get
+            {
+                if ((_FabricDetail == null))
+                {
+                    _FabricDetail = base.CreateObjectSet<FabricDetail>("FabricDetail");
+                }
+                return _FabricDetail;
+            }
+        }
+        private ObjectSet<FabricDetail> _FabricDetail;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<FabricOrderBill> FabricOrderBill
+        {
+            get
+            {
+                if ((_FabricOrderBill == null))
+                {
+                    _FabricOrderBill = base.CreateObjectSet<FabricOrderBill>("FabricOrderBill");
+                }
+                return _FabricOrderBill;
+            }
+        }
+        private ObjectSet<FabricOrderBill> _FabricOrderBill;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<V_FabricOrderBill> V_FabricOrderBill
+        {
+            get
+            {
+                if ((_V_FabricOrderBill == null))
+                {
+                    _V_FabricOrderBill = base.CreateObjectSet<V_FabricOrderBill>("V_FabricOrderBill");
+                }
+                return _V_FabricOrderBill;
+            }
+        }
+        private ObjectSet<V_FabricOrderBill> _V_FabricOrderBill;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
         public ObjectSet<V_CutBill> V_CutBill
         {
             get
@@ -672,6 +672,22 @@ namespace NFD.Entities.Data
             }
         }
         private ObjectSet<V_Report_Order> _V_Report_Order;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<V_FabricDetail> V_FabricDetail
+        {
+            get
+            {
+                if ((_V_FabricDetail == null))
+                {
+                    _V_FabricDetail = base.CreateObjectSet<V_FabricDetail>("V_FabricDetail");
+                }
+                return _V_FabricDetail;
+            }
+        }
+        private ObjectSet<V_FabricDetail> _V_FabricDetail;
 
         #endregion
         #region AddTo 方法
@@ -821,14 +837,6 @@ namespace NFD.Entities.Data
         }
     
         /// <summary>
-        /// 用于向 FabricDetail EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddToFabricDetail(FabricDetail fabricDetail)
-        {
-            base.AddObject("FabricDetail", fabricDetail);
-        }
-    
-        /// <summary>
         /// 用于向 V_AccessoriesDetail EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
         /// </summary>
         public void AddToV_AccessoriesDetail(V_AccessoriesDetail v_AccessoriesDetail)
@@ -909,14 +917,6 @@ namespace NFD.Entities.Data
         }
     
         /// <summary>
-        /// 用于向 FabricOrderBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddToFabricOrderBill(FabricOrderBill fabricOrderBill)
-        {
-            base.AddObject("FabricOrderBill", fabricOrderBill);
-        }
-    
-        /// <summary>
         /// 用于向 ProductionPlan EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
         /// </summary>
         public void AddToProductionPlan(ProductionPlan productionPlan)
@@ -930,14 +930,6 @@ namespace NFD.Entities.Data
         public void AddToV_ProductionPlan(V_ProductionPlan v_ProductionPlan)
         {
             base.AddObject("V_ProductionPlan", v_ProductionPlan);
-        }
-    
-        /// <summary>
-        /// 用于向 V_FabricDetail EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddToV_FabricDetail(V_FabricDetail v_FabricDetail)
-        {
-            base.AddObject("V_FabricDetail", v_FabricDetail);
         }
     
         /// <summary>
@@ -965,6 +957,30 @@ namespace NFD.Entities.Data
         }
     
         /// <summary>
+        /// 用于向 FabricDetail EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToFabricDetail(FabricDetail fabricDetail)
+        {
+            base.AddObject("FabricDetail", fabricDetail);
+        }
+    
+        /// <summary>
+        /// 用于向 FabricOrderBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToFabricOrderBill(FabricOrderBill fabricOrderBill)
+        {
+            base.AddObject("FabricOrderBill", fabricOrderBill);
+        }
+    
+        /// <summary>
+        /// 用于向 V_FabricOrderBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToV_FabricOrderBill(V_FabricOrderBill v_FabricOrderBill)
+        {
+            base.AddObject("V_FabricOrderBill", v_FabricOrderBill);
+        }
+    
+        /// <summary>
         /// 用于向 V_CutBill EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
         /// </summary>
         public void AddToV_CutBill(V_CutBill v_CutBill)
@@ -978,6 +994,14 @@ namespace NFD.Entities.Data
         public void AddToV_Report_Order(V_Report_Order v_Report_Order)
         {
             base.AddObject("V_Report_Order", v_Report_Order);
+        }
+    
+        /// <summary>
+        /// 用于向 V_FabricDetail EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToV_FabricDetail(V_FabricDetail v_FabricDetail)
+        {
+            base.AddObject("V_FabricDetail", v_FabricDetail);
         }
 
         #endregion
@@ -5108,6 +5132,30 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String color_foreign
+        {
+            get
+            {
+                return _color_foreign;
+            }
+            set
+            {
+                Oncolor_foreignChanging(value);
+                ReportPropertyChanging("color_foreign");
+                _color_foreign = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("color_foreign");
+                Oncolor_foreignChanged();
+            }
+        }
+        private global::System.String _color_foreign;
+        partial void Oncolor_foreignChanging(global::System.String value);
+        partial void Oncolor_foreignChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String color_name
         {
             get
@@ -5132,7 +5180,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> order_quantity
+        public Nullable<global::System.Decimal> order_quantity
         {
             get
             {
@@ -5147,8 +5195,8 @@ namespace NFD.Entities.Data
                 Onorder_quantityChanged();
             }
         }
-        private Nullable<global::System.Int32> _order_quantity;
-        partial void Onorder_quantityChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _order_quantity;
+        partial void Onorder_quantityChanging(Nullable<global::System.Decimal> value);
         partial void Onorder_quantityChanged();
     
         /// <summary>
@@ -5270,6 +5318,30 @@ namespace NFD.Entities.Data
         private Nullable<global::System.Decimal> _consumption;
         partial void OnconsumptionChanging(Nullable<global::System.Decimal> value);
         partial void OnconsumptionChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> price
+        {
+            get
+            {
+                return _price;
+            }
+            set
+            {
+                OnpriceChanging(value);
+                ReportPropertyChanging("price");
+                _price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("price");
+                OnpriceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _price;
+        partial void OnpriceChanging(Nullable<global::System.Decimal> value);
+        partial void OnpriceChanged();
     
         /// <summary>
         /// 没有元数据文档可用。
@@ -5438,54 +5510,6 @@ namespace NFD.Entities.Data
         private Nullable<global::System.DateTime> _create_time;
         partial void Oncreate_timeChanging(Nullable<global::System.DateTime> value);
         partial void Oncreate_timeChanged();
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> price
-        {
-            get
-            {
-                return _price;
-            }
-            set
-            {
-                OnpriceChanging(value);
-                ReportPropertyChanging("price");
-                _price = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("price");
-                OnpriceChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _price;
-        partial void OnpriceChanging(Nullable<global::System.Decimal> value);
-        partial void OnpriceChanged();
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String color_foreign
-        {
-            get
-            {
-                return _color_foreign;
-            }
-            set
-            {
-                Oncolor_foreignChanging(value);
-                ReportPropertyChanging("color_foreign");
-                _color_foreign = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("color_foreign");
-                Oncolor_foreignChanged();
-            }
-        }
-        private global::System.String _color_foreign;
-        partial void Oncolor_foreignChanging(global::System.String value);
-        partial void Oncolor_foreignChanged();
 
         #endregion
     
@@ -5505,14 +5529,14 @@ namespace NFD.Entities.Data
         /// 创建新的 FabricOrderBill 对象。
         /// </summary>
         /// <param name="fob_id">fob_id 属性的初始值。</param>
-        /// <param name="price">price 属性的初始值。</param>
         /// <param name="order_id">order_id 属性的初始值。</param>
-        public static FabricOrderBill CreateFabricOrderBill(global::System.Int32 fob_id, global::System.Decimal price, global::System.Int32 order_id)
+        /// <param name="price">price 属性的初始值。</param>
+        public static FabricOrderBill CreateFabricOrderBill(global::System.Int32 fob_id, global::System.Int32 order_id, global::System.Decimal price)
         {
             FabricOrderBill fabricOrderBill = new FabricOrderBill();
             fabricOrderBill.fob_id = fob_id;
-            fabricOrderBill.price = price;
             fabricOrderBill.order_id = order_id;
+            fabricOrderBill.price = price;
             return fabricOrderBill;
         }
 
@@ -5545,6 +5569,30 @@ namespace NFD.Entities.Data
         private global::System.Int32 _fob_id;
         partial void Onfob_idChanging(global::System.Int32 value);
         partial void Onfob_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 order_id
+        {
+            get
+            {
+                return _order_id;
+            }
+            set
+            {
+                Onorder_idChanging(value);
+                ReportPropertyChanging("order_id");
+                _order_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("order_id");
+                Onorder_idChanged();
+            }
+        }
+        private global::System.Int32 _order_id;
+        partial void Onorder_idChanging(global::System.Int32 value);
+        partial void Onorder_idChanged();
     
         /// <summary>
         /// 没有元数据文档可用。
@@ -5623,7 +5671,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> num
+        public Nullable<global::System.Decimal> num
         {
             get
             {
@@ -5638,8 +5686,8 @@ namespace NFD.Entities.Data
                 OnnumChanged();
             }
         }
-        private Nullable<global::System.Int32> _num;
-        partial void OnnumChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _num;
+        partial void OnnumChanging(Nullable<global::System.Decimal> value);
         partial void OnnumChanged();
     
         /// <summary>
@@ -6001,30 +6049,6 @@ namespace NFD.Entities.Data
         private Nullable<global::System.DateTime> _create_time;
         partial void Oncreate_timeChanging(Nullable<global::System.DateTime> value);
         partial void Oncreate_timeChanged();
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 order_id
-        {
-            get
-            {
-                return _order_id;
-            }
-            set
-            {
-                Onorder_idChanging(value);
-                ReportPropertyChanging("order_id");
-                _order_id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("order_id");
-                Onorder_idChanged();
-            }
-        }
-        private global::System.Int32 _order_id;
-        partial void Onorder_idChanging(global::System.Int32 value);
-        partial void Onorder_idChanged();
     
         /// <summary>
         /// 没有元数据文档可用。
@@ -14487,7 +14511,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> order_quantity
+        public Nullable<global::System.Decimal> order_quantity
         {
             get
             {
@@ -14502,8 +14526,8 @@ namespace NFD.Entities.Data
                 Onorder_quantityChanged();
             }
         }
-        private Nullable<global::System.Int32> _order_quantity;
-        partial void Onorder_quantityChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _order_quantity;
+        partial void Onorder_quantityChanging(Nullable<global::System.Decimal> value);
         partial void Onorder_quantityChanged();
 
         #endregion
@@ -14543,6 +14567,30 @@ namespace NFD.Entities.Data
 
         #endregion
         #region 基元属性
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String specifications
+        {
+            get
+            {
+                return _specifications;
+            }
+            set
+            {
+                OnspecificationsChanging(value);
+                ReportPropertyChanging("specifications");
+                _specifications = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("specifications");
+                OnspecificationsChanged();
+            }
+        }
+        private global::System.String _specifications;
+        partial void OnspecificationsChanging(global::System.String value);
+        partial void OnspecificationsChanged();
     
         /// <summary>
         /// 没有元数据文档可用。
@@ -14651,7 +14699,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> order_quantity
+        public Nullable<global::System.Decimal> order_quantity
         {
             get
             {
@@ -14666,8 +14714,8 @@ namespace NFD.Entities.Data
                 Onorder_quantityChanged();
             }
         }
-        private Nullable<global::System.Int32> _order_quantity;
-        partial void Onorder_quantityChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _order_quantity;
+        partial void Onorder_quantityChanging(Nullable<global::System.Decimal> value);
         partial void Onorder_quantityChanged();
     
         /// <summary>
@@ -15089,6 +15137,313 @@ namespace NFD.Entities.Data
         private Nullable<global::System.Decimal> _tatol;
         partial void OntatolChanging(Nullable<global::System.Decimal> value);
         partial void OntatolChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// 没有元数据文档可用。
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="NFDModel", Name="V_FabricOrderBill")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class V_FabricOrderBill : EntityObject
+    {
+        #region 工厂方法
+    
+        /// <summary>
+        /// 创建新的 V_FabricOrderBill 对象。
+        /// </summary>
+        /// <param name="fob_id">fob_id 属性的初始值。</param>
+        /// <param name="order_id">order_id 属性的初始值。</param>
+        /// <param name="price">price 属性的初始值。</param>
+        /// <param name="cn">cn 属性的初始值。</param>
+        public static V_FabricOrderBill CreateV_FabricOrderBill(global::System.Int32 fob_id, global::System.Int32 order_id, global::System.Decimal price, global::System.String cn)
+        {
+            V_FabricOrderBill v_FabricOrderBill = new V_FabricOrderBill();
+            v_FabricOrderBill.fob_id = fob_id;
+            v_FabricOrderBill.order_id = order_id;
+            v_FabricOrderBill.price = price;
+            v_FabricOrderBill.cn = cn;
+            return v_FabricOrderBill;
+        }
+
+        #endregion
+        #region 基元属性
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 fob_id
+        {
+            get
+            {
+                return _fob_id;
+            }
+            set
+            {
+                if (_fob_id != value)
+                {
+                    Onfob_idChanging(value);
+                    ReportPropertyChanging("fob_id");
+                    _fob_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("fob_id");
+                    Onfob_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _fob_id;
+        partial void Onfob_idChanging(global::System.Int32 value);
+        partial void Onfob_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 order_id
+        {
+            get
+            {
+                return _order_id;
+            }
+            set
+            {
+                if (_order_id != value)
+                {
+                    Onorder_idChanging(value);
+                    ReportPropertyChanging("order_id");
+                    _order_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("order_id");
+                    Onorder_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _order_id;
+        partial void Onorder_idChanging(global::System.Int32 value);
+        partial void Onorder_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal price
+        {
+            get
+            {
+                return _price;
+            }
+            set
+            {
+                if (_price != value)
+                {
+                    OnpriceChanging(value);
+                    ReportPropertyChanging("price");
+                    _price = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("price");
+                    OnpriceChanged();
+                }
+            }
+        }
+        private global::System.Decimal _price;
+        partial void OnpriceChanging(global::System.Decimal value);
+        partial void OnpriceChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String sdf
+        {
+            get
+            {
+                return _sdf;
+            }
+            set
+            {
+                OnsdfChanging(value);
+                ReportPropertyChanging("sdf");
+                _sdf = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("sdf");
+                OnsdfChanged();
+            }
+        }
+        private global::System.String _sdf;
+        partial void OnsdfChanging(global::System.String value);
+        partial void OnsdfChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String element
+        {
+            get
+            {
+                return _element;
+            }
+            set
+            {
+                OnelementChanging(value);
+                ReportPropertyChanging("element");
+                _element = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("element");
+                OnelementChanged();
+            }
+        }
+        private global::System.String _element;
+        partial void OnelementChanging(global::System.String value);
+        partial void OnelementChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> num
+        {
+            get
+            {
+                return _num;
+            }
+            set
+            {
+                OnnumChanging(value);
+                ReportPropertyChanging("num");
+                _num = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("num");
+                OnnumChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _num;
+        partial void OnnumChanging(Nullable<global::System.Decimal> value);
+        partial void OnnumChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> get_date
+        {
+            get
+            {
+                return _get_date;
+            }
+            set
+            {
+                Onget_dateChanging(value);
+                ReportPropertyChanging("get_date");
+                _get_date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("get_date");
+                Onget_dateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _get_date;
+        partial void Onget_dateChanging(Nullable<global::System.DateTime> value);
+        partial void Onget_dateChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String area
+        {
+            get
+            {
+                return _area;
+            }
+            set
+            {
+                OnareaChanging(value);
+                ReportPropertyChanging("area");
+                _area = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("area");
+                OnareaChanged();
+            }
+        }
+        private global::System.String _area;
+        partial void OnareaChanging(global::System.String value);
+        partial void OnareaChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String datum
+        {
+            get
+            {
+                return _datum;
+            }
+            set
+            {
+                OndatumChanging(value);
+                ReportPropertyChanging("datum");
+                _datum = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("datum");
+                OndatumChanged();
+            }
+        }
+        private global::System.String _datum;
+        partial void OndatumChanging(global::System.String value);
+        partial void OndatumChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> supplier_id
+        {
+            get
+            {
+                return _supplier_id;
+            }
+            set
+            {
+                Onsupplier_idChanging(value);
+                ReportPropertyChanging("supplier_id");
+                _supplier_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("supplier_id");
+                Onsupplier_idChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _supplier_id;
+        partial void Onsupplier_idChanging(Nullable<global::System.Int32> value);
+        partial void Onsupplier_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String address
+        {
+            get
+            {
+                return _address;
+            }
+            set
+            {
+                OnaddressChanging(value);
+                ReportPropertyChanging("address");
+                _address = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("address");
+                OnaddressChanged();
+            }
+        }
+        private global::System.String _address;
+        partial void OnaddressChanging(global::System.String value);
+        partial void OnaddressChanged();
     
         /// <summary>
         /// 没有元数据文档可用。
@@ -15113,6 +15468,273 @@ namespace NFD.Entities.Data
         private global::System.String _specifications;
         partial void OnspecificationsChanging(global::System.String value);
         partial void OnspecificationsChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String color_name
+        {
+            get
+            {
+                return _color_name;
+            }
+            set
+            {
+                Oncolor_nameChanging(value);
+                ReportPropertyChanging("color_name");
+                _color_name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("color_name");
+                Oncolor_nameChanged();
+            }
+        }
+        private global::System.String _color_name;
+        partial void Oncolor_nameChanging(global::System.String value);
+        partial void Oncolor_nameChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String color_foreign
+        {
+            get
+            {
+                return _color_foreign;
+            }
+            set
+            {
+                Oncolor_foreignChanging(value);
+                ReportPropertyChanging("color_foreign");
+                _color_foreign = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("color_foreign");
+                Oncolor_foreignChanged();
+            }
+        }
+        private global::System.String _color_foreign;
+        partial void Oncolor_foreignChanging(global::System.String value);
+        partial void Oncolor_foreignChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String clothing_number
+        {
+            get
+            {
+                return _clothing_number;
+            }
+            set
+            {
+                Onclothing_numberChanging(value);
+                ReportPropertyChanging("clothing_number");
+                _clothing_number = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("clothing_number");
+                Onclothing_numberChanged();
+            }
+        }
+        private global::System.String _clothing_number;
+        partial void Onclothing_numberChanging(global::System.String value);
+        partial void Onclothing_numberChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String no
+        {
+            get
+            {
+                return _no;
+            }
+            set
+            {
+                OnnoChanging(value);
+                ReportPropertyChanging("no");
+                _no = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("no");
+                OnnoChanged();
+            }
+        }
+        private global::System.String _no;
+        partial void OnnoChanging(global::System.String value);
+        partial void OnnoChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> trader_id
+        {
+            get
+            {
+                return _trader_id;
+            }
+            set
+            {
+                Ontrader_idChanging(value);
+                ReportPropertyChanging("trader_id");
+                _trader_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("trader_id");
+                Ontrader_idChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _trader_id;
+        partial void Ontrader_idChanging(Nullable<global::System.Int32> value);
+        partial void Ontrader_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String remark
+        {
+            get
+            {
+                return _remark;
+            }
+            set
+            {
+                OnremarkChanging(value);
+                ReportPropertyChanging("remark");
+                _remark = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("remark");
+                OnremarkChanged();
+            }
+        }
+        private global::System.String _remark;
+        partial void OnremarkChanging(global::System.String value);
+        partial void OnremarkChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> creator_id
+        {
+            get
+            {
+                return _creator_id;
+            }
+            set
+            {
+                Oncreator_idChanging(value);
+                ReportPropertyChanging("creator_id");
+                _creator_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("creator_id");
+                Oncreator_idChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _creator_id;
+        partial void Oncreator_idChanging(Nullable<global::System.Int32> value);
+        partial void Oncreator_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String creator_name
+        {
+            get
+            {
+                return _creator_name;
+            }
+            set
+            {
+                Oncreator_nameChanging(value);
+                ReportPropertyChanging("creator_name");
+                _creator_name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("creator_name");
+                Oncreator_nameChanged();
+            }
+        }
+        private global::System.String _creator_name;
+        partial void Oncreator_nameChanging(global::System.String value);
+        partial void Oncreator_nameChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> create_time
+        {
+            get
+            {
+                return _create_time;
+            }
+            set
+            {
+                Oncreate_timeChanging(value);
+                ReportPropertyChanging("create_time");
+                _create_time = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("create_time");
+                Oncreate_timeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _create_time;
+        partial void Oncreate_timeChanging(Nullable<global::System.DateTime> value);
+        partial void Oncreate_timeChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> is_del
+        {
+            get
+            {
+                return _is_del;
+            }
+            set
+            {
+                Onis_delChanging(value);
+                ReportPropertyChanging("is_del");
+                _is_del = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("is_del");
+                Onis_delChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _is_del;
+        partial void Onis_delChanging(Nullable<global::System.Boolean> value);
+        partial void Onis_delChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String cn
+        {
+            get
+            {
+                return _cn;
+            }
+            set
+            {
+                if (_cn != value)
+                {
+                    OncnChanging(value);
+                    ReportPropertyChanging("cn");
+                    _cn = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("cn");
+                    OncnChanged();
+                }
+            }
+        }
+        private global::System.String _cn;
+        partial void OncnChanging(global::System.String value);
+        partial void OncnChanged();
 
         #endregion
     
@@ -17659,7 +18281,7 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String clothing_number
         {
@@ -17669,11 +18291,14 @@ namespace NFD.Entities.Data
             }
             set
             {
-                Onclothing_numberChanging(value);
-                ReportPropertyChanging("clothing_number");
-                _clothing_number = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("clothing_number");
-                Onclothing_numberChanged();
+                if (_clothing_number != value)
+                {
+                    Onclothing_numberChanging(value);
+                    ReportPropertyChanging("clothing_number");
+                    _clothing_number = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("clothing_number");
+                    Onclothing_numberChanged();
+                }
             }
         }
         private global::System.String _clothing_number;
@@ -17683,7 +18308,7 @@ namespace NFD.Entities.Data
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 num
         {
@@ -17693,11 +18318,14 @@ namespace NFD.Entities.Data
             }
             set
             {
-                OnnumChanging(value);
-                ReportPropertyChanging("num");
-                _num = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("num");
-                OnnumChanged();
+                if (_num != value)
+                {
+                    OnnumChanging(value);
+                    ReportPropertyChanging("num");
+                    _num = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("num");
+                    OnnumChanged();
+                }
             }
         }
         private global::System.Int32 _num;
@@ -17733,7 +18361,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> fabric_order_num
+        public Nullable<global::System.Decimal> fabric_order_num
         {
             get
             {
@@ -17748,8 +18376,8 @@ namespace NFD.Entities.Data
                 Onfabric_order_numChanged();
             }
         }
-        private Nullable<global::System.Int32> _fabric_order_num;
-        partial void Onfabric_order_numChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _fabric_order_num;
+        partial void Onfabric_order_numChanging(Nullable<global::System.Decimal> value);
         partial void Onfabric_order_numChanged();
     
         /// <summary>
@@ -17805,7 +18433,7 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> order_quantity
+        public Nullable<global::System.Decimal> order_quantity
         {
             get
             {
@@ -17820,8 +18448,8 @@ namespace NFD.Entities.Data
                 Onorder_quantityChanged();
             }
         }
-        private Nullable<global::System.Int32> _order_quantity;
-        partial void Onorder_quantityChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _order_quantity;
+        partial void Onorder_quantityChanging(Nullable<global::System.Decimal> value);
         partial void Onorder_quantityChanged();
     
         /// <summary>
@@ -18261,30 +18889,6 @@ namespace NFD.Entities.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> create_time
-        {
-            get
-            {
-                return _create_time;
-            }
-            set
-            {
-                Oncreate_timeChanging(value);
-                ReportPropertyChanging("create_time");
-                _create_time = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("create_time");
-                Oncreate_timeChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _create_time;
-        partial void Oncreate_timeChanging(Nullable<global::System.DateTime> value);
-        partial void Oncreate_timeChanged();
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> check_num
         {
             get
@@ -18303,6 +18907,30 @@ namespace NFD.Entities.Data
         private Nullable<global::System.Int32> _check_num;
         partial void Oncheck_numChanging(Nullable<global::System.Int32> value);
         partial void Oncheck_numChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> create_time
+        {
+            get
+            {
+                return _create_time;
+            }
+            set
+            {
+                Oncreate_timeChanging(value);
+                ReportPropertyChanging("create_time");
+                _create_time = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("create_time");
+                Oncreate_timeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _create_time;
+        partial void Oncreate_timeChanging(Nullable<global::System.DateTime> value);
+        partial void Oncreate_timeChanged();
 
         #endregion
     

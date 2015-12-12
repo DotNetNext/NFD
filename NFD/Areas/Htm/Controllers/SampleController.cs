@@ -34,7 +34,19 @@ namespace NFD.Areas.Htm.Controllers
         //编辑样衣明细
         public ActionResult EditDetail(SampleDetail s)
         {
-            SampleManager.Save(s);
+
+            if (JqGridDetailModel.AjaxCallBackMode == AjaxCallBackMode.DeleteRow)
+            {
+                SampleManager.DeleteSampleDetail(s.samd_id);
+            }
+            else
+            {
+                if (s.samd_id == 0 || s.samd_id == null)
+                {
+                    s.sam_id = Request["parentRowId"].ToInt();
+                }
+                SampleManager.Save(s);
+            }
             return RedirectToAction("index");
         }
 
@@ -273,7 +285,9 @@ namespace NFD.Areas.Htm.Controllers
                     ToolBarSettings = new ToolBarSettings()
                     {
                         ShowEditButton = true,
-                        ShowRefreshButton = true
+                        ShowRefreshButton = true,
+                        ShowAddButton = true,
+                        ShowDeleteButton = true
                     },
                     HierarchySettings = new HierarchySettings()
                     {

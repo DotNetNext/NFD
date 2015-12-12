@@ -19,12 +19,12 @@ namespace NFD.BLL
             using (NFDEntities db = new NFDEntities())
             {
                 //添加
-                if (sa.sam_id == 0)
+                if (sa.samd_id== 0||sa.samd_id==null)
                 {
-                    //afs.create_time = DateTime.Now;
-                    //afs.creator_id = UserManager.GetCurrentUserInfo.user_id;
-                    //afs.creator_name = UserManager.GetCurrentUserInfo.userName;
-                    //db.Insert<AmplifierSample>(afs);
+                    sa.create_time = DateTime.Now;
+                    sa.creator_id = UserManager.GetCurrentUserInfo.user_id;
+                    sa.creator_name = UserManager.GetCurrentUserInfo.userName;
+                    db.Insert<SampleDetail>(sa);
                 }
                 else
                 {
@@ -241,6 +241,16 @@ namespace NFD.BLL
 
                     throw ex;
                 }
+            }
+        }
+
+        public static void DeleteSampleDetail(int id)
+        {
+            using (NFDEntities db = new NFDEntities())
+            {
+                var obj = db.SampleDetail.Single(it => it.samd_id == id);
+                db.SampleDetail.DeleteObject(obj);
+                db.SaveChanges();
             }
         }
     }

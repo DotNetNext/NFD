@@ -210,6 +210,33 @@
       [V_FabricDetail].[tatol] AS [tatol]
       FROM [dbo].[V_FabricDetail] AS [V_FabricDetail]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="V_FabricOrderBill" EntityType="NFDModel.Store.V_FabricOrderBill" store:Type="Views" store:Schema="dbo" store:Name="V_FabricOrderBill">
+            <DefiningQuery>SELECT 
+      [V_FabricOrderBill].[fob_id] AS [fob_id], 
+      [V_FabricOrderBill].[order_id] AS [order_id], 
+      [V_FabricOrderBill].[price] AS [price], 
+      [V_FabricOrderBill].[sdf] AS [sdf], 
+      [V_FabricOrderBill].[element] AS [element], 
+      [V_FabricOrderBill].[num] AS [num], 
+      [V_FabricOrderBill].[get_date] AS [get_date], 
+      [V_FabricOrderBill].[area] AS [area], 
+      [V_FabricOrderBill].[datum] AS [datum], 
+      [V_FabricOrderBill].[supplier_id] AS [supplier_id], 
+      [V_FabricOrderBill].[address] AS [address], 
+      [V_FabricOrderBill].[specifications] AS [specifications], 
+      [V_FabricOrderBill].[color_name] AS [color_name], 
+      [V_FabricOrderBill].[color_foreign] AS [color_foreign], 
+      [V_FabricOrderBill].[clothing_number] AS [clothing_number], 
+      [V_FabricOrderBill].[no] AS [no], 
+      [V_FabricOrderBill].[trader_id] AS [trader_id], 
+      [V_FabricOrderBill].[remark] AS [remark], 
+      [V_FabricOrderBill].[creator_id] AS [creator_id], 
+      [V_FabricOrderBill].[creator_name] AS [creator_name], 
+      [V_FabricOrderBill].[create_time] AS [create_time], 
+      [V_FabricOrderBill].[is_del] AS [is_del], 
+      [V_FabricOrderBill].[cn] AS [cn]
+      FROM [dbo].[V_FabricOrderBill] AS [V_FabricOrderBill]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="V_Ht_Htd_A_S_Sd" EntityType="NFDModel.Store.V_Ht_Htd_A_S_Sd" store:Type="Views" store:Schema="dbo" store:Name="V_Ht_Htd_A_S_Sd">
             <DefiningQuery>SELECT 
       [V_Ht_Htd_A_S_Sd].[id] AS [id], 
@@ -630,7 +657,7 @@
           <Property Name="order_id" Type="int" Nullable="false" />
           <Property Name="color_foreign" Type="varchar" MaxLength="50" />
           <Property Name="color_name" Type="varchar" MaxLength="100" />
-          <Property Name="order_quantity" Type="int" />
+          <Property Name="order_quantity" Type="money" />
           <Property Name="subtotal" Type="money" />
           <Property Name="fabric_arrival" Type="money" />
           <Property Name="fabric_add_reduction" Type="money" />
@@ -654,7 +681,7 @@
           <Property Name="price" Type="money" Nullable="false" />
           <Property Name="sdf" Type="varchar" MaxLength="1500" />
           <Property Name="element" Type="varchar" MaxLength="200" />
-          <Property Name="num" Type="int" />
+          <Property Name="num" Type="money" />
           <Property Name="get_date" Type="datetime" />
           <Property Name="area" Type="varchar" MaxLength="20" />
           <Property Name="datum" Type="varchar" MaxLength="250" />
@@ -1115,7 +1142,7 @@
           <Property Name="remark" Type="varchar" MaxLength="200" />
           <Property Name="export_price" Type="money" />
           <Property Name="wellhead_price" Type="money" />
-          <Property Name="order_quantity" Type="int" />
+          <Property Name="order_quantity" Type="money" />
         </EntityType>
         <!--生成过程中发现错误:
       警告 6002: 表/视图“NFD.dbo.V_FabricDetail”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
@@ -1134,7 +1161,7 @@
           <Property Name="order_id" Type="int" Nullable="false" />
           <Property Name="color_foreign" Type="varchar" MaxLength="50" />
           <Property Name="color_name" Type="varchar" MaxLength="100" />
-          <Property Name="order_quantity" Type="int" />
+          <Property Name="order_quantity" Type="money" />
           <Property Name="subtotal" Type="money" />
           <Property Name="fabric_arrival" Type="money" />
           <Property Name="fabric_add_reduction" Type="money" />
@@ -1152,6 +1179,40 @@
           <Property Name="no" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="trader_id" Type="int" />
           <Property Name="tatol" Type="money" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“NFD.dbo.V_FabricOrderBill”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="V_FabricOrderBill">
+          <Key>
+            <PropertyRef Name="fob_id" />
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="price" />
+            <PropertyRef Name="cn" />
+          </Key>
+          <Property Name="fob_id" Type="int" Nullable="false" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="price" Type="money" Nullable="false" />
+          <Property Name="sdf" Type="varchar" MaxLength="1500" />
+          <Property Name="element" Type="varchar" MaxLength="200" />
+          <Property Name="num" Type="money" />
+          <Property Name="get_date" Type="datetime" />
+          <Property Name="area" Type="varchar" MaxLength="20" />
+          <Property Name="datum" Type="varchar" MaxLength="250" />
+          <Property Name="supplier_id" Type="int" />
+          <Property Name="address" Type="varchar" MaxLength="4000" />
+          <Property Name="specifications" Type="varchar" MaxLength="200" />
+          <Property Name="color_name" Type="varchar" MaxLength="50" />
+          <Property Name="color_foreign" Type="varchar" MaxLength="50" />
+          <Property Name="clothing_number" Type="varchar" MaxLength="50" />
+          <Property Name="no" Type="varchar" MaxLength="50" />
+          <Property Name="trader_id" Type="int" />
+          <Property Name="remark" Type="varchar" MaxLength="200" />
+          <Property Name="creator_id" Type="int" />
+          <Property Name="creator_name" Type="varchar" MaxLength="50" />
+          <Property Name="create_time" Type="datetime" />
+          <Property Name="is_del" Type="bit" />
+          <Property Name="cn" Type="varchar" Nullable="false" MaxLength="200" />
         </EntityType>
         <!--生成过程中发现错误:
       警告 6002: 表/视图“NFD.dbo.V_Ht_Htd_A_S_Sd”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
@@ -1289,8 +1350,8 @@
         <EntityType Name="V_Report_Order">
           <Key>
             <PropertyRef Name="o_id" />
-            
-            
+            <PropertyRef Name="clothing_number" />
+            <PropertyRef Name="num" />
           </Key>
           <Property Name="o_id" Type="int" Nullable="false" />
           <Property Name="trader_id" Type="int" />
@@ -1298,10 +1359,10 @@
           <Property Name="clothing_number" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="num" Type="int" Nullable="false" />
           <Property Name="single_fee" Type="money" />
-          <Property Name="fabric_order_num" Type="int" />
+          <Property Name="fabric_order_num" Type="money" />
           <Property Name="consumption" Type="money" />
           <Property Name="arrival_num" Type="money" />
-          <Property Name="order_quantity" Type="int" />
+          <Property Name="order_quantity" Type="money" />
           <Property Name="fabric_price" Type="money" />
           <Property Name="fabric_total_price" Type="money" />
           <Property Name="my_accesssor" Type="money" />
@@ -1438,7 +1499,6 @@
           <EntitySet Name="Dictionaries" EntityType="NFDModel.Dictionaries" />
           <EntitySet Name="DictionariesDetail" EntityType="NFDModel.DictionariesDetail" />
           <EntitySet Name="AccessoriesDetail" EntityType="NFDModel.AccessoriesDetail" />
-          <EntitySet Name="FabricDetail" EntityType="NFDModel.FabricDetail" />
           <EntitySet Name="V_AccessoriesDetail" EntityType="NFDModel.V_AccessoriesDetail" />
           <EntitySet Name="CutBillShipment" EntityType="NFDModel.CutBillShipment" />
           <EntitySet Name="UserInfoMenuMapping" EntityType="NFDModel.UserInfoMenuMapping" />
@@ -1449,15 +1509,17 @@
           <EntitySet Name="SampleDetailHistory" EntityType="NFDModel.SampleDetailHistory" />
           <EntitySet Name="V_Sample_Detail_History" EntityType="NFDModel.V_Sample_Detail_History" />
           <EntitySet Name="V_Sample_Detail" EntityType="NFDModel.V_Sample_Detail" />
-          <EntitySet Name="FabricOrderBill" EntityType="NFDModel.FabricOrderBill" />
           <EntitySet Name="ProductionPlan" EntityType="NFDModel.ProductionPlan" />
           <EntitySet Name="V_ProductionPlan" EntityType="NFDModel.V_ProductionPlan" />
-          <EntitySet Name="V_FabricDetail" EntityType="NFDModel.V_FabricDetail" />
           <EntitySet Name="V_OrderBill" EntityType="NFDModel.V_OrderBill" />
           <EntitySet Name="ChanceBill" EntityType="NFDModel.ChanceBill" />
           <EntitySet Name="CutBill" EntityType="NFDModel.CutBill" />
+          <EntitySet Name="FabricDetail" EntityType="NFDModel.FabricDetail" />
+          <EntitySet Name="FabricOrderBill" EntityType="NFDModel.FabricOrderBill" />
+          <EntitySet Name="V_FabricOrderBill" EntityType="NFDModel.V_FabricOrderBill" />
           <EntitySet Name="V_CutBill" EntityType="NFDModel.V_CutBill" />
           <EntitySet Name="V_Report_Order" EntityType="NFDModel.V_Report_Order" />
+          <EntitySet Name="V_FabricDetail" EntityType="NFDModel.V_FabricDetail" />
         </EntityContainer>
         <EntityType Name="Linkman">
           <Key>
@@ -1869,29 +1931,6 @@
           <Property Type="DateTime" Name="create_time" />
           <Property Type="String" Name="ad_name" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="FabricDetail">
-          <Key>
-            <PropertyRef Name="fd_id" />
-          </Key>
-          <Property Type="Int32" Name="fd_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="order_id" Nullable="false" />
-          <Property Type="String" Name="color_name" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="order_quantity" />
-          <Property Type="Decimal" Name="subtotal" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="fabric_arrival" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="fabric_add_reduction" Precision="19" Scale="4" />
-          <Property Type="Int32" Name="clothes_orders_num" />
-          <Property Type="Decimal" Name="consumption" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="mf" Precision="19" Scale="4" />
-          <Property Type="DateTime" Name="get_date" />
-          <Property Type="Boolean" Name="is_del" />
-          <Property Type="String" Name="creator_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="creator_id" Nullable="false" />
-          <Property Type="DateTime" Name="modified_time" />
-          <Property Type="DateTime" Name="create_time" />
-          <Property Type="Decimal" Name="price" Precision="19" Scale="4" />
-          <Property Type="String" Name="color_foreign" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="V_AccessoriesDetail">
           <Key>
             <PropertyRef Name="ad_id" />
@@ -2114,33 +2153,6 @@
           <Property Type="Boolean" Name="is_next" />
           <Property Type="Decimal" Name="fabric_num" Precision="19" Scale="4" />
         </EntityType>
-        <EntityType Name="FabricOrderBill">
-          <Key>
-            <PropertyRef Name="fob_id" />
-          </Key>
-          <Property Type="Int32" Name="fob_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Decimal" Name="price" Nullable="false" Precision="19" Scale="4" />
-          <Property Type="String" Name="sdf" MaxLength="1500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="element" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="num" />
-          <Property Type="DateTime" Name="get_date" />
-          <Property Type="String" Name="area" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="datum" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="supplier_id" />
-          <Property Type="String" Name="address" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="specifications" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="color_name" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="color_foreign" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="clothing_number" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="no" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="trader_id" />
-          <Property Type="String" Name="remark" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="creator_id" />
-          <Property Type="String" Name="creator_name" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="create_time" />
-          <Property Type="Int32" Name="order_id" Nullable="false" />
-          <Property Type="Boolean" Name="is_del" />
-        </EntityType>
         <EntityType Name="ProductionPlan">
           <Key>
             <PropertyRef Name="pp_id" />
@@ -2198,39 +2210,6 @@
           <Property Type="DateTime" Name="create_time" />
           <Property Type="Boolean" Name="is_del" />
           <Property Type="String" Name="trader_name" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="V_FabricDetail">
-          <Key>
-            <PropertyRef Name="fd_id" />
-            <PropertyRef Name="order_id" />
-            <PropertyRef Name="creator_name" />
-            <PropertyRef Name="creator_id" />
-            <PropertyRef Name="clothing_number" />
-            <PropertyRef Name="no" />
-          </Key>
-          <Property Type="Int32" Name="fd_id" Nullable="false" />
-          <Property Type="Int32" Name="order_id" Nullable="false" />
-          <Property Type="String" Name="color_foreign" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="color_name" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="order_quantity" />
-          <Property Type="Decimal" Name="subtotal" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="fabric_arrival" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="fabric_add_reduction" Precision="19" Scale="4" />
-          <Property Type="Int32" Name="clothes_orders_num" />
-          <Property Type="Decimal" Name="consumption" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="price" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="mf" Precision="19" Scale="4" />
-          <Property Type="DateTime" Name="get_date" />
-          <Property Type="Boolean" Name="is_del" />
-          <Property Type="String" Name="creator_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="creator_id" Nullable="false" />
-          <Property Type="DateTime" Name="modified_time" />
-          <Property Type="DateTime" Name="create_time" />
-          <Property Type="String" Name="clothing_number" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="no" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="trader_id" />
-          <Property Type="Decimal" Name="tatol" Precision="19" Scale="4" />
-          <Property Type="String" Name="specifications" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="V_OrderBill">
           <Key>
@@ -2341,6 +2320,87 @@
           <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
         </EntityType>
+        <EntityType Name="FabricDetail">
+          <Key>
+            <PropertyRef Name="fd_id" />
+          </Key>
+          <Property Type="Int32" Name="fd_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <Property Type="String" Name="color_foreign" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="color_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="order_quantity" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="subtotal" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="fabric_arrival" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="fabric_add_reduction" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="clothes_orders_num" />
+          <Property Type="Decimal" Name="consumption" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="mf" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="get_date" />
+          <Property Type="Boolean" Name="is_del" />
+          <Property Type="String" Name="creator_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="creator_id" Nullable="false" />
+          <Property Type="DateTime" Name="modified_time" />
+          <Property Type="DateTime" Name="create_time" />
+        </EntityType>
+        <EntityType Name="FabricOrderBill">
+          <Key>
+            <PropertyRef Name="fob_id" />
+          </Key>
+          <Property Type="Int32" Name="fob_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="String" Name="sdf" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="element" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="num" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="get_date" />
+          <Property Type="String" Name="area" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="datum" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="supplier_id" />
+          <Property Type="String" Name="address" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="specifications" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="color_name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="color_foreign" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="clothing_number" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="no" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="trader_id" />
+          <Property Type="String" Name="remark" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="creator_id" />
+          <Property Type="String" Name="creator_name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="create_time" />
+          <Property Type="Boolean" Name="is_del" />
+        </EntityType>
+        <EntityType Name="V_FabricOrderBill">
+          <Key>
+            <PropertyRef Name="fob_id" />
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="price" />
+            <PropertyRef Name="cn" />
+          </Key>
+          <Property Type="Int32" Name="fob_id" Nullable="false" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="String" Name="sdf" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="element" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="num" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="get_date" />
+          <Property Type="String" Name="area" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="datum" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="supplier_id" />
+          <Property Type="String" Name="address" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="specifications" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="color_name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="color_foreign" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="clothing_number" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="no" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="trader_id" />
+          <Property Type="String" Name="remark" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="creator_id" />
+          <Property Type="String" Name="creator_name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="create_time" />
+          <Property Type="Boolean" Name="is_del" />
+          <Property Type="String" Name="cn" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="V_CutBill">
           <Key>
             <PropertyRef Name="c_id" />
@@ -2372,11 +2432,13 @@
           <Property Type="String" Name="remark" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="export_price" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="wellhead_price" Precision="19" Scale="4" />
-          <Property Type="Int32" Name="order_quantity" />
+          <Property Type="Decimal" Name="order_quantity" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="V_Report_Order">
           <Key>
             <PropertyRef Name="o_id" />
+            <PropertyRef Name="clothing_number" />
+            <PropertyRef Name="num" />
           </Key>
           <Property Type="Int32" Name="o_id" Nullable="false" />
           <Property Type="Int32" Name="trader_id" />
@@ -2384,10 +2446,10 @@
           <Property Type="String" Name="clothing_number" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="num" Nullable="false" />
           <Property Type="Decimal" Name="single_fee" Precision="19" Scale="4" />
-          <Property Type="Int32" Name="fabric_order_num" />
+          <Property Type="Decimal" Name="fabric_order_num" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="consumption" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="arrival_num" Precision="19" Scale="4" />
-          <Property Type="Int32" Name="order_quantity" />
+          <Property Type="Decimal" Name="order_quantity" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="fabric_price" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="fabric_total_price" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="my_accesssor" Precision="19" Scale="4" />
@@ -2406,8 +2468,41 @@
           <Property Type="Decimal" Name="contract_price_total" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="reality_total_price" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="rate" Precision="19" Scale="4" />
-          <Property Type="DateTime" Name="create_time" />
           <Property Type="Int32" Name="check_num" />
+          <Property Type="DateTime" Name="create_time" />
+        </EntityType>
+        <EntityType Name="V_FabricDetail">
+          <Key>
+            <PropertyRef Name="fd_id" />
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="creator_name" />
+            <PropertyRef Name="creator_id" />
+            <PropertyRef Name="clothing_number" />
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Type="String" Name="specifications" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="fd_id" Nullable="false" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <Property Type="String" Name="color_foreign" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="color_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="order_quantity" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="subtotal" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="fabric_arrival" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="fabric_add_reduction" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="clothes_orders_num" />
+          <Property Type="Decimal" Name="consumption" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="price" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="mf" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="get_date" />
+          <Property Type="Boolean" Name="is_del" />
+          <Property Type="String" Name="creator_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="creator_id" Nullable="false" />
+          <Property Type="DateTime" Name="modified_time" />
+          <Property Type="DateTime" Name="create_time" />
+          <Property Type="String" Name="clothing_number" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="no" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="trader_id" />
+          <Property Type="Decimal" Name="tatol" Precision="19" Scale="4" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2827,30 +2922,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FabricDetail">
-            <EntityTypeMapping TypeName="NFDModel.FabricDetail">
-              <MappingFragment StoreEntitySet="FabricDetail">
-                <ScalarProperty Name="color_foreign" ColumnName="color_foreign" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="create_time" ColumnName="create_time" />
-                <ScalarProperty Name="modified_time" ColumnName="modified_time" />
-                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
-                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
-                <ScalarProperty Name="is_del" ColumnName="is_del" />
-                <ScalarProperty Name="get_date" ColumnName="get_date" />
-                <ScalarProperty Name="mf" ColumnName="mf" />
-                <ScalarProperty Name="consumption" ColumnName="consumption" />
-                <ScalarProperty Name="clothes_orders_num" ColumnName="clothes_orders_num" />
-                <ScalarProperty Name="fabric_add_reduction" ColumnName="fabric_add_reduction" />
-                <ScalarProperty Name="fabric_arrival" ColumnName="fabric_arrival" />
-                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
-                <ScalarProperty Name="order_quantity" ColumnName="order_quantity" />
-                <ScalarProperty Name="color_name" ColumnName="color_name" />
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="fd_id" ColumnName="fd_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="V_AccessoriesDetail">
             <EntityTypeMapping TypeName="NFDModel.V_AccessoriesDetail">
               <MappingFragment StoreEntitySet="V_AccessoriesDetail">
@@ -3066,34 +3137,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FabricOrderBill">
-            <EntityTypeMapping TypeName="NFDModel.FabricOrderBill">
-              <MappingFragment StoreEntitySet="FabricOrderBill">
-                <ScalarProperty Name="is_del" ColumnName="is_del" />
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="create_time" ColumnName="create_time" />
-                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
-                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
-                <ScalarProperty Name="no" ColumnName="no" />
-                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
-                <ScalarProperty Name="color_foreign" ColumnName="color_foreign" />
-                <ScalarProperty Name="color_name" ColumnName="color_name" />
-                <ScalarProperty Name="specifications" ColumnName="specifications" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
-                <ScalarProperty Name="datum" ColumnName="datum" />
-                <ScalarProperty Name="area" ColumnName="area" />
-                <ScalarProperty Name="get_date" ColumnName="get_date" />
-                <ScalarProperty Name="num" ColumnName="num" />
-                <ScalarProperty Name="element" ColumnName="element" />
-                <ScalarProperty Name="sdf" ColumnName="sdf" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="fob_id" ColumnName="fob_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProductionPlan">
             <EntityTypeMapping TypeName="NFDModel.ProductionPlan">
               <MappingFragment StoreEntitySet="ProductionPlan">
@@ -3150,35 +3193,6 @@
                 <ScalarProperty Name="style_name" ColumnName="style_name" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="pp_id" ColumnName="pp_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_FabricDetail">
-            <EntityTypeMapping TypeName="NFDModel.V_FabricDetail">
-              <MappingFragment StoreEntitySet="V_FabricDetail">
-                <ScalarProperty Name="specifications" ColumnName="specifications" />
-                <ScalarProperty Name="tatol" ColumnName="tatol" />
-                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
-                <ScalarProperty Name="no" ColumnName="no" />
-                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
-                <ScalarProperty Name="create_time" ColumnName="create_time" />
-                <ScalarProperty Name="modified_time" ColumnName="modified_time" />
-                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
-                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
-                <ScalarProperty Name="is_del" ColumnName="is_del" />
-                <ScalarProperty Name="get_date" ColumnName="get_date" />
-                <ScalarProperty Name="mf" ColumnName="mf" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="consumption" ColumnName="consumption" />
-                <ScalarProperty Name="clothes_orders_num" ColumnName="clothes_orders_num" />
-                <ScalarProperty Name="fabric_add_reduction" ColumnName="fabric_add_reduction" />
-                <ScalarProperty Name="fabric_arrival" ColumnName="fabric_arrival" />
-                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
-                <ScalarProperty Name="order_quantity" ColumnName="order_quantity" />
-                <ScalarProperty Name="color_name" ColumnName="color_name" />
-                <ScalarProperty Name="color_foreign" ColumnName="color_foreign" />
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="fd_id" ColumnName="fd_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3289,6 +3303,87 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FabricDetail">
+            <EntityTypeMapping TypeName="NFDModel.FabricDetail">
+              <MappingFragment StoreEntitySet="FabricDetail">
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="modified_time" ColumnName="modified_time" />
+                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
+                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
+                <ScalarProperty Name="is_del" ColumnName="is_del" />
+                <ScalarProperty Name="get_date" ColumnName="get_date" />
+                <ScalarProperty Name="mf" ColumnName="mf" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="consumption" ColumnName="consumption" />
+                <ScalarProperty Name="clothes_orders_num" ColumnName="clothes_orders_num" />
+                <ScalarProperty Name="fabric_add_reduction" ColumnName="fabric_add_reduction" />
+                <ScalarProperty Name="fabric_arrival" ColumnName="fabric_arrival" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="order_quantity" ColumnName="order_quantity" />
+                <ScalarProperty Name="color_name" ColumnName="color_name" />
+                <ScalarProperty Name="color_foreign" ColumnName="color_foreign" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="fd_id" ColumnName="fd_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FabricOrderBill">
+            <EntityTypeMapping TypeName="NFDModel.FabricOrderBill">
+              <MappingFragment StoreEntitySet="FabricOrderBill">
+                <ScalarProperty Name="is_del" ColumnName="is_del" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
+                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
+                <ScalarProperty Name="color_foreign" ColumnName="color_foreign" />
+                <ScalarProperty Name="color_name" ColumnName="color_name" />
+                <ScalarProperty Name="specifications" ColumnName="specifications" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="get_date" ColumnName="get_date" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="element" ColumnName="element" />
+                <ScalarProperty Name="sdf" ColumnName="sdf" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="fob_id" ColumnName="fob_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_FabricOrderBill">
+            <EntityTypeMapping TypeName="NFDModel.V_FabricOrderBill">
+              <MappingFragment StoreEntitySet="V_FabricOrderBill">
+                <ScalarProperty Name="cn" ColumnName="cn" />
+                <ScalarProperty Name="is_del" ColumnName="is_del" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
+                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
+                <ScalarProperty Name="color_foreign" ColumnName="color_foreign" />
+                <ScalarProperty Name="color_name" ColumnName="color_name" />
+                <ScalarProperty Name="specifications" ColumnName="specifications" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="get_date" ColumnName="get_date" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="element" ColumnName="element" />
+                <ScalarProperty Name="sdf" ColumnName="sdf" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="fob_id" ColumnName="fob_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="V_CutBill">
             <EntityTypeMapping TypeName="NFDModel.V_CutBill">
               <MappingFragment StoreEntitySet="V_CutBill">
@@ -3324,8 +3419,8 @@
           <EntitySetMapping Name="V_Report_Order">
             <EntityTypeMapping TypeName="NFDModel.V_Report_Order">
               <MappingFragment StoreEntitySet="V_Report_Order">
-                <ScalarProperty Name="check_num" ColumnName="check_num" />
                 <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="check_num" ColumnName="check_num" />
                 <ScalarProperty Name="rate" ColumnName="rate" />
                 <ScalarProperty Name="reality_total_price" ColumnName="reality_total_price" />
                 <ScalarProperty Name="contract_price_total" ColumnName="contract_price_total" />
@@ -3354,6 +3449,35 @@
                 <ScalarProperty Name="trader_name" ColumnName="trader_name" />
                 <ScalarProperty Name="trader_id" ColumnName="trader_id" />
                 <ScalarProperty Name="o_id" ColumnName="o_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_FabricDetail">
+            <EntityTypeMapping TypeName="NFDModel.V_FabricDetail">
+              <MappingFragment StoreEntitySet="V_FabricDetail">
+                <ScalarProperty Name="tatol" ColumnName="tatol" />
+                <ScalarProperty Name="trader_id" ColumnName="trader_id" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="clothing_number" ColumnName="clothing_number" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="modified_time" ColumnName="modified_time" />
+                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
+                <ScalarProperty Name="creator_name" ColumnName="creator_name" />
+                <ScalarProperty Name="is_del" ColumnName="is_del" />
+                <ScalarProperty Name="get_date" ColumnName="get_date" />
+                <ScalarProperty Name="mf" ColumnName="mf" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="consumption" ColumnName="consumption" />
+                <ScalarProperty Name="clothes_orders_num" ColumnName="clothes_orders_num" />
+                <ScalarProperty Name="fabric_add_reduction" ColumnName="fabric_add_reduction" />
+                <ScalarProperty Name="fabric_arrival" ColumnName="fabric_arrival" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="order_quantity" ColumnName="order_quantity" />
+                <ScalarProperty Name="color_name" ColumnName="color_name" />
+                <ScalarProperty Name="color_foreign" ColumnName="color_foreign" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="fd_id" ColumnName="fd_id" />
+                <ScalarProperty Name="specifications" ColumnName="specifications" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3396,7 +3520,6 @@
         <EntityTypeShape EntityType="NFDModel.Dictionaries" Width="1.5" PointX="0.75" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.DictionariesDetail" Width="1.5" PointX="0.75" PointY="6.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.AccessoriesDetail" Width="1.5" PointX="2.375" PointY="2" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.FabricDetail" Width="1.5" PointX="0.75" PointY="7.125" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_AccessoriesDetail" Width="1.5" PointX="7.75" PointY="4.125" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.CutBillShipment" Width="1.5" PointX="3.375" PointY="5.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.UserInfoMenuMapping" Width="1.5" PointX="9.625" PointY="2" Height="0.4" IsExpanded="false" />
@@ -3407,15 +3530,17 @@
         <EntityTypeShape EntityType="NFDModel.SampleDetailHistory" Width="1.5" PointX="8.125" PointY="10.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_Sample_Detail_History" Width="2" PointX="3.875" PointY="10.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_Sample_Detail" Width="1.5" PointX="3.375" PointY="9.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.FabricOrderBill" Width="1.5" PointX="12" PointY="4.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.ProductionPlan" Width="1.5" PointX="5.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_ProductionPlan" Width="1.5" PointX="6.75" PointY="10.375" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_FabricDetail" Width="1.5" PointX="7.75" PointY="6.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_OrderBill" Width="1.5" PointX="7.625" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.ChanceBill" Width="1.5" PointX="7.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.CutBill" Width="1.5" PointX="3.5" PointY="6.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_CutBill" Width="1.5" PointX="6.875" PointY="9.125" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="0.75" PointY="8.75" Height="6.5545052083333246" />
+        <EntityTypeShape EntityType="NFDModel.FabricDetail" Width="1.5" PointX="12" PointY="5.375" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.FabricOrderBill" Width="1.5" PointX="10.375" PointY="6.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.V_FabricOrderBill" Width="1.5" PointX="10.375" PointY="8.75" Height="5.4083870442708246" />
+        <EntityTypeShape EntityType="NFDModel.V_CutBill" Width="1.5" PointX="12.375" PointY="6.75" Height="5.9814461263020746" />
+        <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="6.625" PointY="9.375" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.V_FabricDetail" Width="1.5" PointX="7.25" PointY="6.75" Height="0.4" IsExpanded="false" />
       </Diagram>
     </Diagrams>
   </Designer>

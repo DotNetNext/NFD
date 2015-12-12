@@ -116,6 +116,19 @@ namespace NFD.Areas.Bill.Controllers
                 reval.Columns.Add(new JQGridColumn()
                 {
                     Frozen = true,
+                    DataField = "cn",
+                    Editable = true,
+                    HeaderText = "成衣款号",
+                    Searchable = true,
+                    SearchType = SearchType.TextBox,
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                                     new  RequiredValidator()
+                                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    Frozen = true,
                     DataField = "no",
                     Editable = true,
                     HeaderText = "面料品番",
@@ -343,6 +356,7 @@ namespace NFD.Areas.Bill.Controllers
             var traderList = BLL.TraderManager.GetList();
             DataTable dt = new DataTable();
             dt.Columns.Add("客户", typeof(string));
+            dt.Columns.Add("成衣款号", typeof(string));
             dt.Columns.Add("面料品番", typeof(string));
             dt.Columns.Add("规格", typeof(string));
             dt.Columns.Add("面料单价(元)", typeof(string));
@@ -362,6 +376,7 @@ namespace NFD.Areas.Bill.Controllers
             {
                 DataRow dr = dt.NewRow();
                 dr["客户"] = traderList.Single(c => c.trader_id == r.trader_id).name;
+                dr["成衣款号"] = r.cn;
                 dr["面料品番"] = r.no;
                 dr["规格"] = r.specifications;
                 dr["面料单价(元)"] = r.price.ToMoney();
