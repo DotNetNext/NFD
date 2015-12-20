@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-
 namespace NFD.Entities.Data
 {
     #region 上下文
@@ -688,8 +688,25 @@ namespace NFD.Entities.Data
             }
         }
         private ObjectSet<V_FabricDetail> _V_FabricDetail;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<CutBill2> CutBill2
+        {
+            get
+            {
+                if ((_CutBill2 == null))
+                {
+                    _CutBill2 = base.CreateObjectSet<CutBill2>("CutBill2");
+                }
+                return _CutBill2;
+            }
+        }
+        private ObjectSet<CutBill2> _CutBill2;
 
         #endregion
+
         #region AddTo 方法
     
         /// <summary>
@@ -1003,13 +1020,21 @@ namespace NFD.Entities.Data
         {
             base.AddObject("V_FabricDetail", v_FabricDetail);
         }
+    
+        /// <summary>
+        /// 用于向 CutBill2 EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToCutBill2(CutBill2 cutBill2)
+        {
+            base.AddObject("CutBill2", cutBill2);
+        }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region 实体
     
     /// <summary>
@@ -1040,6 +1065,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -1478,6 +1504,7 @@ namespace NFD.Entities.Data
         partial void Onad_nameChanged();
 
         #endregion
+
     
     }
     
@@ -1511,6 +1538,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -2045,6 +2073,7 @@ namespace NFD.Entities.Data
         partial void OnbinnameChanged();
 
         #endregion
+
     
     }
     
@@ -2080,6 +2109,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -2566,6 +2596,7 @@ namespace NFD.Entities.Data
         partial void Onconfirm_contentChanged();
 
         #endregion
+
     
     }
     
@@ -2599,6 +2630,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -2749,6 +2781,7 @@ namespace NFD.Entities.Data
         partial void OnfileNameChanged();
 
         #endregion
+
     
     }
     
@@ -2778,6 +2811,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -3480,6 +3514,7 @@ namespace NFD.Entities.Data
         partial void Oncost_price3Changed();
 
         #endregion
+
     
     }
     
@@ -3509,6 +3544,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -3851,6 +3887,7 @@ namespace NFD.Entities.Data
         partial void Onsupplier_nameChanged();
 
         #endregion
+
     
     }
     
@@ -3880,6 +3917,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -4486,6 +4524,424 @@ namespace NFD.Entities.Data
         partial void Onwellhead_priceChanged();
 
         #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// 没有元数据文档可用。
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="NFDModel", Name="CutBill2")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CutBill2 : EntityObject
+    {
+        #region 工厂方法
+    
+        /// <summary>
+        /// 创建新的 CutBill2 对象。
+        /// </summary>
+        /// <param name="bt2_id">bt2_id 属性的初始值。</param>
+        public static CutBill2 CreateCutBill2(global::System.Int32 bt2_id)
+        {
+            CutBill2 cutBill2 = new CutBill2();
+            cutBill2.bt2_id = bt2_id;
+            return cutBill2;
+        }
+
+        #endregion
+
+        #region 基元属性
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 bt2_id
+        {
+            get
+            {
+                return _bt2_id;
+            }
+            set
+            {
+                if (_bt2_id != value)
+                {
+                    Onbt2_idChanging(value);
+                    ReportPropertyChanging("bt2_id");
+                    _bt2_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("bt2_id");
+                    Onbt2_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _bt2_id;
+        partial void Onbt2_idChanging(global::System.Int32 value);
+        partial void Onbt2_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String color_foreign
+        {
+            get
+            {
+                return _color_foreign;
+            }
+            set
+            {
+                Oncolor_foreignChanging(value);
+                ReportPropertyChanging("color_foreign");
+                _color_foreign = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("color_foreign");
+                Oncolor_foreignChanged();
+            }
+        }
+        private global::System.String _color_foreign;
+        partial void Oncolor_foreignChanging(global::System.String value);
+        partial void Oncolor_foreignChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String color_name
+        {
+            get
+            {
+                return _color_name;
+            }
+            set
+            {
+                Oncolor_nameChanging(value);
+                ReportPropertyChanging("color_name");
+                _color_name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("color_name");
+                Oncolor_nameChanged();
+            }
+        }
+        private global::System.String _color_name;
+        partial void Oncolor_nameChanging(global::System.String value);
+        partial void Oncolor_nameChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> order_quantity
+        {
+            get
+            {
+                return _order_quantity;
+            }
+            set
+            {
+                Onorder_quantityChanging(value);
+                ReportPropertyChanging("order_quantity");
+                _order_quantity = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("order_quantity");
+                Onorder_quantityChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _order_quantity;
+        partial void Onorder_quantityChanging(Nullable<global::System.Decimal> value);
+        partial void Onorder_quantityChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> fabric_arrival
+        {
+            get
+            {
+                return _fabric_arrival;
+            }
+            set
+            {
+                Onfabric_arrivalChanging(value);
+                ReportPropertyChanging("fabric_arrival");
+                _fabric_arrival = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fabric_arrival");
+                Onfabric_arrivalChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _fabric_arrival;
+        partial void Onfabric_arrivalChanging(Nullable<global::System.Decimal> value);
+        partial void Onfabric_arrivalChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String size
+        {
+            get
+            {
+                return _size;
+            }
+            set
+            {
+                OnsizeChanging(value);
+                ReportPropertyChanging("size");
+                _size = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("size");
+                OnsizeChanged();
+            }
+        }
+        private global::System.String _size;
+        partial void OnsizeChanging(global::System.String value);
+        partial void OnsizeChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> note_num
+        {
+            get
+            {
+                return _note_num;
+            }
+            set
+            {
+                Onnote_numChanging(value);
+                ReportPropertyChanging("note_num");
+                _note_num = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("note_num");
+                Onnote_numChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _note_num;
+        partial void Onnote_numChanging(Nullable<global::System.Decimal> value);
+        partial void Onnote_numChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> will_num
+        {
+            get
+            {
+                return _will_num;
+            }
+            set
+            {
+                Onwill_numChanging(value);
+                ReportPropertyChanging("will_num");
+                _will_num = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("will_num");
+                Onwill_numChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _will_num;
+        partial void Onwill_numChanging(Nullable<global::System.Decimal> value);
+        partial void Onwill_numChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> will_num2
+        {
+            get
+            {
+                return _will_num2;
+            }
+            set
+            {
+                Onwill_num2Changing(value);
+                ReportPropertyChanging("will_num2");
+                _will_num2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("will_num2");
+                Onwill_num2Changed();
+            }
+        }
+        private Nullable<global::System.Decimal> _will_num2;
+        partial void Onwill_num2Changing(Nullable<global::System.Decimal> value);
+        partial void Onwill_num2Changed();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> actual_num
+        {
+            get
+            {
+                return _actual_num;
+            }
+            set
+            {
+                Onactual_numChanging(value);
+                ReportPropertyChanging("actual_num");
+                _actual_num = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("actual_num");
+                Onactual_numChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _actual_num;
+        partial void Onactual_numChanging(Nullable<global::System.Decimal> value);
+        partial void Onactual_numChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> actual_num2
+        {
+            get
+            {
+                return _actual_num2;
+            }
+            set
+            {
+                Onactual_num2Changing(value);
+                ReportPropertyChanging("actual_num2");
+                _actual_num2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("actual_num2");
+                Onactual_num2Changed();
+            }
+        }
+        private Nullable<global::System.Decimal> _actual_num2;
+        partial void Onactual_num2Changing(Nullable<global::System.Decimal> value);
+        partial void Onactual_num2Changed();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> check_num
+        {
+            get
+            {
+                return _check_num;
+            }
+            set
+            {
+                Oncheck_numChanging(value);
+                ReportPropertyChanging("check_num");
+                _check_num = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("check_num");
+                Oncheck_numChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _check_num;
+        partial void Oncheck_numChanging(Nullable<global::System.Decimal> value);
+        partial void Oncheck_numChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> check_num2
+        {
+            get
+            {
+                return _check_num2;
+            }
+            set
+            {
+                Oncheck_num2Changing(value);
+                ReportPropertyChanging("check_num2");
+                _check_num2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("check_num2");
+                Oncheck_num2Changed();
+            }
+        }
+        private Nullable<global::System.Decimal> _check_num2;
+        partial void Oncheck_num2Changing(Nullable<global::System.Decimal> value);
+        partial void Oncheck_num2Changed();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> delivers_num
+        {
+            get
+            {
+                return _delivers_num;
+            }
+            set
+            {
+                Ondelivers_numChanging(value);
+                ReportPropertyChanging("delivers_num");
+                _delivers_num = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("delivers_num");
+                Ondelivers_numChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _delivers_num;
+        partial void Ondelivers_numChanging(Nullable<global::System.Decimal> value);
+        partial void Ondelivers_numChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> delivers_num2
+        {
+            get
+            {
+                return _delivers_num2;
+            }
+            set
+            {
+                Ondelivers_num2Changing(value);
+                ReportPropertyChanging("delivers_num2");
+                _delivers_num2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("delivers_num2");
+                Ondelivers_num2Changed();
+            }
+        }
+        private Nullable<global::System.Decimal> _delivers_num2;
+        partial void Ondelivers_num2Changing(Nullable<global::System.Decimal> value);
+        partial void Ondelivers_num2Changed();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> order_id
+        {
+            get
+            {
+                return _order_id;
+            }
+            set
+            {
+                Onorder_idChanging(value);
+                ReportPropertyChanging("order_id");
+                _order_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("order_id");
+                Onorder_idChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _order_id;
+        partial void Onorder_idChanging(Nullable<global::System.Int32> value);
+        partial void Onorder_idChanged();
+
+        #endregion
+
     
     }
     
@@ -4513,6 +4969,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -4615,6 +5072,7 @@ namespace NFD.Entities.Data
         partial void OnnumChanged();
 
         #endregion
+
     
     }
     
@@ -4644,6 +5102,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -4794,6 +5253,7 @@ namespace NFD.Entities.Data
         partial void Onvalue3Changed();
 
         #endregion
+
     
     }
     
@@ -4821,6 +5281,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -5043,6 +5504,7 @@ namespace NFD.Entities.Data
         partial void Onvalue3Changed();
 
         #endregion
+
     
     }
     
@@ -5074,6 +5536,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -5512,6 +5975,7 @@ namespace NFD.Entities.Data
         partial void Oncreate_timeChanged();
 
         #endregion
+
     
     }
     
@@ -5541,6 +6005,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -6075,6 +6540,7 @@ namespace NFD.Entities.Data
         partial void Onis_delChanged();
 
         #endregion
+
     
     }
     
@@ -6108,6 +6574,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -6450,6 +6917,7 @@ namespace NFD.Entities.Data
         partial void OnremarkChanged();
 
         #endregion
+
     
     }
     
@@ -6481,6 +6949,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -6871,6 +7340,7 @@ namespace NFD.Entities.Data
         partial void Onis_nextChanged();
 
         #endregion
+
     
     }
     
@@ -6904,6 +7374,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -7294,6 +7765,7 @@ namespace NFD.Entities.Data
         partial void Onconfirm_contentChanged();
 
         #endregion
+
     
     }
     
@@ -7327,6 +7799,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -7597,6 +8070,7 @@ namespace NFD.Entities.Data
         partial void Onis_delChanged();
 
         #endregion
+
     
     }
     
@@ -7632,6 +8106,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -8430,6 +8905,7 @@ namespace NFD.Entities.Data
         partial void Onis_orderChanged();
 
         #endregion
+
     
     }
     
@@ -8457,6 +8933,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -9015,6 +9492,7 @@ namespace NFD.Entities.Data
         partial void Onis_delChanged();
 
         #endregion
+
     
     }
     
@@ -9042,6 +9520,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -9096,6 +9575,7 @@ namespace NFD.Entities.Data
         partial void Onrole_nameChanged();
 
         #endregion
+
     
     }
     
@@ -9129,6 +9609,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -9327,6 +9808,7 @@ namespace NFD.Entities.Data
         partial void Oncreate_timeChanged();
 
         #endregion
+
     
     }
     
@@ -9358,6 +9840,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -9820,6 +10303,7 @@ namespace NFD.Entities.Data
         partial void Onfabric_numChanged();
 
         #endregion
+
     
     }
     
@@ -9853,6 +10337,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -10339,6 +10824,7 @@ namespace NFD.Entities.Data
         partial void Onfabric_numChanged();
 
         #endregion
+
     
     }
     
@@ -10370,6 +10856,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -10856,6 +11343,7 @@ namespace NFD.Entities.Data
         partial void OnemailChanged();
 
         #endregion
+
     
     }
     
@@ -10885,6 +11373,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -11011,6 +11500,7 @@ namespace NFD.Entities.Data
         partial void OnpasswordChanged();
 
         #endregion
+
     
     }
     
@@ -11040,6 +11530,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -11118,6 +11609,7 @@ namespace NFD.Entities.Data
         partial void Onmenu_idChanged();
 
         #endregion
+
     
     }
     
@@ -11153,6 +11645,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -11702,6 +12195,7 @@ namespace NFD.Entities.Data
         partial void Ontol_priceChanged();
 
         #endregion
+
     
     }
     
@@ -11735,6 +12229,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -12401,6 +12896,7 @@ namespace NFD.Entities.Data
         partial void OnbinnameChanged();
 
         #endregion
+
     
     }
     
@@ -12436,6 +12932,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -13057,6 +13554,7 @@ namespace NFD.Entities.Data
         partial void Oncolor_nameChanged();
 
         #endregion
+
     
     }
     
@@ -13086,6 +13584,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -13866,6 +14365,7 @@ namespace NFD.Entities.Data
         partial void Oncost_price3Changed();
 
         #endregion
+
     
     }
     
@@ -13895,6 +14395,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -14531,6 +15032,7 @@ namespace NFD.Entities.Data
         partial void Onorder_quantityChanged();
 
         #endregion
+
     
     }
     
@@ -14566,6 +15068,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -15139,6 +15642,7 @@ namespace NFD.Entities.Data
         partial void OntatolChanged();
 
         #endregion
+
     
     }
     
@@ -15170,6 +15674,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -15737,6 +16242,7 @@ namespace NFD.Entities.Data
         partial void OncnChanged();
 
         #endregion
+
     
     }
     
@@ -15770,6 +16276,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -16664,6 +17171,7 @@ namespace NFD.Entities.Data
         partial void OnbinnameChanged();
 
         #endregion
+
     
     }
     
@@ -16699,6 +17207,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -17560,6 +18069,7 @@ namespace NFD.Entities.Data
         partial void Onis_orderChanged();
 
         #endregion
+
     
     }
     
@@ -17587,6 +18097,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -18172,6 +18683,7 @@ namespace NFD.Entities.Data
         partial void Ontrader_nameChanged();
 
         #endregion
+
     
     }
     
@@ -18201,6 +18713,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -18933,6 +19446,7 @@ namespace NFD.Entities.Data
         partial void Oncreate_timeChanged();
 
         #endregion
+
     
     }
     
@@ -18970,6 +19484,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -19258,6 +19773,7 @@ namespace NFD.Entities.Data
         partial void Ontrader_idChanged();
 
         #endregion
+
     
     }
     
@@ -19289,6 +19805,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -19808,6 +20325,7 @@ namespace NFD.Entities.Data
         partial void Onfabric_numChanged();
 
         #endregion
+
     
     }
     
@@ -19841,6 +20359,7 @@ namespace NFD.Entities.Data
         }
 
         #endregion
+
         #region 基元属性
     
         /// <summary>
@@ -20387,9 +20906,11 @@ namespace NFD.Entities.Data
         partial void Onfabric_numChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }

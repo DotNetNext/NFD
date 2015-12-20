@@ -44,9 +44,9 @@ namespace NFD.BLL.Bill
         /// <returns></returns>
         public static bool SaveFabricOrderBillAll(FabricOrderBill bill)
         {
-            if (!bill.area.ToConvertString().Contains("±") || bill.area.ToConvertString().Contains("+")|| bill.area.ToConvertString().Contains("-"))
+            if (!bill.area.ToConvertString().Contains("±") || bill.area.ToConvertString().Contains("+") || bill.area.ToConvertString().Contains("-"))
             {
-                bill.area= "±"+bill.area;
+                bill.area = "±" + bill.area;
             }
             using (NFDEntities db = new NFDEntities())
             {
@@ -63,18 +63,19 @@ namespace NFD.BLL.Bill
 
                     FabricDetail df = new FabricDetail()
                     {
-                      create_time=DateTime.Now,
-                      creator_name=bill.creator_name,
-                      color_name = bill.color_foreign,
-                      price=bill.price,
-                      order_quantity=bill.num,
-                      order_id=bill.order_id,
-                      color_foreign=bill.no,
-                       mf=Convert.ToDecimal(bill.sdf.ToMoney()),
-                      get_date=bill.get_date
+                        create_time = DateTime.Now,
+                        creator_name = bill.creator_name,
+                        color_name = bill.color_foreign,
+                        price = bill.price,
+                        order_quantity = bill.num,
+                        order_id = bill.order_id,
+                        color_foreign = bill.no,
+                        mf = Convert.ToDecimal(bill.sdf.ToMoney()),
+                        get_date = bill.get_date
 
                     };
                     db.FabricDetail.AddObject(df);
+
 
                     var isSaved = db.SaveChanges() > 0;
                     return isSaved;

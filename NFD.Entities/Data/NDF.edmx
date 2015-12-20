@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NFDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="NFDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="NFDModelStoreContainer">
           <EntitySet Name="AccessoriesDetail" EntityType="NFDModel.Store.AccessoriesDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AmplifierSample" EntityType="NFDModel.Store.AmplifierSample" store:Type="Tables" Schema="dbo" />
@@ -13,6 +13,7 @@
           <EntitySet Name="ChanceBill" EntityType="NFDModel.Store.ChanceBill" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ChanceBillDetail" EntityType="NFDModel.Store.ChanceBillDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CutBill" EntityType="NFDModel.Store.CutBill" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CutBill2" EntityType="NFDModel.Store.CutBill2" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CutBillShipment" EntityType="NFDModel.Store.CutBillShipment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Dictionaries" EntityType="NFDModel.Store.Dictionaries" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DictionariesDetail" EntityType="NFDModel.Store.DictionariesDetail" store:Type="Tables" Schema="dbo" />
@@ -614,6 +615,27 @@
           <Property Name="remark" Type="varchar" MaxLength="200" />
           <Property Name="export_price" Type="money" />
           <Property Name="wellhead_price" Type="money" />
+        </EntityType>
+        <EntityType Name="CutBill2">
+          <Key>
+            <PropertyRef Name="bt2_id" />
+          </Key>
+          <Property Name="bt2_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="color_foreign" Type="varchar" MaxLength="500" />
+          <Property Name="color_name" Type="varchar" MaxLength="500" />
+          <Property Name="order_quantity" Type="money" />
+          <Property Name="fabric_arrival" Type="money" />
+          <Property Name="size" Type="varchar" MaxLength="500" />
+          <Property Name="note_num" Type="money" />
+          <Property Name="will_num" Type="money" />
+          <Property Name="will_num2" Type="money" />
+          <Property Name="actual_num" Type="money" />
+          <Property Name="actual_num2" Type="money" />
+          <Property Name="check_num" Type="money" />
+          <Property Name="check_num2" Type="money" />
+          <Property Name="delivers_num" Type="money" />
+          <Property Name="delivers_num2" Type="money" />
+          <Property Name="order_id" Type="int" />
         </EntityType>
         <EntityType Name="CutBillShipment">
           <Key>
@@ -1520,6 +1542,7 @@
           <EntitySet Name="V_CutBill" EntityType="NFDModel.V_CutBill" />
           <EntitySet Name="V_Report_Order" EntityType="NFDModel.V_Report_Order" />
           <EntitySet Name="V_FabricDetail" EntityType="NFDModel.V_FabricDetail" />
+          <EntitySet Name="CutBill2" EntityType="NFDModel.CutBill2" />
         </EntityContainer>
         <EntityType Name="Linkman">
           <Key>
@@ -2504,6 +2527,27 @@
           <Property Type="Int32" Name="trader_id" />
           <Property Type="Decimal" Name="tatol" Precision="19" Scale="4" />
         </EntityType>
+        <EntityType Name="CutBill2">
+          <Key>
+            <PropertyRef Name="bt2_id" />
+          </Key>
+          <Property Type="Int32" Name="bt2_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="color_foreign" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="color_name" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="order_quantity" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="fabric_arrival" Precision="19" Scale="4" />
+          <Property Type="String" Name="size" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="note_num" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="will_num" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="will_num2" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="actual_num" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="actual_num2" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="check_num" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="check_num2" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="delivers_num" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="delivers_num2" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="order_id" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3481,6 +3525,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CutBill2">
+            <EntityTypeMapping TypeName="NFDModel.CutBill2">
+              <MappingFragment StoreEntitySet="CutBill2">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="delivers_num2" ColumnName="delivers_num2" />
+                <ScalarProperty Name="delivers_num" ColumnName="delivers_num" />
+                <ScalarProperty Name="check_num2" ColumnName="check_num2" />
+                <ScalarProperty Name="check_num" ColumnName="check_num" />
+                <ScalarProperty Name="actual_num2" ColumnName="actual_num2" />
+                <ScalarProperty Name="actual_num" ColumnName="actual_num" />
+                <ScalarProperty Name="will_num2" ColumnName="will_num2" />
+                <ScalarProperty Name="will_num" ColumnName="will_num" />
+                <ScalarProperty Name="note_num" ColumnName="note_num" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="fabric_arrival" ColumnName="fabric_arrival" />
+                <ScalarProperty Name="order_quantity" ColumnName="order_quantity" />
+                <ScalarProperty Name="color_name" ColumnName="color_name" />
+                <ScalarProperty Name="color_foreign" ColumnName="color_foreign" />
+                <ScalarProperty Name="bt2_id" ColumnName="bt2_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3541,6 +3607,7 @@
         <EntityTypeShape EntityType="NFDModel.V_CutBill" Width="1.5" PointX="12.375" PointY="6.75" Height="5.9814461263020746" />
         <EntityTypeShape EntityType="NFDModel.V_Report_Order" Width="1.5" PointX="6.625" PointY="9.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="NFDModel.V_FabricDetail" Width="1.5" PointX="7.25" PointY="6.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="NFDModel.CutBill2" Width="1.5" PointX="0.75" PointY="7.75" Height="3.7681689453125102" />
       </Diagram>
     </Diagrams>
   </Designer>

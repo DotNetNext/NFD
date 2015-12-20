@@ -10,7 +10,7 @@
 
 function JQgridSaveBindByFirst(gridId, formObj, id) {
     var data = $("#"+gridId).jqGrid("getRowData");
-    if ($(data).size() > 1) {
+    if ($(data).size() >= 1) {
         var rowFirst = data[0];
         var jno = formObj.find("#"+id);
         if (jno.val() == "") {

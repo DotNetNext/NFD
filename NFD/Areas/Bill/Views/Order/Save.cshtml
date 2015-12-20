@@ -31,12 +31,25 @@
                 init: function () {
                     $$.addEvents();
                     JQgridSaved("FrmGrid_fdoGrid", function (formObj) {
-
+  
                         JQgridSaveBindByFirst("fdoGrid", formObj, "no");
                         JQgridSaveBindByFirst("fdoGrid", formObj, "specifications")
                         JQgridSaveBindByFirst("fdoGrid", formObj, "sdf")
                         JQgridSaveBindByFirst("fdoGrid", formObj, "element")
                         
+                    });
+                     JQgridSaved("FrmGrid_ppGrid", function (formObj) {
+                         var FrmGrid_ppGrid=$("#FrmGrid_ppGrid");
+                         var clothing_number=$(".saveTable #clothing_number").val();
+                         var no=$(".saveTable #no").val();
+                         var styles=$(".saveTable #styles").val();
+                         var trader_id=$(".saveTable #trader_id option:selected").text();
+                         var factory_name=$(".saveTable  #factory_name option:selected").text();
+                         FrmGrid_ppGrid.find("#style_name").val(styles);
+                         FrmGrid_ppGrid.find("#style_no").val(clothing_number);
+                         FrmGrid_ppGrid.find("#no").val(no);
+                         debugger
+                         FrmGrid_ppGrid.find("#factory_name").val(factory_name);
                     });
                 },
                 addEvents: function () {
