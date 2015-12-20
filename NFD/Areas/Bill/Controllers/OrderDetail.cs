@@ -67,6 +67,10 @@ namespace NFD.Areas.Bill.Controllers
                 ppGrid.DataUrl += "?id=" + id;
                 ViewBag.ppGrid = ppGrid;
 
+                var cutGrid = GetCutGridModel;
+                cutGrid.DataUrl += "?id=" + id;
+                ViewBag.cutGrid = cutGrid;
+
                 ViewBag.adTol = OrderBillManager.GetADTolByOrderId(id);
             }
 
@@ -861,6 +865,257 @@ namespace NFD.Areas.Bill.Controllers
         }
         #endregion
 
+
+        #region 裁剪
+        public JsonResult GetCutGridData(int id)
+        {
+            using (NFDEntities db = new NFDEntities())
+            {
+                var gridDataList = CutBill2Manager.GetV_CutBill(db).Where(it=>it.order_id==id);
+                var gridModel = GetCutGridModel;
+                return gridModel.DataBind(gridDataList);
+            }
+        }
+
+        public ActionResult EditCutGridData(CutBill2 bill)
+        {
+            if (GetFabricOrderGridModel.AjaxCallBackMode == AjaxCallBackMode.DeleteRow)
+            {
+                CutBill2Manager.DelBill(bill.bt2_id);
+            }
+            else
+            {
+                var orderId = RequestHelper.QueryStringByUrlString(Request.UrlReferrer.ToString(), "id").ToInt();
+                if (orderId > 0)
+                {
+                    bill.order_id = orderId;
+                    CutBill2Manager.SaveCuiBillAll(bill);
+                }
+            }
+            return RedirectToAction("Save");
+        }
+        /// <summary>
+        /// 获取面料订购
+        /// </summary>
+        public JQGrid GetCutGridModel
+        {
+            get
+            {
+                //供应商
+                var providerList = DictManager.GetProvider().Select(c => new SelectListItem() { Value = c.dd_id + "", Text = c.d_name }).ToList();
+                #region 设置
+                var reval = new JQGrid();
+                reval.AutoWidth = true;
+                int height = BLL.AppstringManager.GetGridWindowHeight;
+                reval.Height = 300;
+                reval.AddDialogSettings = new AddDialogSettings()
+                {
+                    Width = 400,
+                    CloseAfterAdding = true,
+                    TopOffset = 2000,
+                    LeftOffset = 300
+
+                };
+                reval.EditDialogSettings = new EditDialogSettings()
+                {
+                    Width = 400,
+                    CloseAfterEditing = true,
+                    TopOffset = reval.AddDialogSettings.TopOffset,
+                    LeftOffset = reval.AddDialogSettings.LeftOffset
+                };
+                reval.SortSettings = new SortSettings()
+                {
+                    MultiColumnSorting = true,
+                    InitialSortColumn = "bt2_id desc",
+
+
+                };
+                reval.ToolBarSettings = new ToolBarSettings()
+                {
+                    ShowEditButton = true,
+                    ShowAddButton = true,
+                    ShowDeleteButton = true,
+                    CustomButtons = new List<JQGridToolBarButton>() { 
+                         new JQGridToolBarButton(){
+                       Text="导出EXCEL",
+                        OnClick="ExportCutBillExcel"
+                      } 
+                    },
+                };
+                reval.DataUrl = Url.Action("GetCutGridData");
+                reval.EditUrl = Url.Action("EditCutGridData");
+                reval.Columns = new List<JQGridColumn>();
+                #endregion
+                #region 列
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "bt2_id",
+                    PrimaryKey = true,
+                    Editable = false,
+                    HeaderText = "编号",
+                    Visible = false
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "color_foreign",
+                    Editable = true,
+                    HeaderText = "品番",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                                     new  RequiredValidator()
+                                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "color_name",
+                    Editable = true,
+                    HeaderText = "色号",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                     new  RequiredValidator(),
+                     new NumberValidator()
+                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "order_quantity",
+                    Editable = true,
+                    HeaderText = "面料订货数(米)",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                     new NumberValidator()
+                    },
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "fabric_arrival",
+                    Editable = true,
+                    HeaderText = "面料到货数(米)",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                     new NumberValidator()
+                    },
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "size",
+                    Editable = true,
+                    HeaderText = "尺码",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                   
+                    }
+                     
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "note_num",
+                    Editable = true,
+                    HeaderText = "发注数",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                     new NumberValidator()
+                    },
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "will_num",
+                    Editable = true,
+                    HeaderText = "预算裁剪数",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                     new NumberValidator()
+                    },
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "actual_num",
+                    Editable = true,
+                    HeaderText = "实标裁剪数",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                     new NumberValidator()
+                    },
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "check_num",
+                    Editable = true,
+                    HeaderText = "送检数",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                     new NumberValidator()
+                    },
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+                reval.Columns.Add(new JQGridColumn()
+                {
+                    DataField = "delivers_num",
+                    Editable = true,
+                    HeaderText = "出货数",
+                    EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
+                     new NumberValidator()
+                    },
+                    Formatter = new CustomFormatter()
+                    {
+                        FormatFunction = "ToRound"
+                    }
+
+                });
+                #endregion
+                return reval;
+            }
+
+        }
+
+
+        public void ExportCutBillExcel(int id = 0)
+        {
+            using (NFDEntities db = new NFDEntities())
+            {
+                var cutGrid = GetCutGridModel;
+                cutGrid.ExportSettings.ExportDataRange = ExportDataRange.FilteredAndPaged;
+                var modelData = CutBill2Manager.GetV_CutBill(db).Where(c => c.order_id == id);
+                cutGrid.ExportToExcel(modelData, " 裁剪.xls", dt =>
+                {
+                    DataTable newDt = new DataTable();
+                    PubMethod.CopyDataTable(dt, newDt);
+                    var dr = newDt.NewRow();
+                    dr["size"] = "合计:";
+                    dr["note_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["note_num"])).Sum().ToMoneyString();
+                    dr["will_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["will_num"])).Sum().ToMoneyString();
+                    dr["actual_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["actual_num"])).Sum().ToMoneyString();
+                    dr["check_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["check_num"])).Sum().ToMoneyString();
+                    dr["delivers_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["delivers_num"])).Sum().ToMoneyString();
+                    newDt.Rows.Add(dr);
+                    return newDt;
+                });
+            }
+        }
+        #endregion
 
         #region 生产计划
 

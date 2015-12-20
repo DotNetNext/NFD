@@ -61,6 +61,7 @@
     <Compile Include="Bill\AccessoriesDetailManager.cs" />
     <Compile Include="Bill\ChanceBillExportManager.cs" />
     <Compile Include="Bill\ChanceBillManager.cs" />
+    <Compile Include="Bill\CutBil2Manager.cs" />
     <Compile Include="Bill\CutBillManager.cs" />
     <Compile Include="Bill\FabricDetailManager.cs" />
     <Compile Include="Bill\FabricOrderBillManager.cs" />

@@ -51,6 +51,12 @@
                          debugger
                          FrmGrid_ppGrid.find("#factory_name").val(factory_name);
                     });
+                    JQgridSaved("FrmGrid_cutGrid", function (formObj) {
+                         var FrmGrid_cutGrid=$("#FrmGrid_cutGrid");
+                         var no=$(".saveTable #no").val();
+                         FrmGrid_cutGrid.find("#color_foreign").val(no);
+                    });
+
                 },
                 addEvents: function () {
                     $("#btnTrader").click(function () {
@@ -127,9 +133,12 @@
         var indexNum2 = 0;
         var indexNum3 = 0;
         var indexNum4 = 0;
-
+        var indexNum5=0;
         function exportAdExcel() {
             window.location.href = "/Bill/Order/ExportADExcel?id="+@(Request["id"]);
+        }
+        function ExportCutBillExcel() {
+            window.location.href = "/Bill/Order/ExportCutBillExcel?id="+@(Request["id"]);
         }
     </script>
 }
@@ -422,6 +431,28 @@
     }")
             </div>
         
+        }
+           <br />
+        @if (ViewBag.cutGrid != null) { 
+         <div>
+                @{JQGrid cutGrid = ViewBag.cutGrid;
+                }
+                @Html.Trirand().JQGrid(cutGrid, "cutGrid").JqGridAppendOption(@"gridComplete:function(){ 
+      
+     
+       if(indexNum5==0){
+  $( ""#cutGrid"" ).jqGrid( 'setGroupHeaders' , {
+                useColSpanStyle :  true ,  // 没有表头的列是否与表头列位置的空单元格合并
+                groupHeaders : [ {
+                startColumnName :  'bt2_id' ,  // 对应colModel中的name
+                numberOfColumns : 18,  // 跨越的列数
+                titleText :  '裁剪'
+         }]
+        });
+        }
+        indexNum5++;
+    }")
+            </div>
         }
     </div>
 </div>
