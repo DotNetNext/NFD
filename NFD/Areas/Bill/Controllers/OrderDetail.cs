@@ -973,7 +973,7 @@ namespace NFD.Areas.Bill.Controllers
                     HeaderText = "色号",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
                      new  RequiredValidator(),
-                     new NumberValidator()
+                   
                     }
 
                 });
