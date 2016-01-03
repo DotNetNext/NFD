@@ -89,7 +89,7 @@ namespace NFD.Areas.Bill.Controllers
         }
 
 
-        #region 面料
+        #region 面料zonglan
         public JsonResult GetFDGridData(int id)
         {
             using (NFDEntities db = new NFDEntities())
@@ -138,6 +138,8 @@ namespace NFD.Areas.Bill.Controllers
                     LeftOffset = 400
 
                 };
+           
+ 
                 reval.EditDialogSettings = new EditDialogSettings()
                 {
                     Width = 400,
@@ -1105,11 +1107,11 @@ namespace NFD.Areas.Bill.Controllers
                     PubMethod.CopyDataTable(dt, newDt);
                     var dr = newDt.NewRow();
                     dr["size"] = "合计:";
-                    dr["note_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["note_num"])).Sum().ToMoneyString();
-                    dr["will_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["will_num"])).Sum().ToMoneyString();
-                    dr["actual_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["actual_num"])).Sum().ToMoneyString();
-                    dr["check_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["check_num"])).Sum().ToMoneyString();
-                    dr["delivers_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["delivers_num"])).Sum().ToMoneyString();
+                    dr["note_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["note_num"].ToDou())).Sum().ToMoneyString();
+                    dr["will_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["will_num"].ToDou())).Sum().ToMoneyString();
+                    dr["actual_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["actual_num"].ToDou())).Sum().ToMoneyString();
+                    dr["check_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["check_num"].ToDou())).Sum().ToMoneyString();
+                    dr["delivers_num"] = newDt.AsEnumerable().Select(c => Convert.ToDecimal(c["delivers_num"].ToDou())).Sum().ToMoneyString();
                     newDt.Rows.Add(dr);
                     return newDt;
                 });

@@ -173,7 +173,7 @@ namespace NFD.Areas.Report.Controllers
                 });
                      reval.Columns.Add(new JQGridColumn()
                      {
-                         DataField = "actual_num_tol",
+                         DataField = "check_num",
                          Editable = false,
                          HeaderText = "送检数(套)",
                          Searchable = false,

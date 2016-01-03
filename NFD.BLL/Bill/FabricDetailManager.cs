@@ -49,11 +49,15 @@ namespace NFD.BLL.Bill
                     fd.create_time = DateTime.Now;
                     fd.creator_id = UserManager.GetCurrentUserInfo.user_id;
                     fd.creator_name = UserManager.GetCurrentUserInfo.userName;
+                    fd.fabric_add_reduction = fd.fabric_arrival.ToDecimal() - fd.order_quantity.ToDecimal();
                     db.FabricDetail.AddObject(fd);
                     return db.SaveChanges() > 0;
                 }
                 else
                 {
+                    if (fd.fabric_add_reduction.IsNullOrEmpty()) { 
+                      fd.fabric_add_reduction = fd.fabric_arrival.ToDecimal() - fd.order_quantity.ToDecimal();
+                    }
                     db.Update<FabricDetail>(fd.fd_id, new 
                     {
                         clothes_orders_num = fd.clothes_orders_num,
@@ -70,6 +74,7 @@ namespace NFD.BLL.Bill
                         price=fd.price
 
                     });
+                    
                     return true;
                 }
             }
