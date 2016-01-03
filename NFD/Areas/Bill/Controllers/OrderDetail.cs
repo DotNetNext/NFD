@@ -1023,7 +1023,7 @@ namespace NFD.Areas.Bill.Controllers
                     Editable = true,
                     HeaderText = "发注数",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
-                     new NumberValidator()
+                 
                     },
                     Formatter = new CustomFormatter()
                     {
@@ -1037,7 +1037,7 @@ namespace NFD.Areas.Bill.Controllers
                     Editable = true,
                     HeaderText = "预算裁剪数",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
-                     new NumberValidator()
+                
                     },
                     Formatter = new CustomFormatter()
                     {
@@ -1051,7 +1051,7 @@ namespace NFD.Areas.Bill.Controllers
                     Editable = true,
                     HeaderText = "实标裁剪数",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
-                     new NumberValidator()
+                   
                     },
                     Formatter = new CustomFormatter()
                     {
@@ -1065,7 +1065,7 @@ namespace NFD.Areas.Bill.Controllers
                     Editable = true,
                     HeaderText = "送检数",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
-                     new NumberValidator()
+                 
                     },
                     Formatter = new CustomFormatter()
                     {
@@ -1079,7 +1079,7 @@ namespace NFD.Areas.Bill.Controllers
                     Editable = true,
                     HeaderText = "出货数",
                     EditClientSideValidators = new List<JQGridEditClientSideValidator>() { 
-                     new NumberValidator()
+   
                     },
                     Formatter = new CustomFormatter()
                     {
